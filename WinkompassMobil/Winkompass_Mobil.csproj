@@ -195,6 +195,7 @@
     <Compile Include="Code\Constants.cs" />
     <Compile Include="Code\SessionManager.cs" />
     <Compile Include="Code\StackTracker.cs" />
+    <Compile Include="Code\Functions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="HomeController.generated.cs">
@@ -245,6 +246,8 @@
     <Content Include="Content\images\home.png" />
     <Content Include="Content\images\back2.png" />
     <Content Include="Content\jquery-1.3.1.min.js" />
+    <Content Include="Content\mdl-jquery-modal-dialog.css" />
+    <Content Include="Content\mdl-jquery-modal-dialog.js" />
     <Content Include="Content\mdl-v1.1.2\material.css" />
     <Content Include="Content\mdl-v1.1.2\material.js" />
     <Content Include="Content\mdl-v1.1.2\material.min.css" />
@@ -328,17 +331,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Storage\CreateTemplate.cshtml" />
     <Content Include="Views\Storage\StorageCount.cshtml" />
-    <Content Include="Views\Storage\ChoseTemplate.cshtml" />
+    <Content Include="Views\Storage\StorageList.cshtml" />
     <Content Include="Views\Storage\QuickCount.cshtml" />
     <Content Include="Views\Storage\Top5.cshtml" />
     <Content Include="Views\Shared\NormalScan.cshtml" />
     <Content Include="Views\Purchase\MakePurchase.cshtml" />
-    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Shared\ScanWithTarget.cshtml" />
     <Content Include="Views\Shared\NormalScanJS.cshtml" />
     <Content Include="Views\Purchase\PurchaseList.cshtml" />
     <Content Include="Views\Order\OrderList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Storage\StorageListUnlimited.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

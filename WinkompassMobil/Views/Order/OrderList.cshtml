@@ -2,21 +2,37 @@
 
 @using Winkompass_Mobil.Helpers
 @section title{
-    Ordrer liste
+    Winkompass - Ordrer
 }
 
 @section siteHeader{
-    Vælg en ordre
+    Ordre liste
 }
-<div class="left">
-    <span>værdier i ordrer liste:<br /></span>
-    <b>-OrdrerNr -KundeNr -KundeNavn</b>
 
-    <hr />
+
+<hr class="hr-border-size"/>
+<div class="less-padding">
+    <a href="@Url.Action(MVC.Order.CreateOrder())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+        <i class="material-icons">add</i>
+        Opret ny ordre
+    </a>
+</div>
+
+<ul class="mdl-list left">
     
     @foreach (var order in Model.orders.Take(10))
     {
-        <text>
-            <b>-@order.OrderNo -@order.OrderCustomer -@order.OrderCustomerName</b> <a href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer,order.OrderNo))">tilføj linjer</a><br /><br />
-        </text>
-}</div>
+        <li class="mdl-list__item mdl-list__item--three-line">
+            <span class="mdl-list__item-primary-content">
+                <span>@order.OrderCustomerName</span>
+                <span class="mdl-list__item-text-body">
+                    @order.OrderNo - @order.OrderCustomer
+                </span>
+            </span>
+            <span class="mdl-list__item-secondary-content">
+                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer, order.OrderNo))"><i class="material-icons">add</i></a>
+            </span>
+        </li>
+    }
+
+</ul >

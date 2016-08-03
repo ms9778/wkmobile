@@ -67,7 +67,7 @@ namespace Winkompass_Mobil.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Order()
+        public virtual System.Web.Mvc.ActionResult CreateOrder()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Order);
         }
@@ -88,8 +88,8 @@ namespace Winkompass_Mobil.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string OrderGet = "Order";
-            public readonly string Order = "Order";
+            public readonly string OrderGet = "CreateOrder";
+            public readonly string Order = "CreateOrder";
             public readonly string OrderList = "OrderList";
         }
 
@@ -97,8 +97,8 @@ namespace Winkompass_Mobil.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string OrderGet = "Order";
-            public const string Order = "Order";
+            public const string OrderGet = "CreateOrder";
+            public const string Order = "CreateOrder";
             public const string OrderList = "OrderList";
         }
 
@@ -130,10 +130,10 @@ namespace Winkompass_Mobil.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Order = "Order";
+                public readonly string Order = "CreateOrder";
                 public readonly string OrderList = "OrderList";
             }
-            public readonly string Order = "~/Views/Order/Order.cshtml";
+            public readonly string Order = "~/Views/Order/CreateOrder.cshtml";
             public readonly string OrderList = "~/Views/Order/OrderList.cshtml";
         }
     }
@@ -171,7 +171,7 @@ namespace Winkompass_Mobil.Controllers
         partial void OrderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Winkompass_Mobil.Models.ScanItemModel reg);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Order(Winkompass_Mobil.Models.ScanItemModel reg)
+        public override System.Web.Mvc.ActionResult CreateOrder(Winkompass_Mobil.Models.ScanItemModel reg)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Order);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reg", reg);

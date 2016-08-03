@@ -8,11 +8,14 @@ using System.Text.RegularExpressions;
 using Winkompass_Mobil.Models;
 using BLL;
 using BE;
+using Winkompass_Mobil.Code;
 
 namespace Winkompass_Mobil.Controllers
 {
     public partial class StorageController : Controller
     {
+        Functions _function = new Functions();
+
         // GET: Storage
         public virtual ActionResult Index()
         {
@@ -66,17 +69,18 @@ namespace Winkompass_Mobil.Controllers
             if (!IsValidTemplate(id))
             {
                 SessionManager.Manager.IgnoreAction = true;
-                return RedirectToAction(MVC.Storage.ChoseTemplate());
+                return RedirectToAction(MVC.Storage.StorageList());
             }
             return View();
         }
+
         [HttpPost]
         public virtual ActionResult StorageCount(string id, ScanItemModel reg)
         {
             if (!IsValidTemplate(id))
             {
                 SessionManager.Manager.IgnoreAction = true;
-                return RedirectToAction(MVC.Storage.ChoseTemplate());
+                return RedirectToAction(MVC.Storage.StorageList());
             }
             reg = reg ?? new ScanItemModel();
             reg.item.Journal = id;
@@ -108,7 +112,7 @@ namespace Winkompass_Mobil.Controllers
 
 
 
-        public virtual ActionResult ChoseTemplate()
+        public virtual ActionResult StorageList()
         {
             TemplateList list = new TemplateList();
             list.Journals = StorageWorker.GetAllStockJournals();
@@ -120,7 +124,7 @@ namespace Winkompass_Mobil.Controllers
             if (!IsValidTemplate(id))
             {
                 SessionManager.Manager.IgnoreAction = true;
-                return RedirectToAction(MVC.Storage.ChoseTemplate());
+                return RedirectToAction(MVC.Storage.StorageList());
             }
             return View();
         }

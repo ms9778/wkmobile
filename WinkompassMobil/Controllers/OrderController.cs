@@ -11,14 +11,14 @@ namespace Winkompass_Mobil.Controllers
 {
     public partial class OrderController : Controller
     {
-        // GET: Order
+        // GET: CreateOrder
         public virtual ActionResult Index()
         {
             return View(MVC.Home.Views.Index);
         }
 
 
-        [ActionName("Order")]
+        [ActionName("CreateOrder")]
         public virtual ActionResult OrderGet(string cus, string on)
         {
             var reg = new  ScanItemModel() { item = new ScanItem() { target=cus,LineNo=on } };
@@ -26,7 +26,7 @@ namespace Winkompass_Mobil.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Order(ScanItemModel reg)
+        public virtual ActionResult CreateOrder(ScanItemModel reg)
         {
             if (reg != null && reg.item != null)
             {

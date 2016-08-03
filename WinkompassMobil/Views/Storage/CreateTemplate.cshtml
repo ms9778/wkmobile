@@ -1,39 +1,45 @@
 ﻿@using Winkompass_Mobil.Helpers
 @model TemplateModel
 @section title{
-    Winkompass opret lagerkladde
+    Winkompass - Lager
 }
-
-
 
 @section siteHeader{
     Opret lagerkladde
 }
+
 @if (Model != null && Model.Template != null && Model.Created)
 {
-    <div class="element left"><span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet</span></div>
+    <div class="element left">
+        <span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet</span></div>
 }
 else if (Model != null && Model.Template != null && !Model.Created)
 {
-    <div class="element left"><span class="text-danger" id="result"><b>@Model.Template.Journal1</b> blev ikke oprettet: @Model.Error</span></div>
+    <div class="element left">
+        <span class="text-danger" id="result"><b>@Model.Template.Journal1</b> blev ikke oprettet: @Model.Error</span></div>
 }
 <form method="post">
-    <div class="left element"><span>Navn på kladde:</span></div>
-    <input id="JournalInput" class="elementInputHack smallBotSpace" type="text" name="Template.Journal1"><br />
+    <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
+        <label class="mdl-textfield__label" for="JournalInput">Navn på lagerkladde</label>
+    </div>
     <span id="nn"></span>
-    <input class="button element tinyBotSpace" id="ss" type="submit" value="Opret lagerkladde">
+    <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace" id="ss" type="submit" value="Opret lagerkladde">
 </form>
 
 <form id="tt" class="measureHidden"></form>
 
-@section BottomScripts
-{
+<script>
+    $(document).ready(function () {
+        $('#ss').attr('disabled', true);
 
-    <script type="text/javascript">
-        $(window).load(function () {
-
-            $("#JournalInput").focus();
-
-        });        
-    </script>
-}
+        $('#JournalInput')
+            .keyup(function() {
+                if ($(this).val().length !== 0) {
+                    $('#ss').attr('disabled', false);
+                } else {
+                    $('#ss').attr('disabled', true);
+                }
+            });
+    });
+</script>

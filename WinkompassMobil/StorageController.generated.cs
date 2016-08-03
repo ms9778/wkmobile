@@ -96,7 +96,7 @@ namespace Winkompass_Mobil.Controllers
             public readonly string Index = "Index";
             public readonly string CreateTemplate = "CreateTemplate";
             public readonly string StorageCount = "StorageCount";
-            public readonly string ChoseTemplate = "ChoseTemplate";
+            public readonly string ChoseTemplate = "StorageList";
             public readonly string QuickCount = "QuickCount";
             public readonly string Top5 = "Top5";
         }
@@ -107,7 +107,7 @@ namespace Winkompass_Mobil.Controllers
             public const string Index = "Index";
             public const string CreateTemplate = "CreateTemplate";
             public const string StorageCount = "StorageCount";
-            public const string ChoseTemplate = "ChoseTemplate";
+            public const string ChoseTemplate = "StorageList";
             public const string QuickCount = "QuickCount";
             public const string Top5 = "Top5";
         }
@@ -157,13 +157,13 @@ namespace Winkompass_Mobil.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string ChoseTemplate = "ChoseTemplate";
+                public readonly string ChoseTemplate = "StorageList";
                 public readonly string CreateTemplate = "CreateTemplate";
                 public readonly string QuickCount = "QuickCount";
                 public readonly string StorageCount = "StorageCount";
                 public readonly string Top5 = "Top5";
             }
-            public readonly string ChoseTemplate = "~/Views/Storage/ChoseTemplate.cshtml";
+            public readonly string ChoseTemplate = "~/Views/Storage/StorageList.cshtml";
             public readonly string CreateTemplate = "~/Views/Storage/CreateTemplate.cshtml";
             public readonly string QuickCount = "~/Views/Storage/QuickCount.cshtml";
             public readonly string StorageCount = "~/Views/Storage/StorageCount.cshtml";
@@ -239,7 +239,7 @@ namespace Winkompass_Mobil.Controllers
         partial void ChoseTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ChoseTemplate()
+        public override System.Web.Mvc.ActionResult StorageList()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChoseTemplate);
             ChoseTemplateOverride(callInfo);

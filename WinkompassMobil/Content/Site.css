@@ -45,7 +45,7 @@ div,html,body,form,table,tr,td{
 
 .card-size {
     width: 90% !important;
-    min-height: 0px !important;
+    min-height: 160px !important;
     margin-left: 5%;
     
 }
@@ -77,7 +77,6 @@ div,html,body,form,table,tr,td{
 mdl-card__title a, a:hover, a:active, a:visited {
     text-decoration:none !important;
 }
-
 
 
 .material-icons.md-18 { font-size: 18px; }

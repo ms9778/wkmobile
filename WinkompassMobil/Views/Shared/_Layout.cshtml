@@ -3,8 +3,14 @@
 <head>
     <link rel="stylesheet" href="~/Content/Site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue-orange.min.css" />
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/> 
+    <link rel="stylesheet" href="~/Content/mdl-jquery-modal-dialog.css">
+    <script src="~/Content/mdl-jquery-modal-dialog.js"></script>
+
 
     <title>@RenderSection("title", true)</title>
     @if (SessionManager.Manager.Responsive is html4 && HttpContext.Current.Request.Url.Host.Contains("tess"))
@@ -292,12 +298,12 @@
                 <div class="siteWrapper">
                     @RenderBody()
                     
-                    <div class="padding-button">
+                    @*<div class="padding-button">
                         <a onclick="goBack()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
                             <i class="material-icons">keyboard_arrow_left</i>
                             Tilbage
                         </a>
-                    </div>
+                    </div>*@
 
                     @*<div style="margin-bottom:55px;">
                         @Html.ActionLink("Tilbage", "Index", "Home", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect col-lg-12 col-md-12 col-sm-12 col-xs-12", @onClick = "goBack()"})

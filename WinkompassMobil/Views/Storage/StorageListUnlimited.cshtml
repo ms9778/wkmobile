@@ -1,0 +1,64 @@
+﻿@using Winkompass_Mobil.Helpers
+@model TemplateList
+
+@section title{
+    Winkompass - Lager
+}
+
+@section siteHeader{
+    Lagerkladde liste
+}
+
+@using Winkompass_Mobil.Code
+
+@functions
+{
+
+    Functions _func = new Functions();
+
+}
+
+
+<hr class="hr-border-size" />
+<div class="less-padding">
+    <a href="@Url.Action(MVC.Storage.CreateTemplate())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+        <i class="material-icons">add</i>
+        Opret ny lagerkladde
+    </a>
+</div>
+
+
+
+<ul class="mdl-list left">
+
+    @foreach (var journal in Model.Journals)
+    {
+        <li class="mdl-list__item mdl-list__item--three-line">
+
+            <span class="mdl-list__item-primary-content">
+                <span>
+                    @_func.Truncate(@journal.Journal1, 12)
+                </span>
+
+                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Storage.StorageCount(journal.Journal1))">
+                    <span class="mdl-list__item-primary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons md-dark">camera_alt</i>
+                    </span>
+                </a>
+
+                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Storage.QuickCount(journal.Journal1))">
+                    <span class="mdl-list__item-secondary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons md-dark">flash_on</i>
+                    </span>
+                </a>
+            </span>
+        </li>
+    }
+</ul>
+
+<div class="tinyBotSpace"></div>
+
+@section BottomScripts
+{
+
+}

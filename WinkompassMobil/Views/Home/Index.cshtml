@@ -9,19 +9,8 @@
 }
 
 <hr/>
-@*<div class="padding-button">
-    @Html.ActionLink("Lager", "ChoseTemplate", "Storage", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect col-lg-12 col-md-12 col-sm-12 col-xs-12" })
-</div>
 
-<div class="padding-button">
-@Html.ActionLink("Ordrer", "OrderList", "Order", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect col-lg-12 col-md-12 col-sm-12 col-xs-12" })
-</div>
-
-<div class="padding-button">
-@Html.ActionLink("Indkøb", "PurchaseList", "Purchase", null, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect col-lg-12 col-md-12 col-sm-12 col-xs-12" })
-</div>*@
-
-<a href="@Url.Action(MVC.Storage.ChoseTemplate())">
+<a href="@Url.Action(MVC.Storage.StorageList())">
     <div class="mdl-card mdl-shadow--4dp card-size margin-bottom-20 card1">
         <div class="mdl-card__title mdl-card--expand">
             <h2 class="mdl-card__title-text">Lager</h2>
@@ -44,12 +33,12 @@
 </a>
 
 <a href="@Url.Action(MVC.Purchase.PurchaseList())">
-        <div class="mdl-card mdl-shadow--4dp card-size margin-bottom-20 card3">
-            <div class="mdl-card__title mdl-card--expand">
-                <h2 class="mdl-card__title-text">Indkøb</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                Se nylige indkøb og opret nye.
-            </div>
+    <div class="mdl-card mdl-shadow--4dp card-size margin-bottom-20 card3">
+        <div class="mdl-card__title mdl-card--expand">
+            <h2 class="mdl-card__title-text">Indkøb</h2>
         </div>
+        <div class="mdl-card__supporting-text">
+            Se nylige indkøb og opret nye.
+        </div>
+    </div>
 </a>
