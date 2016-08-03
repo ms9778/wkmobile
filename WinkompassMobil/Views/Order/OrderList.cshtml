@@ -1,0 +1,22 @@
+﻿@model Winkompass_Mobil.Models.OrderListModel
+
+@using Winkompass_Mobil.Helpers
+@section title{
+    Ordrer liste
+}
+
+@section siteHeader{
+    Vælg en ordre
+}
+<div class="left">
+    <span>værdier i ordrer liste:<br /></span>
+    <b>-OrdrerNr -KundeNr -KundeNavn</b>
+
+    <hr />
+    
+    @foreach (var order in Model.orders.Take(10))
+    {
+        <text>
+            <b>-@order.OrderNo -@order.OrderCustomer -@order.OrderCustomerName</b> <a href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer,order.OrderNo))">tilføj linjer</a><br /><br />
+        </text>
+}</div>

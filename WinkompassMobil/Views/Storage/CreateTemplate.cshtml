@@ -1,0 +1,39 @@
+﻿@using Winkompass_Mobil.Helpers
+@model TemplateModel
+@section title{
+    Winkompass opret lagerkladde
+}
+
+
+
+@section siteHeader{
+    Opret lagerkladde
+}
+@if (Model != null && Model.Template != null && Model.Created)
+{
+    <div class="element left"><span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet</span></div>
+}
+else if (Model != null && Model.Template != null && !Model.Created)
+{
+    <div class="element left"><span class="text-danger" id="result"><b>@Model.Template.Journal1</b> blev ikke oprettet: @Model.Error</span></div>
+}
+<form method="post">
+    <div class="left element"><span>Navn på kladde:</span></div>
+    <input id="JournalInput" class="elementInputHack smallBotSpace" type="text" name="Template.Journal1"><br />
+    <span id="nn"></span>
+    <input class="button element tinyBotSpace" id="ss" type="submit" value="Opret lagerkladde">
+</form>
+
+<form id="tt" class="measureHidden"></form>
+
+@section BottomScripts
+{
+
+    <script type="text/javascript">
+        $(window).load(function () {
+
+            $("#JournalInput").focus();
+
+        });        
+    </script>
+}

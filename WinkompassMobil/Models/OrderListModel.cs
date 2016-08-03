@@ -1,0 +1,13 @@
+﻿using BE;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Winkompass_Mobil.Models
+{
+   public class OrderListModel
+    {
+       public List<Order> orders { get; set; }
+    }
+}

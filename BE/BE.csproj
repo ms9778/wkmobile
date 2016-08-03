@@ -1,0 +1,2202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B71EAAD-5ED9-4E4A-BFE5-849910528136}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BE</RootNamespace>
+    <AssemblyName>BE</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsBalanceAccount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsBalanceEntry.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Agent.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisAccount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsciiAvance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsciiCode.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsciiField.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsciiFilter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsciiImp.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BalanceSheetPreference.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankCurrency.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillOfMaterial.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillOfMaterialPrint.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillOfMaterialPrintNotAvailable.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Budget.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsignerColliType.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsignerPackType.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsignerTransporter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerCategory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerContact.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerInterestCalc.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerInterestSaldo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerReminderCalc.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerReport.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLink.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Defraction.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryFee.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryPackFormat.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Desktop.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Distribution.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentMergeSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentMergeSetupColumn.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsCustomer.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsInventory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsProject.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsSupplier.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Duty.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_ArchiveOrders_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_Customers_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_Inventory_Select_All_ItemAndEAN_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_OpenPurchases_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_OrderLines_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_PurchaseLines_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDI_Suppliers_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EECCountryCode.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EECTransactionCode.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePrice.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalData.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalKeyChange.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraInventory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraItemDuty.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraItemPrice.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Factoring.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FactoringGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="File.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FilterData.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FilterInfo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnCustomerTransactionsByPeriod_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetOrderDiscount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetPrice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetPurchaseDiscount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnOptionalValues_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnSplitStringWithID_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnSplitString_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsCustomerFunc1ByPeriods_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsCustomerFuncByGroups_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsCustomerFuncByItems_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsCustomerFuncOthersByPeriods_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsInventoryBuyFuncByPeriod_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsInventorySaleFuncByPeriod_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsSupplierFunc1ByPeriods_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsSupplierFuncByGroups_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsSupplierFuncByItems_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStatisticsSupplierFuncOthersByPeriods_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnStringToTable_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnSupplierTransactionsByPeriod_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnTransSummarySingleID_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnTransSummary_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_AnalysisAccountsList_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_GetPayables_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_GetReceivables_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_Kompas_VATAccounts_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_Kompas_VATReturn_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesDimPerYear_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnPeriodBalance_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnTransactions1Dim_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnTransactions2Dim_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnTransactions3Dim_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnTransactions4Dim_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_BalanceValuesOnTransactionsNoDim_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_VATAccounts_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_VATCalulateInvoiceJournals_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_VATCalulateManuallyPosted_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_OffInt_VATReturn_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_StandardAnalysisLiquidityFlow_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_StdAnalysisPeriodBalance_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratePurchasesLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Holiday.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImagesGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImpExp.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImpExpField.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImpExpFilter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFixedData.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImportSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interest.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InternetGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IntrastatLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvAdjustSalesprice.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvCountJournal.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryArchive.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryAttachedItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryBudget.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryCategory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryCount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryCustomerGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryItemNo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryLocationWorksheet.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryParameter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImport.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportAvance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportDuty.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPriceImportSetupDuty.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventorySupplierGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceText_Locale.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvWorksheetSerialNo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDuty.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemInternetGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPrice.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPriceAvanceGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemSerialNo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemSerialNoSale.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemSerialNoTmp.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Journal.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JournalDefaultValue.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JournalPost.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_AdjustInventory_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_CustomerStatisticsByMonth_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_InventoryOnHand_Statistics_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_InventoryPurchaseStatisticsByMonth_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_InventorySalesStatisticsByMonth_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjectedInventoryOnhandMonthly_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjectedInventoryOnhandWeekly_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjectOrderDocument_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjectPurchaseDocument_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjektlisteDB_Oversigt_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_ProjektlisteDB_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_Provision_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KompasReport_SupplierStatisticsByMonth_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_100Percent_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_AccountingYearInfo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_AccountingYearQuarters_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_BalanceAgeingSingleCustomersSuppliers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_BalanceSheetGetAccountInfo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_BillOfMaterial_GetTotalProces_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_CheckTotalDBData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_CustomerInterest_GetEntries_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_CustomerPaymentService_Get_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Customers_MayDelete_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Delivery_GetPackInfo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_DimensionCounts_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_EndorsePayments_GetTransactions_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Export_EDIMATIC_GetOrders_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Factoring_GetData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Factoring_ImportPayments_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Factoring_Info_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_eLPcMobil_GJ_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_FrontlineImport_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_Guldbranche_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_ImportOrderLinesFromLPEAN_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_ImportOrderLinesFromLP_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_Import_eLPc_Arbejdsseddel_Opret_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_Import_eLPc_Arbejdsseddel_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FixedImport_Retail_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_FormRetainPosition_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetAutoParameter_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetBalanceSheetPreferences_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetBudgetComboInfo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetItemPriceListAvance_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetUserSettings_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetViewSelectFields_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_GetVoucher_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Import_DIGITALCAP_Files_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Import_EDIMATIC_Files_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Import_EDIMATIC_Orders_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Interest_CheckBookData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_IntrastatLines_Lines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Intrastat_Lines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryBudget_GetBudget_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryCount_CheckBookingData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryDisponibleOnHand_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryGetDeliveryTime_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryPriceImport_CheckData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InventoryPriceImport_ExistsNewGroups_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Inventory_MayDelete_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Inventory_UpdatePricesWithPriceImport_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_InvoiceCalculateIntrastatValues_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ItemPriceStatistik_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_JournalGetAccountInformation_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_JournalGetCustomerInformation_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_JournalGetSupplierInformation_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_JournalPosts_GetJournals_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_KonvertToDBVersion111_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_LangKeyValue_Select_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_MassSettleCusSup_GetData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OpenItemWorksheetCustomer_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OpenItemWorksheetGetMarkedAmount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OpenItemWorksheetSupplier_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OrderBOMLine_GetItemPrice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OrderDeliveries_SelectNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OrderFlex_CreateTriggers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OrderMerging_GetData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_OrdersCheckSerialNo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Orders_GetSplitOrderDeliveredLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Orders_PreCheck_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearActualsVsBudgets_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearActualsVsLastYearActuals_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearActualsWithBudgetVsLastYearActuals_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearsActuals_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearsBudgets_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodBalanceGetYearTDActualsVsLastYearTDActualsWithBudgets_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PeriodsGetPeriodIDWithNameAndEnding_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectInvoiceCreateOrder_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectInvoice_CreateNewOrder_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectInvoice_GetData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectLines_ProjectAcontoInvoice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectLines_ProjectMoreSaleInvoice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ProjectLines_SumSelectedLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Project_Budget_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Project_CostCenterAvance_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_PurchasesCreateFromOrderLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Purchases_GetSplitOrderDeliveredLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_RateAdjustment_CreateEntries_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_RateAdjustment_HentData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_RecalcZeroControl_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ReportCriteria_Process_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_ReportManagerGetReport_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SelectFieldsList_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SettelSmallBalance_Customers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SettelSmallBalance_Suppliers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SimulateSimulatedPeriodBalance_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeDoCheckTransactions_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeGetCurrencyInformation_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeGetSupplierBankData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeGetTransactionsBankData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeGetTransactions_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeTransferToJournal_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeUpdatePayAmount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_SupplierAuthorizeUpdateSupplierAndTransactionBankData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Suppliers_MayDelete_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_TimeLines_Post_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_TimeManager_CreateOrder_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_TransactionsByRecordID_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_TransTransferNewCheck_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_Voucher_GetNext_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_WaterMeter_CreateOrder_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_WaterMeter_CustomerLeaving_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_WaterMeter_GetEntries_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_WaterMeter_HentData_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kompas_WaterMeter_Statistic_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Line.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LinesEntry.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LinesEntryArchive.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LinesEntryBillOfMaterial.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeargedDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeargedDiscountItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MultiDataAccountMap.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyKompassEntities.cs" />
+    <Compile Include="OldTransEntry.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OnHand.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Option.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrdDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderCategory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderCommunication.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderCommunicationStatu.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDelivery.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders2.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersArchive.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatu.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrdPriceInterval.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Period.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PeriodBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostNr.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriceList.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcedureLock.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcedureRunInformation.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectBudget.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectCalculation.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectCalculationLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectCostCenterAvance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectInvoice.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectJournalLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectStatus1.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectStatus2.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectSubProject.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provision.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProvisionGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Accounts_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Accounts_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Accounts_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Accounts_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ArchiveOrderLine_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ArchiveOrderLine_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CashDiscount_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CashDiscount_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Company_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Company_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenterGroup_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenterGroup_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenterGroup_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenterGroup_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenter_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenter_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenter_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CostCenter_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Currency_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Currency_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Currency_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerCategory_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerCategory_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerCategory_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerCategory_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerContacts_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerContacts_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerContacts_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerContacts_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerLog_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_CustomerLog_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Customers_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Customers_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Customers_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Customers_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Delivery_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Department_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Department_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Department_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Department_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Employee_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Employee_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Employee_Select_All_Timekladde_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Employee_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Employee_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ExtraInventory_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ExtraInventory_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Interest_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Interest_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_IntrastatLines_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_IntrastatLines_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryItemNo_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryItemNo_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryItemNo_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryItemNo_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryWorksheet_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryWorksheet_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryWorksheet_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InventoryWorksheet_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Inventory_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Inventory_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InvoiceText_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InvoiceText_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InvoiceText_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_InvoiceText_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ItemSerialNoSale_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ItemSerialNoSale_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ItemSerialNo_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ItemSerialNo_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ItemSerialNo_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Journal_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Journal_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Journal_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Journal_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Options_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Options_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderCommunicationStatus_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderCommunicationStatus_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderCommunication_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderCommunication_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderLine_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderLine_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders2_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders2_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders2_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders2_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderStatus_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderStatus_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderStatus_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_OrderStatus_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Orders_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Payment_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Payment_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PostNr_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PostNr_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PostNr_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PostNr_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ProjectLines_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ProjectLines_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ProjectLines_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_ProjectLines_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Project_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Project_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Project_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseCommunicationStatus_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseCommunicationStatus_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseCommunication_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseCommunication_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseLine_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseLine_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseStatus_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseStatus_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseStatus_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_PurchaseStatus_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purchases_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purchases_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purchases_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purpose_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purpose_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purpose_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Purpose_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Source_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Source_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Source_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Source_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Standards_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Standards_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierCategory_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierCategory_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierCategory_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierCategory_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierContacts_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_SupplierContacts_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Suppliers_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Suppliers_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Suppliers_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Suppliers_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Tax_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Tax_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Tax_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Tax_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeHeaderLine_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeHeaderLine_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeHeaderLine_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeHeaderLine_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeItems_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeItems_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeItems_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TimeItems_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Titles_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Titles_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Titles_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Titles_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Transactions_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Transactions_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TransEntry_AddNew_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TransEntry_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TransEntry_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_TransEntry_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Unit_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Unit_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Voucher_Select_All_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Voucher_Select_Single_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Public_Voucher_Update_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseCommunication.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseCommunicationStatu.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseDetails.cs" />
+    <Compile Include="PurchaseImport.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchasesArchive.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseStatu.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purpose.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rate.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reminder.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RemindersSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCodes1.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCodes2.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCodes3.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCodes4.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCriteria.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportManager.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportUserOption.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Right.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanItem.cs" />
+    <Compile Include="Sigma.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SimTransaction.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMSMessage.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Source.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_AccountsMayDelete_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_AccountsUpdateBlockingInfo_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_AccountsUpdateSysInfoGetGroupings_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_BalanceAgeingAllCustomersSuppliers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_BalanceAgeingSingleCustomersSuppliers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_BatchCusSupStatements_SetupStatements_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_CheckGroupAccount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_CheckOtherTabels_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_CheckSystemAccount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_CustomerOrdersArchiveLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_CustomerOrdersOpenLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_DataBaseTableColumnNames_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_DataBaseTableColumnProperties_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_DFTransCheckPostCheckLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_GetAccountingYears_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_GetOrderDiscount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_GetPurchaseDiscount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_GetUserRoster_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_HeavyGetPriceListPrice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_InterestCalcFetchCustomers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_InterestCalcReFetchCustomers_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_InvoiceReprint_SetupInvoices_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_OrdersSelectNotDisponibleItem_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_PeriodsByNameWithEndingAndStarting_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_RemindersCheckBeforeBook_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_RemindersMakeEntriesForPrint_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SimulatePosting_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SimulateSetOffAccountsGetSetOffsTransactions_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SimulateSetOffAccountsGetSetOffs_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SimulateSpecification_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SimulateSpecifyVoucher_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_StandardAnalysisCalculateFigures_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SupplierPurchasesArchiveLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_SupplierPurchasesOpenLines_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsByAccount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsByCustomerOpen_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsByCustomer_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsBySupplierOpen_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsBySupplier_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_TransactionsByTrail_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_ZoomLinesByTrail_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Kompas_ZoomTransactionsByTrail_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_AccountsTransactions_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_CustomersCopy_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_CustomerStatement_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_InventoryCopy_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_OrderDocument_Label_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_OrderDocument_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_OrderInventoryDeliverCopy_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_PurchaseDocument_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_PurchaseInventoryDeliverCopy_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_SupplierCopy_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_SuppplierStatement_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Report_ToldOgSkat_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Standard.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StandardText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierBankData.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierCategory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierContact.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierGroup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierReport.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tax.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaxDue.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaxPeriod.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblSystem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextHolder.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextHolderMainKey.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeHeaderLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLine.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeManager.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeregistrering_Statistik_CostCenter_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeregistrering_Statistik_Linier_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeregistrering_Statistik_Purpose_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Title.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionsBankData.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransEntry.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransInterestItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransOpenItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tss_GetOrderDiscount_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tss_GetPrice_Result.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tss_Linier.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tss_Sager.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFormGridSetup.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFormPosition.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFormTabIndex.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLastViewRecord.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserOption.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSetting.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vAccountingYearInfo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vActiveInvoiceText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vAutoPrimoPeriodBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vAutoPrimoPeriodBalancesDimension.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vBusinessType.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vClosedOrder.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vClosedPurchas.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerEmail.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional1Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional2Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional3Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional4Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional5Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional6Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional7Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vCustomerOptional8Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vDepartmentPeriodBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vDetail_OrderDates.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventory.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional1Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional2Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional3Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional4Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional5Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional6Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional7Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryOptional8Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryParameter1.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInventoryParameter2.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vInvoiceText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vLanguage.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOpenOrder.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOpenOrdersIncludingQuotation.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOpenPurchas.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOpenSupplierTransaction.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrdDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderBaseDoc.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderLinesSortField.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional1Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional2Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional3Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional4Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional5Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional6Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional7Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vOrderOptional8Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vParameter1Name.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vParameter2Name.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPayable.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPriceImport.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPrimoTransaction.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vProjectPeriodBalance.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional1Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional2Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional3Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional4Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional5Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional6Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional7Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurchaseOptional8Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPurDiscount.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vReceivable.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vReminderLevel.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSalesStatistik.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vStandardText.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierEmail.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional1Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional2Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional3Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional4Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional5Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional6Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional7Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vSupplierOptional8Values.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterEntry.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterItem.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterLeavingInfo.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterWorkSheet.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaterMeterWorkSheetLog.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinEDIColliType.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinEDIPackType.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinEDITransporter.cs">
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinKompassModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WinKompassModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinKompassModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WinKompassModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WinKompassModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WinKompassModel.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="WinKompassModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WinKompassModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="WinKompassModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WinKompassModel.edmx</DependentUpon>
+      <LastGenOutput>WinKompassModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="WinKompassModel.edmx.diagram">
+      <DependentUpon>WinKompassModel.edmx</DependentUpon>
+    </None>
+    <None Include="WinKompassModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WinKompassModel.edmx</DependentUpon>
+      <LastGenOutput>WinKompassModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,41 @@
+﻿@using Winkompass_Mobil.Helpers
+@model ScanItemModel
+@section title{
+    Winkompass Lageroptælling
+}
+
+
+
+@section siteHeader{
+    Lageroptælling
+}
+@if (Model != null && !string.IsNullOrEmpty(Model.Error))
+{
+    <div id="scanResult" class="element left tinyBotSpace text-danger"><span>@Model.Error</span></div>
+}
+else if (Model != null && Model.scanned == BE.ScanItem.SCAN_VALID)
+{
+    <div id="scanResult" class="element left tinyBotSpace text-success"><span>@Model.message</span></div>
+}
+else if (Model != null && Model.scanned == BE.ScanItem.SCAN_INVALID)
+{
+    <div id="scanResult" class="element left tinyBotSpace text-danger"><span>Scanning fejlede ved registrering!</span></div>
+}
+<form class="scanForm" method="post">
+    @Html.Partial("~/Views/Shared/NormalScan.cshtml")
+</form>
+@section BottomScripts {
+    @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
+    @if(Boolean.Parse(System.Configuration.ConfigurationManager.AppSettings["useLocation"]))
+    {
+        <text>
+    <script type="text/javascript">
+        $("#btnLocationRemove").bind("click", function (e) {
+            $('#locationInput').val = '';
+            $('#locationInput').enabled=true;
+            $('#locationRemove').parent().remove('#locationRemove');
+            return false;
+        });</script>
+        </text>
+    }
+}

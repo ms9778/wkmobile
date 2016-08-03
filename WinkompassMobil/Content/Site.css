@@ -1,0 +1,303 @@
+﻿/*Remove some default functionality to better have control over the layout*/
+a img {
+    border:0;
+}
+div,html,body,form,table,tr,td{
+    margin:0;
+    padding:0;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.back-button-padding {
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+    padding-right:16px !important;
+    padding-left:16px !important;
+}
+
+.little-margin{
+    padding: 50px !important;
+}
+
+.less-padding {
+    padding: -20px !important;
+}
+
+.margin-bottom-20{
+    margin-bottom:20px;
+    }
+
+.hr-border-size{
+    border-width:2px;
+}
+
+.padding-button {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.card-size {
+    width: 90% !important;
+    min-height: 0px !important;
+    margin-left: 5%;
+    
+}
+
+.card1 > .mdl-card__title {
+  color: #fff;
+  background:
+    url('http://erpblog.iqms.com/wp-content/uploads/2015/06/Warehouse-Management.png') top left 15% no-repeat #46B6AC;
+    text-decoration: none; /* no underline */
+
+}
+
+.card2 > .mdl-card__title {
+  color: #fff;
+  background:
+    url('http://www.beediebass.com/wp-content/uploads/2015/07/loan.jpg') top left 15% no-repeat #46B6AC;
+    text-decoration: none; /* no underline */
+
+}
+
+.card3 > .mdl-card__title {
+  color: #fff;
+  background:
+    url('http://www.beediebass.com/wp-content/uploads/2015/07/loan.jpg') center left 20% no-repeat #46B6AC;
+    text-decoration: none; /* no underline */
+
+}
+
+mdl-card__title a, a:hover, a:active, a:visited {
+    text-decoration:none !important;
+}
+
+
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/*Standardizing END*/
+
+body {
+   width:236px;
+}
+body * {
+    font-size:20px;
+}
+
+
+
+.topnav {
+    background-color:#ababab;
+    width:236px;
+}
+
+body #siteTop {
+    padding:3px 2px;
+}
+
+
+
+.siteWrapper {
+    text-align:center;
+    margin: 0 11px ;
+}
+
+.headerText
+{
+      font-size:20px;
+}
+
+
+.button, .menuButton {
+    height:50px;
+}
+
+.element {
+    width:216px;
+}
+
+.elementInputHack
+{
+    width:212px;
+    height:35px;
+    padding-top:11px;
+}
+
+.tinyBotSpace {
+    margin-bottom:5px;
+}
+
+.smallBotSpace {
+    margin-bottom:10px;
+}
+
+.mediumBotSpace {
+    margin-bottom:15px;
+}
+
+.largeBotspace {
+    margin-bottom:20px;
+}
+
+.templateChooserBot, .templateChooserTop {
+    border:1px solid black;
+    border-collapse: collapse;
+}
+.templateChooserTop {
+    border-bottom:0;
+}
+
+.templateChooserBot {
+    
+    border-top:0;
+}
+.templateChooserTop .iconButtonContainer {
+    padding:6px 7px 3px 7px;
+    padding-top:10px;
+}
+.templateChooserTop .iconButtonContainer img {
+    margin-bottom:-3px;
+}
+
+.iconButtonContainer {
+    border-left:1px solid black;
+    border-right:0;
+    border-top:0;
+    border-bottom:0;
+    border-collapse:collapse;
+    padding:2px;
+    margin:0;
+}
+
+.templateText {
+    width: 133px;
+    padding:0 2px;
+}
+
+.templateName {/*Border hack to ensure space between buttons*/
+    display:block;
+}
+
+.templateButton{
+    border:1px solid black;
+    border-collapse: collapse;
+    background-color:#CCCCCC;
+    padding:2px;
+    margin:2px;
+    width:45%;
+}
+
+.left {
+    text-align:left;
+}
+
+.measureHidden {
+    visibility:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.templateChoiceFirst, .templateChoice
+{
+    border-bottom: 2px #CCCCCC solid;
+    border-collapse:collapse;
+    overflow-wrap:break-word;
+    overflow-x:auto;
+    padding-bottom:3px;
+}
+.templateChoiceFirst
+{
+    border-top: 2px #CCCCCC solid;
+}
+
+.buttonEmulation {
+    background-color:#c9cde9;
+    
+    
+    border-top:1px solid white;
+    border-left:1px solid white;
+    border-bottom:1px solid #090733;
+    border-right:1px solid #090733;
+    
+    height:26px;
+    display:block;
+    text-decoration:none;
+    color:black;
+}
+
+.buttonEmulationP {
+    background-color:black;
+    border-collapse:collapse;
+    padding:1px 2px 2px 1px;
+    height:26px;
+    width:213px;
+    
+}
+
+.lastScans td
+{
+    border:1px solid black;
+    padding:1px;
+    border-spacing:0;
+    font-size:10px;
+}
+.lastScans tr {
+    border-spacing:0;
+
+}
+
+.lastScans {
+    
+    border-spacing:0;
+    border-collapse:collapse;
+}
+#scanResult span, #result, #result *
+{
+    font-size: 16px;
+}
+
+.scanTableItem {
+    width:99%;
+}
+
+#actionMessage, #actionMessageLabel {
+    font-size:16px;
+}
+/*Bootstrap classes to use for color*/
+
+.text-primary {
+    color:#72bbff;
+}
+.text-primary b {
+    color: #31708f;
+}
+
+.text-success {
+    color: #3c765b;
+}
+
+.text-success b {
+    color: #3c763d;
+}
+
+.text-danger {
+    color: #a94442;
+}
+
+.text-danger b {
+    color: #ba4442;
+}

@@ -1,0 +1,13 @@
+﻿@model ScanItemModel
+<input type="hidden" name="item.LineNo" value="@(Model != null && Model.item != null && !string.IsNullOrEmpty(Model.item.LineNo)? Model.item.LineNo:"")"/>
+@if (Model != null && Model.item != null && !string.IsNullOrEmpty(Model.item.target))
+{
+    @:<input type="hidden"  name="item.target" value="@Model.item.target" />
+}
+<input class="elementInputHack tinyBotSpace" id="TargetInput" type="text" @(Model!=null && Model.item!=null && !string.IsNullOrEmpty(Model.item.target) ? "value="+Model.item.target+" disabled=disabled":"") name="item.target" />
+<div class="left element"><span>Varenr / stregkode:</span></div>
+<input class="elementInputHack tinyBotSpace" id="scanInput" type="text" name="item.barCode" />
+<div class="left element"><span>Antal optalt:</span></div>
+<input class="elementInputHack tinyBotSpace" id="itemCount" type="number" name="item.count" />
+<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.CONTINUE_SCANNING">
+<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.SCAN_AND_STOP">

@@ -1,0 +1,22 @@
+﻿@model Winkompass_Mobil.Models.PurchaseListModel
+
+@using Winkompass_Mobil.Helpers
+@section title{
+    Indkøbsliste
+}
+
+@section siteHeader{
+    Vælg et indkøb
+}
+<div class="left">
+    <span>værdier i indkøb liste:<br /></span>
+    <b>-IndkøbsNr -Leverandørnr -LeverandørNavn</b>
+
+    <hr />
+    @foreach (var purchase in Model.purchases.Take(10))
+    {
+        <text>
+            <b>-@purchase.PurchaseNo -@purchase.SupplierNo -@purchase.SupplierName</b> <a href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo,purchase.PurchaseNo))">tilføj linjer</a><br /><br />
+        </text>
+    }
+</div>

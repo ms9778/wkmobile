@@ -1,0 +1,66 @@
+﻿@using Winkompass_Mobil.Helpers
+@model TemplateList
+@section title{
+    Winkompass - Vælg Kladder
+}
+
+
+
+@section siteHeader{
+    Lageroptælling
+}
+
+
+     <hr class="hr-border-size"/>
+    <div class="less-padding">
+        <a href="@Url.Action(MVC.Storage.CreateTemplate())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+            <i class="material-icons">add</i>
+            Opret ny lagerkladde
+        </a>
+    </div>
+
+   
+
+
+@{string templateClass = "templateChoiceFirst";}
+
+
+<ul class="mdl-list no-padding" >
+    <hr class="hr-border-size"/>
+    @foreach (BE.Journal template in Model.Journals)
+    {
+        if (!template.Journal1.Contains('/'))
+        {
+
+            <li class="mdl-list__item" style="min-height:0px !important; padding: 0 !important; overflow:visible;" >
+
+                <!--kladde navn-->
+                <span class="mdl-list__item-primary-content">@template.Journal1</span>
+
+                <!--Scan barcode-->
+                <a class="mdl-button mdl-js-button mdl-button mdl-js-ripple-effect" href="@Url.Action(MVC.Storage.StorageCount(template.Journal1))"><img src="~/Content/images/new/barcode36.png" height="32" width="32" /></a>
+
+                <!--Quick Scan-->
+                    <a class="mdl-button mdl-js-button mdl-button mdl-js-ripple-effect" href="@Url.Action(MVC.Storage.QuickCount(template.Journal1))"><i class="material-icons">flash_on</i></a>
+
+                
+
+                <!--Ændre kladde-->
+                <!--Kan måske senere druges til evt. delete-->
+                @*<button class="pull-right mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary" >
+                    <i class="material-icons">settings</i>
+                </button>*@
+
+            </li>
+            <hr class="hr-border-size"/>
+            { templateClass = "templateChoice"; }
+        }
+    }
+    </ul>
+
+    <div class="tinyBotSpace"></div>
+
+    @section BottomScripts
+{
+
+    }
