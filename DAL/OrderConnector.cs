@@ -1,81 +1,84 @@
-﻿using BE;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using BE;
 
 namespace DAL
 {
-    public class OrderConnector : DBConnecter
+    public class OrderConnector : DbConnecter
     {
-
         public int ScanOrder(ScanItem item)
         {
             try
             {
                 if (string.IsNullOrEmpty(item.LineNo))
-                { var result = db.Public_Orders_AddNew(item.target).FirstOrDefault();
-                item.LineNo = result.OrderNo;
+                {
+                    var result = Db.Public_Orders_AddNew(item.Target).FirstOrDefault();
+                    if (result != null) item.LineNo = result.OrderNo;
                 }
-            //db.Public_OrderLine_AddNew(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, item.barCode, null, null, null, null, null, null, null, null, null, null, null, item.count, item.LineNo, item.par1, item.par2, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, true, null, null, null);
-            db.Public_OrderLine_AddNew(item.barCode, item.count, item.LineNo, item.par1, item.par2, true);
-            //return 0;
-            return ScanItem.SCAN_VALID;
+                Db.Public_OrderLine_AddNew(item.BarCode, item.Count, item.LineNo, item.Par1, item.Par2, true);
+                return ScanItem.SCAN_VALID;
             }
             catch (EntityCommandExecutionException e)
             {
-                Match m = Regex.Match(e.InnerException.Message, "Faktura kunden '(.|\n)*' findes ikke!");
+                var m = Regex.Match(e.InnerException.Message, "Faktura kunden '(.|\n)*' findes ikke!");
                 if (m.Success)
                 {
                     item.ItemError = "Ugyldig Kunde";
-                    item.target = "";
-
+                    item.Target = "";
                 }
-                else if (item.barCode != null)
+                else if (item.BarCode != null)
                     try
                     {
                         var dbn = new KompasDemoEntities();
-                        var testItem = dbn.Inventories.Find(item.barCode);
+                        var testItem = dbn.Inventories.Find(item.BarCode);
                         if (testItem == null)
                         {
                             item.ItemError = "Ugyldig stregkode";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-
+                        // ignored
                     }
-                 if (item.par1 != null)
+                if (item.Par1 != null)
                 {
                     try
                     {
                         var dbn = new KompasDemoEntities();
-                        var testItem = dbn.InventoryParameters.Where(x => x.Item == item.barCode && x.ParamNo == 0 && x.SortIndex == short.Parse(item.par1)).Select(x => x).SingleOrDefault();
+                        var testItem =
+                            dbn.InventoryParameters.Where(
+                                x => x.Item == item.BarCode && x.ParamNo == 0 && x.SortIndex == short.Parse(item.Par1))
+                                .Select(x => x)
+                                .SingleOrDefault();
                         if (testItem == null)
                         {
                             item.ItemError = "Parameter 1 er ugyldig";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         item.ItemError = "Parameter 1 er ugyldig";
                     }
                 }
-                 if (item.par2 != null)
+                if (item.Par2 != null)
                 {
                     try
                     {
                         var dbn = new KompasDemoEntities();
-                        var testItem = dbn.InventoryParameters.Where(x => x.Item == item.barCode && x.ParamNo == 1 && x.SortIndex == short.Parse(item.par2)).Select(x => x).SingleOrDefault();
+                        var testItem =
+                            dbn.InventoryParameters.Where(
+                                x => x.Item == item.BarCode && x.ParamNo == 1 && x.SortIndex == short.Parse(item.Par2))
+                                .Select(x => x)
+                                .SingleOrDefault();
                         if (testItem == null)
                         {
                             item.ItemError = "Parameter 2 er ugyldig";
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         item.ItemError = "Parameter 2 er ugyldig";
                     }
@@ -84,11 +87,11 @@ namespace DAL
                     item.ItemError = "Ukendt fejl, kontakt systemadministrator";
                 return ScanItem.SCAN_INVALID;
             }
-        }//Faktura kunden '343' findes ikke!
+        } //Faktura kunden '343' findes ikke!
 
-        public List<Order> GetOrdersWithStatus(string p,int t)
+        public List<Order> GetOrdersWithStatus(string p, int t)
         {
-            return db.Orders.Where(x => x.Status == p && x.OrderType==t).Select(x => x).ToList();
+            return Db.Orders.Where(x => x.Status == p && x.OrderType == t).Select(x => x).ToList();
         }
     }
 }

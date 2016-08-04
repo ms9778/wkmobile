@@ -192,7 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Code\Constants.cs" />
+    <Compile Include="Code\Responsive.cs" />
     <Compile Include="Code\SessionManager.cs" />
     <Compile Include="Code\StackTracker.cs" />
     <Compile Include="Code\Functions.cs" />
@@ -205,13 +205,10 @@
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
-    <Compile Include="Filters\TrakingFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Encoder.cs" />
-    <Compile Include="Helpers\MenuButton.cs" />
-    <Compile Include="Code\Responsive.cs" />
     <Compile Include="Models\PurchaseModel.cs" />
     <Compile Include="Models\ScanItemModel.cs" />
     <Compile Include="Models\ScannedItemsModel.cs" />
@@ -316,7 +313,6 @@
     </None>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -346,6 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

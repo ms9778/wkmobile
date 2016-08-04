@@ -1,22 +1,51 @@
-﻿@model Winkompass_Mobil.Models.PurchaseListModel
-
-@using Winkompass_Mobil.Helpers
+﻿@model PurchaseListModel
 @section title{
-    Indkøbsliste
+    Winkompass - Indkøb
 }
 
 @section siteHeader{
     Vælg et indkøb
 }
-<div class="left">
-    <span>værdier i indkøb liste:<br /></span>
-    <b>-IndkøbsNr -Leverandørnr -LeverandørNavn</b>
 
-    <hr />
-    @foreach (var purchase in Model.purchases.Take(10))
-    {
-        <text>
-            <b>-@purchase.PurchaseNo -@purchase.SupplierNo -@purchase.SupplierName</b> <a href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo,purchase.PurchaseNo))">tilføj linjer</a><br /><br />
-        </text>
-    }
+<hr class="hr-border-size"/>
+<div class="less-padding">
+    <a href="@Url.Action(MVC.Purchase.MakePurchase())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Opret nyt indkøb
+    </a>
 </div>
+
+<ul class="mdl-list left">
+
+    <div class="left">
+        <span>værdier i indkøb liste:<br /></span>
+        <b>-IndkøbsNr -Leverandørnr -LeverandørNavn</b>
+
+        <hr/>
+        @foreach (var purchase in Model.Purchases.Take(10))
+        {
+            <text>
+                <b>-@purchase.PurchaseNo -@purchase.SupplierNo -@purchase.SupplierName</b> <a href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo, purchase.PurchaseNo))">tilføj linjer</a><br/><br/>
+            </text>
+        }
+    </div>
+</ul>
+
+<ul class="mdl-list left">
+
+    @foreach (var purchase in Model.Purchases.Take(10))
+    {
+        <li class="mdl-list__item mdl-list__item--three-line">
+            <span class="mdl-list__item-primary-content">
+                <span>@purchase.SupplierName</span>
+                <span class="mdl-list__item-text-body">
+                    @purchase.PurchaseNo - @purchase.SupplierNo
+                </span>
+            </span>
+            <span class="mdl-list__item-secondary-content">
+                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo, purchase.PurchaseNo))"><i class="material-icons">add</i></a>
+            </span>
+        </li>
+    }
+
+</ul>

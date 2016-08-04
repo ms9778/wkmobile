@@ -1,6 +1,4 @@
-﻿@model Winkompass_Mobil.Models.OrderListModel
-
-@using Winkompass_Mobil.Helpers
+﻿@model OrderListModel
 @section title{
     Winkompass - Ordrer
 }
@@ -9,30 +7,36 @@
     Ordre liste
 }
 
-
-<hr class="hr-border-size"/>
 <div class="less-padding">
     <a href="@Url.Action(MVC.Order.CreateOrder())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
-        <i class="material-icons">add</i>
+        <i class="fa fa-plus" aria-hidden="true"></i>
         Opret ny ordre
     </a>
 </div>
 
 <ul class="mdl-list left">
-    
-    @foreach (var order in Model.orders.Take(10))
+
+    @foreach (var order in Model.Orders.Take(10))
     {
-        <li class="mdl-list__item mdl-list__item--three-line">
-            <span class="mdl-list__item-primary-content">
-                <span>@order.OrderCustomerName</span>
-                <span class="mdl-list__item-text-body">
-                    @order.OrderNo - @order.OrderCustomer
+        <li class="mdl-list__item col-xs-12">
+
+            <span class="mdl-list__item-primary-content col-xs-6 no-padding">
+                <span class="truncate">
+                    @order.OrderCustomerName<br/>
+                    <small>@order.OrderNo - @order.OrderCustomer</small>
                 </span>
             </span>
-            <span class="mdl-list__item-secondary-content">
-                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer, order.OrderNo))"><i class="material-icons">add</i></a>
-            </span>
-        </li>
+            
+            
+            <div class="col-xs-1 no-padding">
+                <a class="mdl-list__item-secondary-action col-xs-12 no-padding" href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer, order.OrderNo))">
+                    <span class="mdl-list__item-primary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
+                        <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                    </span>
+                </a>
+                </div>
+
+</li>
     }
 
 </ul >

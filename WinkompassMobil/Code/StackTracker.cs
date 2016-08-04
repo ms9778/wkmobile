@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Winkompass_Mobil
+namespace Winkompass_Mobil.Code
 {
     public class StackTracker
     {
-        public const string BACKB_TEXT = "agoback";
-        public const string BACKB_VALUE = "1";
-        public const int BACKTRACK_SIZE = 20;
+        public const string BackbText = "agoback";
+        public const string BackbValue = "1";
+        public const int BacktrackSize = 20;
 
-        public string GetBackUrl
-        {
-            get
-            {
-                return getRawNextBackUrl();
-            }
-        }
+        public string GetBackUrl => GetRawNextBackUrl();
 
-        private string getRawNextBackUrl()
+        private static string GetRawNextBackUrl()
         {
-            string url = SessionManager.Manager.BackStackList[Math.Max(SessionManager.Manager.BackStackList.Count - (SessionManager.Manager.BackStackDepth+1),0)];
+            var url =
+                SessionManager.Manager.BackStackList[
+                    Math.Max(SessionManager.Manager.BackStackList.Count - (SessionManager.Manager.BackStackDepth + 1), 0)
+                    ];
             return url;
         }
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Winkompass_Mobil.Code
+﻿namespace Winkompass_Mobil.Code
 {
     public class Functions
     {
@@ -13,5 +8,4 @@ namespace Winkompass_Mobil.Code
             return value.Length <= maxLength ? value : value.Substring(0, maxLength) + "...";
         }
     }
-
 }

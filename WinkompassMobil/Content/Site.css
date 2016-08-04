@@ -15,11 +15,28 @@ div,html,body,form,table,tr,td{
     margin: 0 !important;
 }
 
+.mdl-list__item {
+    padding: 12px 0px !important;
+}
+
+.mdl-list li {
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);  
+}
+
 .back-button-padding {
     padding-top:0 !important;
     padding-bottom:0 !important;
     padding-right:16px !important;
     padding-left:16px !important;
+}
+
+.truncate {
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  padding-bottom: 1px;
+  
 }
 
 .little-margin{
@@ -31,7 +48,7 @@ div,html,body,form,table,tr,td{
 }
 
 .margin-bottom-20{
-    margin-bottom:20px;
+    margin-bottom:20px !important;
     }
 
 .hr-border-size{
@@ -53,25 +70,27 @@ div,html,body,form,table,tr,td{
 .card1 > .mdl-card__title {
   color: #fff;
   background:
-    url('http://erpblog.iqms.com/wp-content/uploads/2015/06/Warehouse-Management.png') top left 15% no-repeat #46B6AC;
+    url('/Content/images/img/Warehouse-Management.png');
     text-decoration: none; /* no underline */
-
+    background-size: cover;
+    background-position: center;
 }
 
 .card2 > .mdl-card__title {
   color: #fff;
   background:
-    url('http://www.beediebass.com/wp-content/uploads/2015/07/loan.jpg') top left 15% no-repeat #46B6AC;
+    url('/Content/images/img/loan-1000x500.jpg');
     text-decoration: none; /* no underline */
-
+    background-size: cover;
 }
 
 .card3 > .mdl-card__title {
   color: #fff;
-  background:
-    url('http://www.beediebass.com/wp-content/uploads/2015/07/loan.jpg') center left 20% no-repeat #46B6AC;
-    text-decoration: none; /* no underline */
-
+  background-image:
+    url(/Content/images/img/FactoryDesign.jpg);
+  text-decoration: none; /* no underline */
+  background-size: cover;
+  background-position: center;
 }
 
 mdl-card__title a, a:hover, a:active, a:visited {

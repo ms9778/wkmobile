@@ -48155,10 +48155,10 @@ namespace BE
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tss_UpdateOrderLine", param_RecordIDParameter, param_OrderNoParameter, param_ItemParameter, param_AccountParameter, param_OrderedParameter, param_DeliveryParameter, param_CostPriceParameter, param_SalesPriceParameter, param_DescriptionParameter, param_RemarksBeforeParameter, param_RemarksAfterParameter, param_DepartmentParameter, param_CostCenterParameter, param_ProjectParameter, param_PurPoseParameter, param_EmployeeParameter, param_InternalLineParameter);
         }
     
-        public virtual ObjectResult<string> EW_Mobil_AddInventoryCount(string param_Journal, string param_Location, string param_Placement, string param_Employee, string param_Item, Nullable<double> param_Quantity, string inventoryCount_Parameter1, string inventoryCount_Parameter2)
+        public virtual ObjectResult<string> EW_Mobil_AddInventoryCount(string paramJournal, string param_Location, string param_Placement, string param_Employee, string param_Item, Nullable<double> param_Quantity, string inventoryCount_Parameter1, string inventoryCount_Parameter2)
         {
-            var param_JournalParameter = param_Journal != null ?
-                new ObjectParameter("param_Journal", param_Journal) :
+            var param_JournalParameter = paramJournal != null ?
+                new ObjectParameter("param_Journal", paramJournal) :
                 new ObjectParameter("param_Journal", typeof(string));
     
             var param_LocationParameter = param_Location != null ?

@@ -1,61 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web;
 
-namespace Winkompass_Mobil
+namespace Winkompass_Mobil.Code
 {
     public class SessionManager
     {
-        public const string BACKSTACK = "backstacklist";
+        public const string Backstack = "backstacklist";
         public const string MANAGER = "Session Manager";
-        public const string STACK_COUNT = "back stack count";
-        public const string STACKTRACKER = "stack tracker";
+        public const string StackCount = "back stack count";
+        public const string Stacktracker = "stack tracker";
         public const string RESPONSIVE = "responsive html";
-        public const string IGNORE_THIS_ACTION = "ignore current action";
+        public const string IgnoreThisAction = "ignore current action";
 
-        public List<string> BackStackList
+        private SessionManager()
         {
-            get { return HttpContext.Current.Session[BACKSTACK] as List<string>; }
+            HttpContext.Current.Session.Add(Backstack, new List<string>());
+            ResetStakcCounter();
+            HttpContext.Current.Session[Stacktracker] = new StackTracker();
+            HttpContext.Current.Session[IgnoreThisAction] = false;
         }
 
-        public Boolean IgnoreAction
+        public List<string> BackStackList => HttpContext.Current.Session[Backstack] as List<string>;
+
+        public bool IgnoreAction
         {
-            get { return (Boolean)HttpContext.Current.Session[IGNORE_THIS_ACTION]; }
-            set { HttpContext.Current.Session[IGNORE_THIS_ACTION] = value; }
+            get { return (bool) HttpContext.Current.Session[IgnoreThisAction]; }
+            set { HttpContext.Current.Session[IgnoreThisAction] = value; }
         }
 
         /// <summary>
-        /// Returnerer et tal der fortæller hvor langt inde i fortrydelses listen brugeren er
-        /// som standard er den 1 da der altid vil være mindst en i listen.
+        ///     Returnerer et tal der fortæller hvor langt inde i fortrydelses listen brugeren er
+        ///     som standard er den 1 da der altid vil være mindst en i listen.
         /// </summary>
         public int BackStackDepth
         {
-            get { return (int)HttpContext.Current.Session[STACK_COUNT]; }
+            get { return (int) HttpContext.Current.Session[StackCount]; }
             set
             {
                 if (value < 1)
-                    HttpContext.Current.Session[STACK_COUNT] = 1;
+                    HttpContext.Current.Session[StackCount] = 1;
                 else
-                    HttpContext.Current.Session[STACK_COUNT] = value;
+                    HttpContext.Current.Session[StackCount] = value;
             }
         }
 
-        public StackTracker BStackTracker
-        {
-            get { return HttpContext.Current.Session[STACKTRACKER] as StackTracker; }
-        }
-        public void ResetStakcCounter()
-        {
-            BackStackDepth = 1;
-        }
-        private SessionManager()
-        {
-            HttpContext.Current.Session.Add(SessionManager.BACKSTACK, new List<string>());
-            ResetStakcCounter();
-            HttpContext.Current.Session[STACKTRACKER] = new StackTracker();
-            HttpContext.Current.Session[IGNORE_THIS_ACTION] = false;
-        }
+        public StackTracker BStackTracker => HttpContext.Current.Session[Stacktracker] as StackTracker;
+
         public static SessionManager Manager
         {
             get
@@ -72,21 +62,23 @@ namespace Winkompass_Mobil
         {
             get
             {
-                if(HttpContext.Current.Session[RESPONSIVE] == null)
+                if (HttpContext.Current.Session[RESPONSIVE] != null)
+                    return (Responsive) HttpContext.Current.Session[RESPONSIVE];
+                if (HttpContext.Current.Request.UserAgent == Responsive.DELFI_AGENT)
                 {
-                    if(HttpContext.Current.Request.UserAgent == Responsive.DELFI_AGENT)
-                    {
-                        HttpContext.Current.Session[RESPONSIVE] = new html4();
-                    }
-                    else
-                    {
-                        HttpContext.Current.Session[RESPONSIVE] = new html5();
-                    }
+                    HttpContext.Current.Session[RESPONSIVE] = new html4();
                 }
-                return (Responsive)HttpContext.Current.Session[RESPONSIVE];
+                else
+                {
+                    HttpContext.Current.Session[RESPONSIVE] = new html5();
+                }
+                return (Responsive) HttpContext.Current.Session[RESPONSIVE];
             }
         }
+
+        public void ResetStakcCounter()
+        {
+            BackStackDepth = 1;
+        }
     }
-
-
 }

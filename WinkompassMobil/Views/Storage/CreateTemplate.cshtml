@@ -1,5 +1,4 @@
-﻿@using Winkompass_Mobil.Helpers
-@model TemplateModel
+﻿@model TemplateModel
 @section title{
     Winkompass - Lager
 }
@@ -30,16 +29,21 @@ else if (Model != null && Model.Template != null && !Model.Created)
 <form id="tt" class="measureHidden"></form>
 
 <script>
-    $(document).ready(function () {
-        $('#ss').attr('disabled', true);
+    setFocusToTextBox();
+    $(document)
+        .ready(function() {
+            $('#ss').attr('disabled', true);
 
-        $('#JournalInput')
-            .keyup(function() {
-                if ($(this).val().length !== 0) {
-                    $('#ss').attr('disabled', false);
-                } else {
-                    $('#ss').attr('disabled', true);
-                }
-            });
-    });
+            $('#JournalInput')
+                .keyup(function() {
+                    if ($(this).val().length !== 0) {
+                        $('#ss').attr('disabled', false);
+                    } else {
+                        $('#ss').attr('disabled', true);
+                    }
+                });
+        });
+    function setFocusToTextBox() {
+        document.getElementById("JournalInput").focus();
+    }
 </script>

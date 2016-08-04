@@ -1,10 +1,7 @@
-﻿using BE;
-using BLL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
 using System.Web.Mvc;
+using BE;
+using BLL;
 using Winkompass_Mobil.Models;
 
 namespace Winkompass_Mobil.Controllers
@@ -19,9 +16,9 @@ namespace Winkompass_Mobil.Controllers
 
 
         [ActionName("MakePurchase")]
-        public virtual ActionResult MakePurchaseGet(string sup,string supNo)
+        public virtual ActionResult MakePurchaseGet(string sup, string supNo)
         {
-            var reg = new ScanItemModel() { item = new ScanItem() { target=sup,LineNo=supNo} };
+            var reg = new ScanItemModel {Item = new ScanItem {Target = sup, LineNo = supNo}};
             return View(reg);
         }
 
@@ -29,41 +26,41 @@ namespace Winkompass_Mobil.Controllers
         public virtual ActionResult MakePurchase(ScanItemModel reg)
         {
             reg = reg ?? new ScanItemModel();
-            if (reg != null && reg.item != null)
+            if (reg.Item != null)
             {
-                if (string.IsNullOrEmpty(reg.item.barCode))
+                if (string.IsNullOrEmpty(reg.Item.BarCode))
                 {
-
                     reg.Error = "Ingenting blev scannet";
                     return View(reg);
                 }
-                else if (reg.item.count < 1)
+                if (reg.Item.Count < 1)
                 {
                     reg.Error = "Ugyldigt tal opgivet under \"Antal optalt\"";
                     return View(reg);
                 }
-                else if (string.IsNullOrEmpty(reg.item.target))
+                if (string.IsNullOrEmpty(reg.Item.Target))
                 {
                     reg.Error = "ingen kunde scannet";
                 }
             }
-            if (reg.item != null && reg.item.barCode != null && reg.item.count > 0)
-                reg.scanned = PurchaseWorker.MakePurchase(reg.item);
-            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.item.ItemError))
-                reg.Error = reg.item.ItemError;
-            if (HttpContext.Request.Params["Action"] != null && HttpContext.Request.Params["Action"] != ScanItemModel.SCAN_AND_STOP || reg.scanned == 2)
+            if (reg.Item?.BarCode != null && reg.Item.Count > 0)
+                reg.Scanned = PurchaseWorker.MakePurchase(reg.Item);
+            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
+                reg.Error = reg.Item.ItemError;
+            if (HttpContext.Request.Params["Action"] != null &&
+                HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
                 return View(reg);
             return RedirectToAction(MVC.Home.Index());
         }
 
         public virtual ActionResult PurchaseList()
         {
-            var list = new PurchaseListModel();
-            list.purchases = PurchaseWorker.GetPurchasesWithStatus(System.Configuration.ConfigurationManager.AppSettings["purchaseStatus"]);
-            list.purchases.Reverse();
+            var list = new PurchaseListModel
+            {
+                Purchases = PurchaseWorker.GetPurchasesWithStatus(ConfigurationManager.AppSettings["purchaseStatus"])
+            };
+            list.Purchases.Reverse();
             return View(list);
         }
-       
-        
     }
 }

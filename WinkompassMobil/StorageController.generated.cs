@@ -202,11 +202,11 @@ namespace Winkompass_Mobil.Controllers
         partial void CreateTemplateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Winkompass_Mobil.Models.TemplateModel KModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateTemplate(Winkompass_Mobil.Models.TemplateModel KModel)
+        public override System.Web.Mvc.ActionResult CreateTemplate(Winkompass_Mobil.Models.TemplateModel kModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateTemplate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "KModel", KModel);
-            CreateTemplateOverride(callInfo, KModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "KModel", kModel);
+            CreateTemplateOverride(callInfo, kModel);
             return callInfo;
         }
 

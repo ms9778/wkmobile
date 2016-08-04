@@ -1,13 +1,10 @@
-﻿using BE;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using BE;
 
 namespace Winkompass_Mobil.Models
 {
     public class PurchaseListModel
     {
-        public List<PurchaseDetails> purchases { get; set; }
+        public List<PurchaseDetails> Purchases { get; set; }
     }
 }

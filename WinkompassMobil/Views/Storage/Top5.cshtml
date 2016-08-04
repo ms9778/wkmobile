@@ -1,15 +1,18 @@
 ﻿@model ScannedItemsModel
 
 <div class="element left">
-    <span class="tinyBotSpace">Seneste scanninger:</span><hr />
-    </div>
+    <span class="tinyBotSpace">Seneste scanninger:</span><hr/>
+</div>
 <div class="element">
     <table class="lastScans smallBotSpace element">
-        <tr><td>#</td><td class="scanTableItem">Vare</td><td class="scanTableParams">Parametre</td><td class="scanTableCount">Antal</td></tr>
-    @foreach (BE.InventoryCount item in Model.items)
-    {
-        @*<font><b>Vare: </b>@item.Item@(item.Parameter1!=null && item.Parameter1.Length>0?","+item.Parameter1:"")@(item.Parameter2 != null && item.Parameter2.Length > 0 ? "," + item.Parameter2 : "") Antal:@item.Counted</font>*@
-        <tr><td>@item.LineNo</td><td>@item.Item</td><td>@(item.Parameter1 != null && item.Parameter1.Length > 0 ? item.Parameter1 : "")@(item.Parameter2 != null && item.Parameter2.Length > 0 ? "," + item.Parameter2 : "")</td><td>@item.Counted</td></tr>
-    }
-        </table>
+        <tr>
+            <td>#</td><td class="scanTableItem">Vare</td><td class="scanTableParams">Parametre</td><td class="scanTableCount">Antal</td>
+        </tr>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.LineNo</td><td>@item.Item</td><td>@(!string.IsNullOrEmpty(item.Parameter1) ? item.Parameter1 : "")@(!string.IsNullOrEmpty(item.Parameter2) ? "," + item.Parameter2 : "")</td><td>@item.Counted</td>
+            </tr>
+        }
+    </table>
 </div>

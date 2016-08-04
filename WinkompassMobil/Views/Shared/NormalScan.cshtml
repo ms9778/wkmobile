@@ -1,14 +1,20 @@
-﻿    @model ScanItemModel
-    @if (Boolean.Parse(System.Configuration.ConfigurationManager.AppSettings["useLocation"]))
-    {
-        <div class="left element"><span>Placering:</span></div>
-    <input class="button elementInputHack" name="item.location" id="locationInput" type="text" @(Model != null && Model.item != null && !string.IsNullOrEmpty(Model.item.location) ? "value=" + Model.item.location + " disabled=disabled" : "") />
+﻿@using System.Configuration
+@model ScanItemModel
+@if (bool.Parse(ConfigurationManager.AppSettings["useLocation"]))
+{
+    <div class="left element">
+        <span>Placering:</span></div>
+    <input class="button elementInputHack" name="item.location" id="locationInput" type="text" @(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Location) ? "value=" + Model.Item.Location + " disabled=disabled" : "")/>
 
-    <div class="left element tinyBotSpace" id="locationRemove"><button class="btn btn-default" id="btnLocationRemove">slet placering</button></div>
-    }
-    <div class="left element"><span>Varenr / stregkode:</span></div>
-    <input class="elementInputHack tinyBotSpace" id="scanInput" type="text" name="item.barCode" />
-    <div class="left element"><span>Antal optalt:</span></div>
-    <input class="elementInputHack tinyBotSpace" id="itemCount" type="text" name="item.count" />
-    <input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.CONTINUE_SCANNING">
-    <input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.SCAN_AND_STOP">
+    <div class="left element tinyBotSpace" id="locationRemove">
+        <button class="btn btn-default" id="btnLocationRemove">slet placering</button>
+    </div>
+}
+<div class="left element">
+    <span>Varenr / stregkode:</span></div>
+<input class="elementInputHack tinyBotSpace" id="scanInput" type="text" name="item.barCode"/>
+<div class="left element">
+    <span>Antal optalt:</span></div>
+<input class="elementInputHack tinyBotSpace" id="itemCount" type="text" name="item.count"/>
+<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
+<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">

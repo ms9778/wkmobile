@@ -1,20 +1,15 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using System.Text.RegularExpressions;
-using Winkompass_Mobil.Models;
-using BLL;
 using BE;
+using BLL;
 using Winkompass_Mobil.Code;
+using Winkompass_Mobil.Models;
 
 namespace Winkompass_Mobil.Controllers
 {
     public partial class StorageController : Controller
     {
-        Functions _function = new Functions();
+        public Functions Function { get; } = new Functions();
 
         // GET: Storage
         public virtual ActionResult Index()
@@ -29,39 +24,39 @@ namespace Winkompass_Mobil.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult CreateTemplate(TemplateModel KModel)
+        public virtual ActionResult CreateTemplate(TemplateModel kModel)
         {
-            if (KModel != null && KModel.Template != null)
+            if (kModel?.Template != null)
             {
                 var allJournals = StorageWorker.GetAllStockJournals();
-                    
-                     foreach (var item in allJournals)
-                     {
-                         if(item.Journal1 == KModel.Template.Journal1) {
-                             KModel.Error = "Kladden er allerede lavet";
-                             return View(KModel);
-                         };
-                         break;
-                     }
-            
-                     if (!string.IsNullOrEmpty(KModel.Template.Journal1))
-                     {
-                         KModel.Created = false;
-                         //Bogstaver tal samt tegnene .-@ er tilladte med denne regular expression (samt mellemrum)
-                         Match m = Regex.Match(KModel.Template.Journal1, @"[^a-zA-Z0-9æøåÆØÅ\.\-@ ]+");
-                         if (m.Success)
-                         {
-                             KModel.Error = "Kladden indeholder Ugyldige tegn, gyldige tegn er: a-å 0-9 .-@";
-                             return View(KModel);
-                         }
-                     }
-                     KModel.Created = StorageWorker.CreateJournal(KModel.Template);
+
+                foreach (var item in allJournals)
+                {
+                    if (item.Journal1 == kModel.Template.Journal1)
+                    {
+                        kModel.Error = "Kladden er allerede lavet";
+                        return View(kModel);
+                    }
+                    break;
+                }
+
+                if (!string.IsNullOrEmpty(kModel.Template.Journal1))
+                {
+                    kModel.Created = false;
+                    //Bogstaver tal samt tegnene .-@ er tilladte med denne regular expression (samt mellemrum)
+                    var m = Regex.Match(kModel.Template.Journal1, @"[^a-zA-Z0-9æøåÆØÅ\.\-@ ]+");
+                    if (m.Success)
+                    {
+                        kModel.Error = "Kladden indeholder Ugyldige tegn, gyldige tegn er: a-å 0-9 .-@";
+                        return View(kModel);
+                    }
+                }
+                kModel.Created = StorageWorker.CreateJournal(kModel.Template);
             }
-            KModel = KModel ?? new TemplateModel();
+            kModel = kModel ?? new TemplateModel();
 
 
-
-            return View(KModel);
+            return View(kModel);
         }
 
         public virtual ActionResult StorageCount(string id)
@@ -83,39 +78,42 @@ namespace Winkompass_Mobil.Controllers
                 return RedirectToAction(MVC.Storage.StorageList());
             }
             reg = reg ?? new ScanItemModel();
-            reg.item.Journal = id;
-            if (reg != null && reg.item != null)
+            reg.Item.Journal = id;
+            if (reg.Item != null)
             {
-                if (string.IsNullOrEmpty(reg.item.barCode))
+                if (string.IsNullOrEmpty(reg.Item.BarCode))
                 {
                     reg.Error = "Ingenting blev scannet";
                     return View(reg);
                 }
-                else if (reg.item.count < 0)
+                if (reg.Item.Count < 0)
                 {
                     reg.Error = "Ugyldigt tal opgivet under \"Antal optalt\"";
                     return View(reg);
                 }
             }
-            if (reg.item != null && reg.item.barCode != null && reg.item.count >= 0)
-                reg.scanned = ScanItem(reg);
-            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.item.ItemError))
-                reg.Error = reg.item.ItemError;
-            if (reg.scanned == BE.ScanItem.SCAN_VALID)
+            if (reg.Item?.BarCode != null && reg.Item.Count >= 0)
+                reg.Scanned = ScanItem(reg);
+            if (reg.Item != null && string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
+                reg.Error = reg.Item.ItemError;
+            if (reg.Scanned == BE.ScanItem.SCAN_VALID)
             {
-                reg.message = reg.item.count + " vare(r) med varenummer " + reg.item.barCode + " blev registreret!" + (reg.item != null && reg.item.showDifference ? " Med en forskel på: " + reg.item.difference : "");
+                if (reg.Item != null)
+                    reg.Message = reg.Item.Count + " vare(r) med varenummer " + reg.Item.BarCode + " blev registreret!" +
+                                  (reg.Item != null && reg.Item.ShowDifference
+                                      ? " Med en forskel på: " + reg.Item.Difference
+                                      : "");
             }
-            if (HttpContext.Request.Params["Action"] != null && HttpContext.Request.Params["Action"] != ScanItemModel.SCAN_AND_STOP || reg.scanned == 2)
+            if (HttpContext.Request.Params["Action"] != null &&
+                HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
                 return View(reg);
             return RedirectToAction(MVC.Home.Index());
         }
 
 
-
         public virtual ActionResult StorageList()
         {
-            TemplateList list = new TemplateList();
-            list.Journals = StorageWorker.GetAllStockJournals();
+            var list = new TemplateList {Journals = StorageWorker.GetAllStockJournals()};
             return View(list);
         }
 
@@ -132,46 +130,46 @@ namespace Winkompass_Mobil.Controllers
         [HttpPost]
         public virtual JsonResult QuickCount(string id, ScanItemModel reg)
         {
-
             reg = reg ?? new ScanItemModel();
-            reg.item.Journal = id;
-            if (!string.IsNullOrEmpty(reg.item.barCode))
-                reg.scanned = ScanItem(id, reg.item.barCode, reg);
+            reg.Item.Journal = id;
+            if (!string.IsNullOrEmpty(reg.Item.BarCode))
+                reg.Scanned = ScanItem(id, reg.Item.BarCode, reg);
             else
             {
                 reg.Error = "Ingenting blev scannet";
             }
-            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.item.ItemError))
-                reg.Error = reg.item.ItemError;
+            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
+                reg.Error = reg.Item.ItemError;
             return Json(reg);
         }
 
         private int ScanItem(ScanItemModel reg = null)
         {
             reg = reg ?? new ScanItemModel();
-            return StorageWorker.ScanItem(reg.item);
+            return StorageWorker.ScanItem(reg.Item);
         }
 
         private int ScanItem(string journal, string barCode, ScanItemModel reg = null, int count = 1)
         {
             reg = reg ?? new ScanItemModel();
 
-            ScanItem item = new ScanItem();
-            item.Journal = journal;
-            item.barCode = barCode;
-            item.count = count;
-            reg.item = item;
+            var item = new ScanItem
+            {
+                Journal = journal,
+                BarCode = barCode,
+                Count = count
+            };
+            reg.Item = item;
             return ScanItem(reg);
         }
 
         public virtual ActionResult Top5(string id)
         {
-            var model = new ScannedItemsModel();
-            model.items = StorageWorker.retrieveLastRecords(id);
+            var model = new ScannedItemsModel {Items = StorageWorker.RetrieveLastRecords(id)};
             return PartialView(model);
         }
 
-        public Boolean IsValidTemplate(string id)
+        public bool IsValidTemplate(string id)
         {
             return StorageWorker.IsValidTemplate(id);
         }

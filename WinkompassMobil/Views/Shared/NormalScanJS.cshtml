@@ -1,35 +1,29 @@
 ﻿<script type="text/javascript">
 
-    $("#TargetInput").bind("keypress", function (e) {
-        if (e.keyCode === 13) {
-            $("#scanInput").focus();
-            return false;
-        }
-    });
-    $("#scanInput").bind("keypress", function (e) {
-        if (e.keyCode === 13) {
-            $("#itemCount").focus();
-            return false;
-        }
-    });
+    $("#TargetInput")
+        .bind("keypress",
+            function(e) {
+                if (e.keyCode === 13) {
+                    $("#scanInput").focus();
+                    return false;
+                }
+            });
+    $("#scanInput")
+        .bind("keypress",
+            function(e) {
+                if (e.keyCode === 13) {
+                    $("#itemCount").focus();
+                    return false;
+                }
+            });
 
-    $("#itemCount").bind("keypress", function (e) {
+    $("#itemCount")
+        .bind("keypress",
+            function(e) {
 
-        var itemCount = $("#itemCount").val();
-        itemCount = replace.itemCount(".", ",");
-        $("#itemCount").val(itemCount);
+                var itemCount = $("#itemCount").val();
+                itemCount = replace.itemCount(".", ",");
+                $("#itemCount").val(itemCount);
 
-    });
-
-
-    $(window).load(function () {
-        @if(HttpContext.Current.Request.Url.Host.Contains("tess"))
-        {
-             @:$("#locationInput").focus();
-        }
-        else
-        {
-            @:$("#scanInput").focus();
-            @:$("#TargetInput").focus();
-        }
-    });</script>
+            });
+</script>

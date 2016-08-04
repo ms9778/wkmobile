@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
 using System.Web.Mvc;
-using Winkompass_Mobil.Models;
-using BLL;
 using BE;
+using BLL;
+using Winkompass_Mobil.Models;
 
 namespace Winkompass_Mobil.Controllers
 {
@@ -21,47 +18,47 @@ namespace Winkompass_Mobil.Controllers
         [ActionName("CreateOrder")]
         public virtual ActionResult OrderGet(string cus, string on)
         {
-            var reg = new  ScanItemModel() { item = new ScanItem() { target=cus,LineNo=on } };
+            var reg = new ScanItemModel {Item = new ScanItem {Target = cus, LineNo = on}};
             return View(reg);
         }
 
         [HttpPost]
         public virtual ActionResult CreateOrder(ScanItemModel reg)
         {
-            if (reg != null && reg.item != null)
+            if (reg?.Item != null)
             {
-                if (string.IsNullOrEmpty(reg.item.barCode))
+                if (string.IsNullOrEmpty(reg.Item.BarCode) || string.IsNullOrEmpty(reg.Item.Target))
                 {
-                    reg.Error = "Ingenting blev scannet";
+                    reg.Error = "Kunne ikke aflæse scanningen.";
                     return View(reg);
                 }
-                else if (reg.item.count < 1)
+                if (reg.Item.Count < 1)
                 {
                     reg.Error = "Ugyldigt tal opgivet under \"Antal optalt\"";
                     return View(reg);
                 }
-                else if (string.IsNullOrEmpty(reg.item.target))
-                {
-                    reg.Error = "ingen kunde scannet";
-                }
+                
             }
-            if (reg.item != null && reg.item.barCode != null && reg.item.count > 0)
-                reg.scanned = OrderWorker.MakeOrder(reg.item);
-            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.item.ItemError))
-                reg.Error = reg.item.ItemError;
-            if (HttpContext.Request.Params["Action"] != null && HttpContext.Request.Params["Action"] != ScanItemModel.SCAN_AND_STOP || reg.scanned == 2)
+            if (reg?.Item?.BarCode != null && reg.Item.Count > 0)
+                reg.Scanned = OrderWorker.MakeOrder(reg.Item);
+            if (reg != null && (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError)))
+                reg.Error = reg.Item.ItemError;
+            if (HttpContext.Request.Params["Action"] != null &&
+                HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
                 return View(reg);
             return RedirectToAction(MVC.Home.Index());
         }
 
         public virtual ActionResult OrderList()
         {
-            var model = new OrderListModel();
-            model.orders = OrderWorker.GetCurrentOrders(System.Configuration.ConfigurationManager.AppSettings["orderStatus"], Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["orderType"]));
+            var model = new OrderListModel
+            {
+                Orders = OrderWorker.GetCurrentOrders(ConfigurationManager.AppSettings["orderStatus"],
+                    int.Parse(ConfigurationManager.AppSettings["orderType"]))
+            };
 
-            model.orders.Reverse();
+            model.Orders.Reverse();
             return View(model);
         }
-
     }
 }
