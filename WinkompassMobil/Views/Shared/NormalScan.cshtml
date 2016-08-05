@@ -1,20 +1,100 @@
 ﻿@using System.Configuration
 @model ScanItemModel
+
 @if (bool.Parse(ConfigurationManager.AppSettings["useLocation"]))
 {
-    <div class="left element">
-        <span>Placering:</span></div>
-    <input class="button elementInputHack" name="item.location" id="locationInput" type="text" @(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Location) ? "value=" + Model.Item.Location + " disabled=disabled" : "")/>
-
-    <div class="left element tinyBotSpace" id="locationRemove">
-        <button class="btn btn-default" id="btnLocationRemove">slet placering</button>
+    <div id="id" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="idInput" class="mdl-textfield__input" type="text" disabled="disabled" value="@Model.storageId")>
+        <label class="mdl-textfield__label" for="idInput">Kladde Id</label>
     </div>
 }
-<div class="left element">
-    <span>Varenr / stregkode:</span></div>
-<input class="elementInputHack tinyBotSpace" id="scanInput" type="text" name="item.barCode"/>
-<div class="left element">
-    <span>Antal optalt:</span></div>
-<input class="elementInputHack tinyBotSpace" id="itemCount" type="text" name="item.count"/>
-<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
-<input class="button element tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
+
+
+@*<div id="placering" class="input-group mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input type="text" name="item.location" id="placeringInput" class="mdl-textfield__input">
+    <label class="mdl-textfield__label" for="placeringInput">Placering</label>
+    <span class="input-group-btn">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect  mdl-button--accent btnstock" type="button">
+            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </button>
+    </span>
+</div>*@
+
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+    <input class="mdl-textfield__input" type="text" id="sample1" value="" readonly tabIndex="-1">
+    <label for="sample1" class="mdl-textfield__label">Placering</label>
+    <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        <li class="mdl-menu__item">Germany</li>
+        <li class="mdl-menu__item">Belarus</li>
+        <li class="mdl-menu__item">Russia</li>
+    </ul>
+</div>
+
+
+<div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input id="scanInput" class="mdl-textfield__input" type="text" name="item.barCode">
+    <label class="mdl-textfield__label" for="scanInput">Varenr / stregkode</label>
+</div>
+<div id="itemcounter" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input id="itemCount" class="mdl-textfield__input" type="text" name="item.count">
+    <label class="mdl-textfield__label" for="itemCount">Antal optalt</label>
+</div>
+<input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
+
+<input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
+
+
+<script>
+
+    function setFocusToTargetInput() {
+        document.getElementById("TargetInput").focus();
+    }
+
+    function setFocusToScanInput() {
+        document.getElementById("ScanInput").focus();
+    }
+
+
+    function valueCheck() {
+        if ($('#TargetInput').val().length > 0) {
+            $('#TargetInput').attr('disabled', true);
+            setFocusToScanInput();
+            $(document)
+                .ready(function() {
+                    $('#okButton').attr('disabled', true);
+                    $('#cancelButton').attr('disabled', true);
+                    $('#ScanInput')
+                        .keyup(function() {
+                            if ($(this).val().length !== 0) {
+                                $('#okButton').attr('disabled', false);
+                                $('#cancelButton').attr('disabled', false);
+                            } else {
+                                $('#okButton').attr('disabled', true);
+                                $('#cancelButton').attr('disabled', true);
+                            }
+
+                        });
+                });
+        } else {
+            setFocusToTargetInput();
+            $(document)
+                .ready(function() {
+                    $('#okButton').attr('disabled', true);
+                    $('#cancelButton').attr('disabled', true);
+                    $('#TargetInput')
+                        .keyup(function() {
+                            if ($(this).val().length !== 0) {
+                                $('#okButton').attr('disabled', false);
+                                $('#cancelButton').attr('disabled', false);
+                            } else {
+                                $('#okButton').attr('disabled', true);
+                                $('#cancelButton').attr('disabled', true);
+                            }
+                        });
+                });
+        }
+    }
+
+    valueCheck();
+</script>

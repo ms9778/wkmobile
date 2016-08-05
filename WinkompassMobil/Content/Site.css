@@ -36,8 +36,37 @@ div,html,body,form,table,tr,td{
   overflow: hidden !important;
   text-overflow: clip !important;
   padding-bottom: 1px;
-  
 }
+
+.truncatetitle {
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  padding-bottom: 1px;
+    width: 100%;
+}
+
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+.btnstock {
+    bottom: 0px !important;
+}
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
 
 .little-margin{
     padding: 50px !important;
@@ -67,6 +96,11 @@ div,html,body,form,table,tr,td{
     
 }
 
+.card1, .card2, .card3 {
+    min-height: 26.5vh !important;
+    width: 100% !important;
+}
+
 .card1 > .mdl-card__title {
   color: #fff;
   background:
@@ -74,6 +108,7 @@ div,html,body,form,table,tr,td{
     text-decoration: none; /* no underline */
     background-size: cover;
     background-position: center;
+
 }
 
 .card2 > .mdl-card__title {
@@ -91,6 +126,7 @@ div,html,body,form,table,tr,td{
   text-decoration: none; /* no underline */
   background-size: cover;
   background-position: center;
+
 }
 
 mdl-card__title a, a:hover, a:active, a:visited {

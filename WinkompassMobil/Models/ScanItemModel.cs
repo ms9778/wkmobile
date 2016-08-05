@@ -18,5 +18,7 @@ namespace Winkompass_Mobil.Models
         public string Error { get; set; }
         public string Target { get; set; }
         public string Message { get; set; }
+        public string storageId { get; set; }
+
     }
 }

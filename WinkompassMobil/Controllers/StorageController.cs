@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using BE;
 using BLL;
 using Winkompass_Mobil.Code;
@@ -66,7 +67,8 @@ namespace Winkompass_Mobil.Controllers
                 SessionManager.Manager.IgnoreAction = true;
                 return RedirectToAction(MVC.Storage.StorageList());
             }
-            return View();
+            var reg = new ScanItemModel { storageId = id};
+            return View(reg);
         }
 
         [HttpPost]
@@ -106,6 +108,7 @@ namespace Winkompass_Mobil.Controllers
             }
             if (HttpContext.Request.Params["Action"] != null &&
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
+                reg.storageId = id;
                 return View(reg);
             return RedirectToAction(MVC.Home.Index());
         }
@@ -124,7 +127,9 @@ namespace Winkompass_Mobil.Controllers
                 SessionManager.Manager.IgnoreAction = true;
                 return RedirectToAction(MVC.Storage.StorageList());
             }
-            return View();
+            var reg = new ScanItemModel { storageId = id };
+
+            return View(reg);
         }
 
         [HttpPost]
