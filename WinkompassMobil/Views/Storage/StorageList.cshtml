@@ -22,74 +22,121 @@
     </a>
 </div>
 
+<div class="mdl-textfield mdl-js-textfield">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="edit_search">
+        <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input" type="text" id="edit_search" onkeyup="javascript: find_my_div();">
 
-@*<ul class="mdl-list left">
-
-    @foreach (var journal in Model.Journals.Take(10))
-    {
-        <li class="mdl-list__item col-xs-12">
-
-            <span class="mdl-list__item-primary-content col-xs-6 no-padding">
-                <span class="truncate">
-                      @journal.Journal1
-                </span>
-            </span>
-            
-            <div class="col-xs-5 no-padding">
-                <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(journal.Journal1))">
-                    <span class="mdl-list__item-primary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
-                        <i class="fa fa-barcode fa-lg" aria-hidden="true"></i>
-                    </span>
-                </a>
-
-                <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(journal.Journal1))">
-                    <span class="mdl-list__item-secondary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
-                        <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>
-                    </span>
-                </a>
-            </div>
-        </li>
-    }
-
-</ul>*@
+    </div>
+</div>
 <section class="mdl-grid" id="my-table">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp width-100">
         <thead>
-            <tr>
-                <th class="mdl-data-table__cell--non-numeric">Kladdenavn</th>
-                <th>Normal Scan</th>
-                <th>Quick Scan</th>
-            </tr>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Kladdenavn</th>
+            <th>Normal Scan</th>
+            <th>Quick Scan</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var x in Model.Journals)
-            {
-                <tr class="">
-                    <td class="mdl-data-table__cell--non-numeric">@x.Journal1</td>
-                    
-                    <td>
-                        <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(x.Journal1))">
-                            <span class="mdl-list__item-primary-action mdl-button mdl-js-button mdl-js-ripple-effect">
-                                <i class="fa fa-barcode fa-lg " aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </td>
-                    <td>
-                        <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(x.Journal1))">
-                            <span class="mdl-list__item-secondary-action  mdl-button mdl-js-button mdl-js-ripple-effect">
-                                <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-            }
+        @foreach (var i in Model.Journals)
+        {
+            <tr id="@("line_" + Model.Journals.IndexOf(i))">
+                <td class="mdl-data-table__cell--non-numeric">@i.Journal1</td>
+
+                <td>
+                    <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(i.Journal1))">
+                        <span class="mdl-list__item-primary-action mdl-button mdl-js-button mdl-js-ripple-effect">
+                                    <i class="fa fa-barcode fa-lg " aria-hidden="true"></i>
+                                </span>
+                    </a>
+                </td>
+                <td>
+                    <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(i.Journal1))">
+                        <span class="mdl-list__item-secondary-action  mdl-button mdl-js-button mdl-js-ripple-effect">
+                                    <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>
+                                </span>
+                    </a>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
-    </section>
+</section>
 
-    <div class="tinyBotSpace"></div>
 
-    @section BottomScripts
-{
+<div class="tinyBotSpace"></div>
+
+<script>
+
+    setFocusToTextBox();
+    
+    function setFocusToTextBox() {
+        document.getElementById("edit_search").focus();
+    }
+
+    function gid(a_id) {
+        return document.getElementById(a_id);
+    }
+
+    function close_all() { // hide all divs
+
+        for (i = 0; i < @Model.Journals.Count; i++) {
+            var o = gid("line_" + i);
+            if (o) { //just to make sure this object really exists
+                o.style.display = "none";
+            }
+        }
 
     }
+
+    function open_all() { // hide all divs
+
+        for (i = 0; i < @Model.Journals.Count; i++) {
+            var o = gid("line_" + i);
+            if (o) { //just to make sure this object really exists
+                o.style.display = "table-row";
+            }
+        }
+
+    }
+
+
+    function find_my_div() { // find and show
+        close_all(); // close previous searhc results
+
+        var o_edit = gid("edit_search");
+        var str_needle = edit_search.value;
+        str_needle = str_needle.toUpperCase();
+
+        if (str_needle != "") { // we will not search for empty strings
+            for (i = 0; i < @Model.Journals.Count; i++) {
+                var o = gid("line_" + i);
+                if (o) { //just to make sure this object really exists
+                    // we want case insensitive search, so bring the both parts to upper case and compare
+                    var str_haystack = o.innerHTML.toUpperCase();
+                    if (str_haystack.indexOf(str_needle) == -1) {
+                        // not found, do nothing
+                    } else {
+                        // yes, we got it, show it
+                        o.style.display = "table-row";
+                    }
+                }
+            }
+        }
+        else {
+            open_all();
+        }
+        
+        
+    }
+
+
+</script>
+
+@section BottomScripts
+{
+
+}

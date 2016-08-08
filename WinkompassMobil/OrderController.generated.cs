@@ -69,7 +69,7 @@ namespace Winkompass_Mobil.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult CreateOrder()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Order);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOrder);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -89,7 +89,7 @@ namespace Winkompass_Mobil.Controllers
         {
             public readonly string Index = "Index";
             public readonly string OrderGet = "CreateOrder";
-            public readonly string Order = "CreateOrder";
+            public readonly string CreateOrder = "CreateOrder";
             public readonly string OrderList = "OrderList";
         }
 
@@ -98,7 +98,7 @@ namespace Winkompass_Mobil.Controllers
         {
             public const string Index = "Index";
             public const string OrderGet = "CreateOrder";
-            public const string Order = "CreateOrder";
+            public const string CreateOrder = "CreateOrder";
             public const string OrderList = "OrderList";
         }
 
@@ -112,11 +112,11 @@ namespace Winkompass_Mobil.Controllers
             public readonly string cus = "cus";
             public readonly string on = "on";
         }
-        static readonly ActionParamsClass_Order s_params_Order = new ActionParamsClass_Order();
+        static readonly ActionParamsClass_CreateOrder s_params_CreateOrder = new ActionParamsClass_CreateOrder();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Order OrderParams { get { return s_params_Order; } }
+        public ActionParamsClass_CreateOrder CreateOrderParams { get { return s_params_CreateOrder; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Order
+        public class ActionParamsClass_CreateOrder
         {
             public readonly string reg = "reg";
         }
@@ -130,10 +130,10 @@ namespace Winkompass_Mobil.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Order = "CreateOrder";
+                public readonly string CreateOrder = "CreateOrder";
                 public readonly string OrderList = "OrderList";
             }
-            public readonly string Order = "~/Views/Order/CreateOrder.cshtml";
+            public readonly string CreateOrder = "~/Views/Order/CreateOrder.cshtml";
             public readonly string OrderList = "~/Views/Order/OrderList.cshtml";
         }
     }
@@ -168,14 +168,14 @@ namespace Winkompass_Mobil.Controllers
         }
 
         [NonAction]
-        partial void OrderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Winkompass_Mobil.Models.ScanItemModel reg);
+        partial void CreateOrderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Winkompass_Mobil.Models.ScanItemModel reg);
 
         [NonAction]
         public override System.Web.Mvc.ActionResult CreateOrder(Winkompass_Mobil.Models.ScanItemModel reg)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Order);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOrder);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reg", reg);
-            OrderOverride(callInfo, reg);
+            CreateOrderOverride(callInfo, reg);
             return callInfo;
         }
 

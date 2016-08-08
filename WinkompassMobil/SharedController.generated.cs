@@ -111,12 +111,12 @@ namespace Winkompass_Mobil.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Error = "Error";
+                public readonly string _Layout = "_Layout";
                 public readonly string NormalScan = "NormalScan";
                 public readonly string NormalScanJS = "NormalScanJS";
                 public readonly string ScanWithTarget = "ScanWithTarget";
             }
-            public readonly string Error = "~/Views/Shared/Error.cshtml";
+            public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string NormalScan = "~/Views/Shared/NormalScan.cshtml";
             public readonly string NormalScanJS = "~/Views/Shared/NormalScanJS.cshtml";
             public readonly string ScanWithTarget = "~/Views/Shared/ScanWithTarget.cshtml";

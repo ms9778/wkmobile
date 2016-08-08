@@ -64,9 +64,10 @@ namespace Winkompass_Mobil.Controllers
             {
                 kModel = kModel ?? new TemplateModel();
             }
+            var list = new TemplateList { Journals = StorageWorker.GetAllStockJournals() };
 
             //return View(kModel);
-            return RedirectToAction(StorageList());
+            return View("StorageList", list);
         }
 
         public virtual ActionResult StorageCount(string id)
