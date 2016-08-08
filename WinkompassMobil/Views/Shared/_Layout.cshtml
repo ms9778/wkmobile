@@ -2,23 +2,25 @@
 @SessionManager.Manager.Responsive.HtmlDoc
 <html>
 <head>
-<link rel="stylesheet" href="~/Content/Site.css">
+    
+    <!--General CSS for the site-->
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <!--jQuery Javascript and jQuery UI Javascript-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <!--Material Design Lite CSS-->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.teal-blue.min.css"/>
+    <!--jQuery UI CSS-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+    <!--Font Awesome CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--Material Icons CSS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.teal-blue.min.css" />
-<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-<link rel="stylesheet" href="~/Content/mdl-jquery-modal-dialog.css">
-<link rel="stylesheet" href="~/Content/getmdl-select.min.css">
+<!--Material Design Lite Javascript-->
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
 
-<!-- FONTS-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <script src="~/Content/mdl-jquery-modal-dialog.js"></script>
-    <script src="~/Content/getmdl-select.min.js"></script>
 
 
 <title>@RenderSection("title", true)</title>
@@ -192,7 +194,7 @@
         .text-danger { color: #a94442; }
 
         .text-danger b { color: #ba4442; }
-        </style>
+    </style>
 }
 else
 {

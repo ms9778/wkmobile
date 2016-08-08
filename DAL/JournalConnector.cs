@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
@@ -42,6 +43,12 @@ namespace DAL
                 Db.Journals.Where(x => x.JournalType == StdJournalType && x.Module == StdJournalModule)
                     .Select(x => x)
                     .ToList();
+        }
+
+        public static List<String> GetAllLocations()
+        {
+            List<String> locations;
+            return locations = Db.Locations.Select(s => s.Name).ToList();
         }
 
         public int ScanBarcodeItem(ScanItem item)

@@ -1,4 +1,4 @@
-﻿@using Winkompass_Mobil.Helpers
+﻿@using Winkompass_Mobil.Code
 @model TemplateList
 
 @section title{
@@ -9,13 +9,10 @@
     Lagerkladde liste
 }
 
-@using Winkompass_Mobil.Code
-
 @functions
 {
 
     Functions _func = new Functions();
-
 }
 
 <div class="less-padding">
@@ -26,12 +23,11 @@
 </div>
 
 
-
-<ul class="mdl-list left">
+@*<ul class="mdl-list left">
 
     @foreach (var journal in Model.Journals.Take(10))
     {
-        <li class="mdl-list__item col-xs-12" >
+        <li class="mdl-list__item col-xs-12">
 
             <span class="mdl-list__item-primary-content col-xs-6 no-padding">
                 <span class="truncate">
@@ -53,14 +49,47 @@
                 </a>
             </div>
         </li>
-        
     }
 
-</ul>
+</ul>*@
+<section class="mdl-grid" id="my-table">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp width-100">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Kladdenavn</th>
+                <th>Normal Scan</th>
+                <th>Quick Scan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.Journals)
+            {
+                <tr class="">
+                    <td class="mdl-data-table__cell--non-numeric">@x.Journal1</td>
+                    
+                    <td>
+                        <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(x.Journal1))">
+                            <span class="mdl-list__item-primary-action mdl-button mdl-js-button mdl-js-ripple-effect">
+                                <i class="fa fa-barcode fa-lg " aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(x.Journal1))">
+                            <span class="mdl-list__item-secondary-action  mdl-button mdl-js-button mdl-js-ripple-effect">
+                                <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </section>
 
-<div class="tinyBotSpace"></div>
+    <div class="tinyBotSpace"></div>
 
-@section BottomScripts
+    @section BottomScripts
 {
 
-}
+    }

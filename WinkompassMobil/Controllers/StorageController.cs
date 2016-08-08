@@ -27,37 +27,46 @@ namespace Winkompass_Mobil.Controllers
         [HttpPost]
         public virtual ActionResult CreateTemplate(TemplateModel kModel)
         {
-            if (kModel?.Template != null)
+            //Check if the Template is null
+            if (kModel.Template != null)
             {
+                //Check if variable contains the name that is already in the database
                 var allJournals = StorageWorker.GetAllStockJournals();
 
-                foreach (var item in allJournals)
-                {
-                    if (item.Journal1 == kModel.Template.Journal1)
+                    foreach (var item in allJournals)
                     {
-                        kModel.Error = "Kladden er allerede lavet";
-                        return View(kModel);
+                        if (item.Journal1 == kModel.Template.Journal1)
+                        {
+                            kModel.Error = "Kladden er allerede lavet";
+                            return View(kModel);
+                        }
+                        
                     }
-                    break;
-                }
 
-                if (!string.IsNullOrEmpty(kModel.Template.Journal1))
-                {
-                    kModel.Created = false;
-                    //Bogstaver tal samt tegnene .-@ er tilladte med denne regular expression (samt mellemrum)
-                    var m = Regex.Match(kModel.Template.Journal1, @"[^a-zA-Z0-9æøåÆØÅ\.\-@ ]+");
-                    if (m.Success)
+                    //check if string contains something
+                    if (!string.IsNullOrEmpty(kModel.Template.Journal1))
                     {
-                        kModel.Error = "Kladden indeholder Ugyldige tegn, gyldige tegn er: a-å 0-9 .-@";
-                        return View(kModel);
+                        //The object hasnt been created yet
+                        kModel.Created = false;
+                        //Check if the string contains any illegal characters
+                        var m = Regex.Match(kModel.Template.Journal1, @"[^a-zA-Z0-9æøåÆØÅ\.\-@ ]+");
+                        //If it does return error and return the view
+                        if (m.Success)
+                        {
+                            kModel.Error = "Kladden indeholder Ugyldige tegn, gyldige tegn er: a-å 0-9 .-@";
+                            return View(kModel);
+                        }
                     }
-                }
-                kModel.Created = StorageWorker.CreateJournal(kModel.Template);
+                    //Create the object
+                    kModel.Created = StorageWorker.CreateJournal(kModel.Template);
+               }
+            else
+            {
+                kModel = kModel ?? new TemplateModel();
             }
-            kModel = kModel ?? new TemplateModel();
 
-
-            return View(kModel);
+            //return View(kModel);
+            return RedirectToAction(StorageList());
         }
 
         public virtual ActionResult StorageCount(string id)
@@ -105,6 +114,7 @@ namespace Winkompass_Mobil.Controllers
                                   (reg.Item != null && reg.Item.ShowDifference
                                       ? " Med en forskel på: " + reg.Item.Difference
                                       : "");
+                
             }
             if (HttpContext.Request.Params["Action"] != null &&
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
@@ -116,7 +126,7 @@ namespace Winkompass_Mobil.Controllers
 
         public virtual ActionResult StorageList()
         {
-            var list = new TemplateList {Journals = StorageWorker.GetAllStockJournals()};
+            var list = new TemplateList {Journals = StorageWorker.GetAllStockJournals()}; 
             return View(list);
         }
 

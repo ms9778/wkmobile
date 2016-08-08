@@ -10,6 +10,6 @@ namespace DAL
 {
     public class DbConnecter
     {
-        protected KompasDemoEntities Db = new KompasDemoEntities();
+        protected static KompasDemoEntities Db = new KompasDemoEntities();
         }
 }

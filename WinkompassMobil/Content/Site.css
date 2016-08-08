@@ -7,6 +7,54 @@ div,html,body,form,table,tr,td{
     padding:0;
 }
 
+.selectpicker {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    color: #448aff;
+    font-weight: 600;
+    border: none;
+
+    -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+.mdl-data-table {
+    table-layout:fixed;
+    width:100%; 
+}
+#my-table td, th {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  font-size: 14px !important;
+}
+
+
+/* unrelated to responsive table css */
+#my-table{
+  margin-top:24px;
+}
+.material-icons {
+  vertical-align: -25%;
+}
+.mdl-data-table th, td{
+  text-align: left !important;
+}
+.center{
+  text-align:center;
+}
+
+.selectpicker:focus {
+    -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   outline: none;
+} 
+
 .no-padding {
     padding: 0 !important;
 }
@@ -35,7 +83,7 @@ div,html,body,form,table,tr,td{
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: clip !important;
-  padding-bottom: 1px;
+  
 }
 
 .truncatetitle {

@@ -10,7 +10,7 @@
 @if (Model != null && Model.Template != null && Model.Created)
 {
     <div class="element left">
-        <span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet</span></div>
+        <span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet! @Model.Error</span></div>
 }
 else if (Model != null && Model.Template != null && !Model.Created)
 {
@@ -23,13 +23,15 @@ else if (Model != null && Model.Template != null && !Model.Created)
         <label class="mdl-textfield__label" for="JournalInput">Navn på lagerkladde</label>
     </div>
     <span id="nn"></span>
-    <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace" id="ss" type="submit" value="Opret lagerkladde">
+    <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret lagerkladde">
 </form>
 
 <form id="tt" class="measureHidden"></form>
 
 <script>
     setFocusToTextBox();
+
+   
     $(document)
         .ready(function() {
             $('#ss').attr('disabled', true);
