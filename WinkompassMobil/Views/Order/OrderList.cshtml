@@ -7,36 +7,141 @@
     Ordre liste
 }
 
-<div class="less-padding">
-    <a href="@Url.Action(MVC.Order.CreateOrder())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        Opret ny ordre
-    </a>
-</div>
+<form class="Search">
+    <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
+    <label class="Search-label" for="edit_search">
+        <i class="fa fa-search"></i>
+    </label>
+</form>
 
-<ul class="mdl-list left">
-
-    @foreach (var order in Model.Orders.Take(10))
-    {
-        <li class="mdl-list__item col-xs-12">
-
-            <span class="mdl-list__item-primary-content col-xs-6 no-padding">
-                <span class="truncate">
-                    @order.OrderCustomerName<br/>
-                    <small>@order.OrderNo - @order.OrderCustomer</small>
-                </span>
-            </span>
-            
-            
-            <div class="col-xs-1 no-padding">
-                <a class="mdl-list__item-secondary-action col-xs-12 no-padding" href="@Url.Action(MVC.Order.OrderGet(order.OrderCustomer, order.OrderNo))">
-                    <span class="mdl-list__item-primary-action pull-right mdl-button mdl-js-button mdl-js-ripple-effect">
-                        <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
-                    </span>
-                </a>
+<div class="margin-top">
+    <dialog class="mdl-dialog" id="dialog">
+        <h4 class="mdl-dialog__title">Opret ny lagerkladde</h4>
+        <div class="mdl-dialog__content">
+            <form method="post">
+                <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
+                    <label class="mdl-textfield__label" for="JournalInput">Navn</label>
                 </div>
+                <span id="nn"></span>
+                <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret">
 
-</li>
-    }
+                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary element tinyBotSpace toastbutton" id="close">Afslut</button>
+            </form>
+        </div>
+    </dialog>
 
-</ul >
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+        <i class="material-icons">add</i>
+    </button>
+
+
+    <section class="mdl-grid" id="my-table">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
+            <thead>
+                <tr>
+                    <th>Leverandør Navn</th>
+                    <th>Leverandør Nummer</th>
+                    <th>Indkøbs Nummer</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Orders)
+                {
+                    <tr id="@("line_" + Model.Orders.IndexOf(i))">
+                        <td class="mdl-data-table__cell--non-numeric">@i.OrderCustomerName</td>
+                        <td class="mdl-data-table__cell--non-numeric">@i.OrderCustomer</td>
+                        <td class="mdl-data-table__cell--non-numeric">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+
+        var dialog = document.querySelector('dialog');
+        var showDialogButton = document.querySelector('#show-dialog');
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        showDialogButton.addEventListener('click',
+            function() {
+                window.location = "/Order/CreateOrder";
+            });
+        dialog.querySelector('#close')
+            .addEventListener('click',
+                function() {
+                    dialog.close();
+                });
+    </script>
+
+
+    <script>
+
+        setFocusToTextBox();
+
+        function setFocusToTextBox() {
+            document.getElementById("edit_search").focus();
+        }
+
+        function gid(a_id) {
+            return document.getElementById(a_id);
+        }
+
+        function close_all() { // hide all divs
+
+            for (i = 0; i < @Model.Orders.Count ; i++) {
+                var o = gid("line_" + i);
+                if (o) { //just to make sure this object really exists
+                    o.style.display = "none";
+                }
+            }
+
+        }
+
+        function open_all() { // show all divs
+
+            for (i = 0; i < @Model.Orders.Count; i++) {
+                var o = gid("line_" + i);
+                if (o) { //just to make sure this object really exists
+                    o.style.display = "table-row";
+                }
+            }
+
+        }
+
+
+        function find_my_div() { // find and show
+            close_all(); // close previous search results
+
+            var o_edit = gid("edit_search");
+            var str_needle = edit_search.value;
+            str_needle = str_needle.toUpperCase();
+
+            if (str_needle != "") { // we will not search for empty strings
+                for (i = 0; i < @Model.Orders.Count; i++) {
+                    var o = gid("line_" + i);
+                    if (o) { //just to make sure this object really exists
+                        // we want case insensitive search, so bring the both parts to upper case and compare
+                        var str_haystack = o.innerHTML.toUpperCase();
+                        if (str_haystack.indexOf(str_needle) == -1) {
+                            // not found, do nothing
+                        } else {
+                            // yes, we got it, show it
+                            o.style.display = "table-row";
+                        }
+                    }
+                }
+            } else {
+                open_all();
+            }
+
+
+        }
+
+
+    </script>
+</div>

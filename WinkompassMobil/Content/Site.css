@@ -19,6 +19,17 @@ z-index: 998;
             box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3) !important;
 }
 
+.settings {
+position: fixed!important;
+    top: 58px !important;
+    z-index: 1;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important; 
+    left: 0;
+
+}
+
 .search-field {
     width: 100% !important;
 
@@ -66,9 +77,12 @@ body {
   color: #555;
 }
 
+#dialog {
+    width: 80% !important;
+}
+
 #edit_search {
   flex: 1 0 auto;
-  margin: 0 8px;
   padding: 8px 20px;
   height: 80px;
   box-shadow: 0 3px 12px -1px rgba(0, 0, 0, .3);
@@ -77,10 +91,18 @@ body {
   -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
+   width: 50%;
+   float: left;
 }
 
 *:focus {
     outline: none;
+}
+
+.text-shadow {
+    font-size: 36px !important;
+   text-shadow: 2px 2px 5px #000000;
+    overflow: visible !important;
 }
 
 
@@ -216,6 +238,9 @@ body {
 .margin-bottom-20{
     margin-bottom:20px !important;
     }
+.margin-bottom-60 {
+    margin-bottom: 60px !important;
+}
 
 .hr-border-size{
     border-width:2px;

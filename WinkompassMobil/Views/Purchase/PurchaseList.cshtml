@@ -7,45 +7,141 @@
     Vælg et indkøb
 }
 
-<hr class="hr-border-size"/>
-<div class="less-padding">
-    <a href="@Url.Action(MVC.Purchase.MakePurchase())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        Opret nyt indkøb
-    </a>
-</div>
+<form class="Search">
+    <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
+    <label class="Search-label" for="edit_search">
+        <i class="fa fa-search"></i>
+    </label>
+</form>
 
-<ul class="mdl-list left">
+<div class="margin-top">
+    <dialog class="mdl-dialog" id="dialog">
+        <h4 class="mdl-dialog__title">Opret ny lagerkladde</h4>
+        <div class="mdl-dialog__content">
+            <form method="post">
+                <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
+                    <label class="mdl-textfield__label" for="JournalInput">Navn</label>
+                </div>
+                <span id="nn"></span>
+                <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret">
 
-    <div class="left">
-        <span>værdier i indkøb liste:<br /></span>
-        <b>-IndkøbsNr -Leverandørnr -LeverandørNavn</b>
+                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary element tinyBotSpace toastbutton" id="close">Afslut</button>
+            </form>
+        </div>
+    </dialog>
 
-        <hr/>
-        @foreach (var purchase in Model.Purchases.Take(10))
-        {
-            <text>
-                <b>-@purchase.PurchaseNo -@purchase.SupplierNo -@purchase.SupplierName</b> <a href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo, purchase.PurchaseNo))">tilføj linjer</a><br/><br/>
-            </text>
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+        <i class="material-icons">add</i>
+    </button>
+
+
+    <section class="mdl-grid" id="my-table">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
+            <thead>
+                <tr>
+                    <th>Leverandør Navn</th>
+                    <th>Leverandør Nummer</th>
+                    <th>Indkøbs Nummer</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Purchases)
+                {
+                    <tr id="@("line_" + Model.Purchases.IndexOf(i))">
+                        <td class="mdl-data-table__cell--non-numeric">@i.SupplierName</td>
+                        <td class="mdl-data-table__cell--non-numeric">@i.SupplierNo</td>
+                        <td class="mdl-data-table__cell--non-numeric">@i.PurchaseNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Purchase.MakePurchaseGet(i.SupplierNo, i.PurchaseNo))"><i class="material-icons">add</i></a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+
+        var dialog = document.querySelector('dialog');
+        var showDialogButton = document.querySelector('#show-dialog');
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
         }
-    </div>
-</ul>
+        showDialogButton.addEventListener('click',
+            function() {
+                window.location = "/Purchase/MakePurchase";
+            });
+        dialog.querySelector('#close')
+            .addEventListener('click',
+                function() {
+                    dialog.close();
+                });
+    </script>
 
-<ul class="mdl-list left">
 
-    @foreach (var purchase in Model.Purchases.Take(10))
-    {
-        <li class="mdl-list__item mdl-list__item--three-line">
-            <span class="mdl-list__item-primary-content">
-                <span>@purchase.SupplierName</span>
-                <span class="mdl-list__item-text-body">
-                    @purchase.PurchaseNo - @purchase.SupplierNo
-                </span>
-            </span>
-            <span class="mdl-list__item-secondary-content">
-                <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Purchase.MakePurchaseGet(purchase.SupplierNo, purchase.PurchaseNo))"><i class="material-icons">add</i></a>
-            </span>
-        </li>
+    <script>
+
+    setFocusToTextBox();
+
+    function setFocusToTextBox() {
+        document.getElementById("edit_search").focus();
     }
 
-</ul>
+    function gid(a_id) {
+        return document.getElementById(a_id);
+    }
+
+    function close_all() { // hide all divs
+
+        for (i = 0; i < @Model.Purchases.Count ; i++) {
+            var o = gid("line_" + i);
+            if (o) { //just to make sure this object really exists
+                o.style.display = "none";
+            }
+        }
+
+    }
+
+    function open_all() { // show all divs
+
+        for (i = 0; i < @Model.Purchases.Count; i++) {
+            var o = gid("line_" + i);
+            if (o) { //just to make sure this object really exists
+                o.style.display = "table-row";
+            }
+        }
+
+    }
+
+
+    function find_my_div() { // find and show
+        close_all(); // close previous search results
+
+        var o_edit = gid("edit_search");
+        var str_needle = edit_search.value;
+        str_needle = str_needle.toUpperCase();
+
+        if (str_needle != "") { // we will not search for empty strings
+            for (i = 0; i < @Model.Purchases.Count; i++) {
+                var o = gid("line_" + i);
+                if (o) { //just to make sure this object really exists
+                    // we want case insensitive search, so bring the both parts to upper case and compare
+                    var str_haystack = o.innerHTML.toUpperCase();
+                    if (str_haystack.indexOf(str_needle) == -1) {
+                        // not found, do nothing
+                    } else {
+                        // yes, we got it, show it
+                        o.style.display = "table-row";
+                    }
+                }
+            }
+        } else {
+            open_all();
+        }
+
+
+    }
+
+
+    </script>
+</div>

@@ -1,5 +1,4 @@
-﻿@using Winkompass_Mobil.Code
-@model TemplateList
+﻿@model TemplateList
 
 @section title{
     Winkompass - Lager
@@ -9,61 +8,139 @@
     Lagerkladde liste
 }
 
+@*<div class="settings box-shadow">
+    <div class="pull-left col-xs-6 no-padding">
+        <input type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
+        <label class="Search-label" for="edit_search"></label>
+    </div>
 
-    <form action="" class="Search">
-        <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
-        <label class="Search-label" for="Search-box"><i class="fa fa-search"></i></label>
-    </form>
+    <div class="pull-right col-xs-6 no-padding">
+        <form method="post">
+            <input id="JournalInput" class="create-journal" placeholder="Ny Kladde" type="text" name="Template.Journal1">
+            <label class="Search-label" for="JournalInput"></label>
+        </form>
+    </div>
+</div>*@
 
 
-<a href="@Url.Action(MVC.Storage.CreateTemplate())">
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button">
+<form class="Search">
+    <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
+    <label class="Search-label" for="edit_search">
+        <i class="fa fa-search"></i>
+    </label>
+</form>
 
-        <i class="material-icons">add</i>
-    </button>
-</a>
-<section class="mdl-grid" id="my-table">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp width-100">
-        <thead>
-        <tr>
-            <th class="mdl-data-table__cell--non-numeric">Kladdenavn</th>
-            <th>Normal Scan</th>
-            <th>Quick Scan</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var i in Model.Journals)
-        {
-            <tr id="@("line_" + Model.Journals.IndexOf(i))">
-                <td class="mdl-data-table__cell--non-numeric">@i.Journal1</td>
+@*<form method="post">
+    <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
+        <label class="mdl-textfield__label" for="JournalInput">Navn på lagerkladde</label>
+    </div>
+    <span id="nn"></span>
+    <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret lagerkladde">
+</form>*@
 
-                <td>
-                    <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(i.Journal1))">
-                        <span class="mdl-list__item-primary-action mdl-button mdl-js-button mdl-js-ripple-effect">
+
+<dialog class="mdl-dialog" id="dialog">
+    <h4 class="mdl-dialog__title">Opret ny lagerkladde</h4>
+    <div class="mdl-dialog__content">
+        <form method="post">
+            <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
+                <label class="mdl-textfield__label" for="JournalInput">Navn</label>
+            </div>
+            <span id="nn"></span>
+            <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret">
+
+            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary element tinyBotSpace toastbutton" id="close" >Afslut</button>
+        </form>
+    </div>
+</dialog>
+
+
+
+
+<div class="margin-top">
+    @*<a href="@Url.Action(MVC.Storage.CreateTemplate())">*@
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog">
+
+            <i class="material-icons">add</i>
+        </button>
+   
+    <section class="mdl-grid" id="my-table">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Kladdenavn</th>
+                    <th>Normal Scan</th>
+                    <th>Quick Scan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Journals)
+                {
+                    <tr id="@("line_" + Model.Journals.IndexOf(i))">
+                        <td class="mdl-data-table__cell--non-numeric">@i.Journal1</td>
+
+                        <td>
+                            <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.StorageCount(i.Journal1))">
+                                <span class="mdl-list__item-primary-action mdl-button mdl-js-button mdl-js-ripple-effect">
                                     <i class="fa fa-barcode fa-lg " aria-hidden="true"></i>
                                 </span>
-                    </a>
-                </td>
-                <td>
-                    <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(i.Journal1))">
-                        <span class="mdl-list__item-secondary-action  mdl-button mdl-js-button mdl-js-ripple-effect">
+                            </a>
+                        </td>
+                        <td>
+                            <a class="mdl-list__item-secondary-action col-xs-6 no-padding" href="@Url.Action(MVC.Storage.QuickCount(i.Journal1))">
+                                <span class="mdl-list__item-secondary-action  mdl-button mdl-js-button mdl-js-ripple-effect">
                                     <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>
                                 </span>
-                    </a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</section>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>
 
 
-<div class="tinyBotSpace"></div>
+<script>
+    $(document)
+        .ready(function() {
+            $('#ss').attr('disabled', true);
+
+            $('#JournalInput')
+                .keyup(function() {
+                    if ($(this).val().length !== 0) {
+                        $('#ss').attr('disabled', false);
+                    } else {
+                        $('#ss').attr('disabled', true);
+                    }
+                });
+        });
+</script>
+
+<script>
+  
+    var dialog = document.querySelector('dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    if (! dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click',
+        function() {
+            dialog.showModal();
+        });
+    dialog.querySelector('#close')
+        .addEventListener('click',
+            function() {
+                dialog.close();
+            });
+</script>
 
 <script>
 
     setFocusToTextBox();
-    
+
     function setFocusToTextBox() {
         document.getElementById("edit_search").focus();
     }
@@ -116,12 +193,11 @@
                     }
                 }
             }
-        }
-        else {
+        } else {
             open_all();
         }
-        
-        
+
+
     }
 
 
