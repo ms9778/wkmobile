@@ -9,28 +9,19 @@
     Lagerkladde liste
 }
 
-@functions
-{
 
-    Functions _func = new Functions();
-}
+    <form action="" class="Search">
+        <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
+        <label class="Search-label" for="Search-box"><i class="fa fa-search"></i></label>
+    </form>
 
-<div class="less-padding">
-    <a href="@Url.Action(MVC.Storage.CreateTemplate())" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        Opret ny lagerkladde
-    </a>
-</div>
 
-<div class="mdl-textfield mdl-js-textfield">
-    <label class="mdl-button mdl-js-button mdl-button--icon" for="edit_search">
-        <i class="fa fa-search fa-lg" aria-hidden="true"></i>
-    </label>
-    <div class="mdl-textfield__expandable-holder">
-        <input class="mdl-textfield__input" type="text" id="edit_search" onkeyup="javascript: find_my_div();">
+<a href="@Url.Action(MVC.Storage.CreateTemplate())">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button">
 
-    </div>
-</div>
+        <i class="material-icons">add</i>
+    </button>
+</a>
 <section class="mdl-grid" id="my-table">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp width-100">
         <thead>
@@ -92,7 +83,7 @@
 
     }
 
-    function open_all() { // hide all divs
+    function open_all() { // show all divs
 
         for (i = 0; i < @Model.Journals.Count; i++) {
             var o = gid("line_" + i);
@@ -105,7 +96,7 @@
 
 
     function find_my_div() { // find and show
-        close_all(); // close previous searhc results
+        close_all(); // close previous search results
 
         var o_edit = gid("edit_search");
         var str_needle = edit_search.value;

@@ -11,17 +11,6 @@
     </div>
 }
 
-
-@*<div id="placering" class="input-group mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input type="text" name="item.location" id="placeringInput" class="mdl-textfield__input">
-    <label class="mdl-textfield__label" for="placeringInput">Placering</label>
-    <span class="input-group-btn">
-        <button class="mdl-button mdl-js-button mdl-js-ripple-effect  mdl-button--accent btnstock" type="button">
-            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
-        </button>
-    </span>
-</div>*@
-
 <select name="item.location" class="selectpicker">
     @foreach (var x in JournalConnector.GetAllLocations())
     {
