@@ -3,7 +3,8 @@
 <div class="element left">
     <span class="tinyBotSpace">Seneste scanninger:</span><hr/>
 </div>
-<div class="element">
+
+@*<div class="element">
     <table class="lastScans smallBotSpace element">
         <tr>
             <td>#</td><td class="scanTableItem">Vare</td><td class="scanTableParams">Parametre</td><td class="scanTableCount">Antal</td>
@@ -15,4 +16,30 @@
             </tr>
         }
     </table>
-</div>
+</div>*@
+
+<section class="mdl-grid" id="my-table">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th class="mdl-data-table__cell--non-numeric">Vare</th>
+        <th>Parametre</th>
+        <th>Antal</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.Items)
+        {
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">@i.LineNo</td>
+                <td>@i.Item</td>
+                <td>@(!string.IsNullOrEmpty(i.Parameter1) ? i.Parameter1 : "")@(!string.IsNullOrEmpty(i.Parameter2) ? "," + i.Parameter2 : "")</td>
+                <td>@i.Counted</td>
+
+               
+            </tr>
+        }
+    </tbody>
+</table>
+    </section>

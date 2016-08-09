@@ -12,11 +12,12 @@
 }
 
 <select name="item.location" class="selectpicker">
+    
     @foreach (var x in JournalConnector.GetAllLocations())
     {
-        <option value="@x">@x</option>
+        <option id="line" value="@x">@x</option>
 
-    }    
+    }
 </select>
 
 <div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -30,7 +31,6 @@
 <input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
 
 <input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
-
 
 
 <script>
