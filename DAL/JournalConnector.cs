@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
@@ -45,10 +44,9 @@ namespace DAL
                     .ToList();
         }
 
-        public static List<String> GetAllLocations()
+        public static List<string> GetAllLocations()
         {
-            List<String> locations;
-            return locations = Db.Locations.Select(s => s.Name).ToList();
+            return Db.Locations.Select(s => s.Name).ToList();
         }
 
         public int ScanBarcodeItem(ScanItem item)

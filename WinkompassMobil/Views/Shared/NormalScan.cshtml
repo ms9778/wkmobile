@@ -11,22 +11,21 @@
     </div>
 }
 
-<select name="item.location" class="selectpicker">
-    
+<select name="item.location" class="selectpicker" id="selector" onclick="selectandSaveValue()">
+
     @foreach (var x in JournalConnector.GetAllLocations())
     {
-        <option id="line" value="@x">@x</option>
-
+        <option id="line" value="@x" name="selectId">@x</option>
     }
 </select>
 
 <div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input id="scanInput" class="mdl-textfield__input" type="text" name="item.barCode">
-    <label class="mdl-textfield__label" for="scanInput">Varenr / stregkode</label>
+    <label class="mdl-textfield__label" for="scanInput">Varenr</label>
 </div>
 <div id="itemcounter" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="itemCount" class="mdl-textfield__input" type="text" name="item.count">
-    <label class="mdl-textfield__label" for="itemCount">Antal optalt</label>
+    <input id="itemCount" class="mdl-textfield__input" type="number" name="item.count">
+    <label class="mdl-textfield__label" for="itemCount">Antal</label>
 </div>
 <input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
 
@@ -34,54 +33,37 @@
 
 
 <script>
+    var line = localStorage.getItem("selectedValue");
 
-    function setFocusToTargetInput() {
-        document.getElementById("TargetInput").focus();
+    if (line) {
+        document.getElementById("selector").options.add(new Option(line, line, null, true));
+        setFocus();
     }
 
-    function setFocusToScanInput() {
-        document.getElementById("ScanInput").focus();
+    function setFocus() {
+        document.getElementById("scanInput").focus();
     }
+    function selectandSaveValue() {
+        var element = document.getElementById("selector");
+        var selectedValue = element.options[element.selectedIndex].value;
+        localStorage.setItem("selectedValue", selectedValue);
+    }
+</script>
+<script>
+    $(document)
+        .ready(function() {
+            $('#okButton').attr('disabled', true);
+            $('#cancelButton').attr('disabled', true);
 
-    function valueCheck() {
-        if ($('#TargetInput').val().length > 0) {
-            $('#TargetInput').attr('disabled', true);
-            setFocusToScanInput();
-            $(document)
-                .ready(function() {
-                    $('#okButton').attr('disabled', true);
-                    $('#cancelButton').attr('disabled', true);
-                    $('#ScanInput')
-                        .keyup(function() {
-                            if ($(this).val().length !== 0) {
-                                $('#okButton').attr('disabled', false);
-                                $('#cancelButton').attr('disabled', false);
-                            } else {
-                                $('#okButton').attr('disabled', true);
-                                $('#cancelButton').attr('disabled', true);
-                            }
-
-                        });
+            $('#scanInput' && '#itemCount')
+                .keyup(function() {
+                    if ($(this).val().length !== 0) {
+                        $('#okButton').attr('disabled', false);
+                        $('#cancelButton').attr('disabled', false);
+                    } else {
+                        $('#okButton').attr('disabled', true);
+                        $('#cancelButton').attr('disabled', true);
+                    }
                 });
-        } else {
-            setFocusToTargetInput();
-            $(document)
-                .ready(function() {
-                    $('#okButton').attr('disabled', true);
-                    $('#cancelButton').attr('disabled', true);
-                    $('#TargetInput')
-                        .keyup(function() {
-                            if ($(this).val().length !== 0) {
-                                $('#okButton').attr('disabled', false);
-                                $('#cancelButton').attr('disabled', false);
-                            } else {
-                                $('#okButton').attr('disabled', true);
-                                $('#cancelButton').attr('disabled', true);
-                            }
-                        });
-                });
-        }
-    }
-
-    valueCheck();
+        });
 </script>

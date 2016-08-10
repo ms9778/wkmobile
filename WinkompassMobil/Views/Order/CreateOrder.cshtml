@@ -4,7 +4,8 @@
 }
 
 @section siteHeader{
-    Opret ordre
+    Opret ordre @(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? "(" + Model.Item.LineNo + ")" : "")
+
 }
 
 
@@ -36,7 +37,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         .ready(function() {
             $('#ss').attr('disabled', true);
 
-            $('#JournalInput')
+            $('#JournalInput' && '#itemCount')
                 .keyup(function() {
                     if ($(this).val().length !== 0) {
                         $('#ss').attr('disabled', false);

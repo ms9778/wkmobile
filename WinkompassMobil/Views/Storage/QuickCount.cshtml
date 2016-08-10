@@ -1,23 +1,24 @@
 ﻿@using Winkompass_Mobil.Code
 @model ScanItemModel
 @section title{
-    Winkompass quick scan
+    Winkompass - Quick scan
 }
 
 
 
 @section siteHeader{
-    <span class="truncatetitle">Quick scan)</span>
+    <span class="truncatetitle">Quick scan (@Model.storageId)</span>
 }
 <div class="element left tinyBotSpace @(SessionManager.Manager.Responsive is html5 ? "text-primary" : "")" id="result">
     <b id="actionMessageLabel">Status:</b> <span id="actionMessage">Afventer scanning</span></div>
-<div class="left element tinyBotSpace">
-    <span>Scan stregkode</span></div>
 <form method="post" id="quickForm">
-    <input type="text" class="elementInputHack" id="scanInput" name="item.barCode"/>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label" for="scanInput">Scan stregkode</label>
+        <input class="mdl-textfield__input" type="text" id="scanInput" name="item.barCode" />
+    </div>
 </form>
 
-<div id="Result">@Html.Action(MVC.Storage.Top5(Url.RequestContext.RouteData.Values["id"].ToString()))</div>
+<div class="" id="Result">@Html.Action(MVC.Storage.Top5(Url.RequestContext.RouteData.Values["id"].ToString()))</div>
 
 @section BottomScripts {
     <script type="text/javascript">
@@ -56,7 +57,7 @@
                     }
                
                 },
-                4000);
+                2000);
         }
 
         $("#scanInput")
@@ -76,17 +77,20 @@
                             success: function(data) {
                                 var message = "";
                                 var SColor = "text-success";
-                                if (data.scanned != 1) {
+                                console.log(data);
+                                if (data.Scanned != 1) {
+                                  
                                     message += data.Error;
                                     SColor = "text-danger";
                                 } else {
-                                    message += "Scanning registreret: " + data.item.barCode;
+                                    message += "Scanning registreret: " + data.Item.BarCode;
 
                                     updateTable();
 
 
                                 }
                                 showMessage(message, SColor);
+                                updateTable();
                             }
                         });
                         document.getElementById('scanInput').value = "";

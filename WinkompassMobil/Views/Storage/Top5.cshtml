@@ -1,24 +1,6 @@
 ﻿@model ScannedItemsModel
 
-<div class="element left">
-    <span class="tinyBotSpace">Seneste scanninger:</span><hr/>
-</div>
-
-@*<div class="element">
-    <table class="lastScans smallBotSpace element">
-        <tr>
-            <td>#</td><td class="scanTableItem">Vare</td><td class="scanTableParams">Parametre</td><td class="scanTableCount">Antal</td>
-        </tr>
-        @foreach (var item in Model.Items)
-        {
-            <tr>
-                <td>@item.LineNo</td><td>@item.Item</td><td>@(!string.IsNullOrEmpty(item.Parameter1) ? item.Parameter1 : "")@(!string.IsNullOrEmpty(item.Parameter2) ? "," + item.Parameter2 : "")</td><td>@item.Counted</td>
-            </tr>
-        }
-    </table>
-</div>*@
-
-<section class="mdl-grid" id="my-table">
+<section class="mdl-grid no-margin" id="my-table">
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
     <thead>
     <tr>

@@ -40,9 +40,9 @@
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
             <thead>
                 <tr>
-                    <th>Leverandør Navn</th>
-                    <th>Leverandør Nummer</th>
-                    <th>Indkøbs Nummer</th>
+                    <th class="col-xs-5">Leverandør Navn</th>
+                    <th class="col-xs-4">Leverandør Nummer</th>
+                    <th class="col-xs-3">Indkøbs Nummer</th>
 
                 </tr>
             </thead>
@@ -50,9 +50,9 @@
                 @foreach (var i in Model.Orders)
                 {
                     <tr id="@("line_" + Model.Orders.IndexOf(i))">
-                        <td class="mdl-data-table__cell--non-numeric">@i.OrderCustomerName</td>
-                        <td class="mdl-data-table__cell--non-numeric">@i.OrderCustomer</td>
-                        <td class="mdl-data-table__cell--non-numeric">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
+                        <td class="mdl-data-table__cell--non-numeric col-xs-5">@i.OrderCustomerName</td>
+                        <td class="mdl-data-table__cell--non-numeric col-xs-4">@i.OrderCustomer</td>
+                        <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
 
                     </tr>
                 }

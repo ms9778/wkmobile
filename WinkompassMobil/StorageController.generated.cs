@@ -130,6 +130,14 @@ namespace Winkompass_Mobil.Controllers
             public readonly string id = "id";
             public readonly string reg = "reg";
         }
+        static readonly ActionParamsClass_StorageList s_params_StorageList = new ActionParamsClass_StorageList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_StorageList StorageListParams { get { return s_params_StorageList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_StorageList
+        {
+            public readonly string kModel = "kModel";
+        }
         static readonly ActionParamsClass_QuickCount s_params_QuickCount = new ActionParamsClass_QuickCount();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_QuickCount QuickCountParams { get { return s_params_QuickCount; } }
@@ -245,6 +253,18 @@ namespace Winkompass_Mobil.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StorageList);
             StorageListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void StorageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Winkompass_Mobil.Models.TemplateModel kModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult StorageList(Winkompass_Mobil.Models.TemplateModel kModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StorageList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "kModel", kModel);
+            StorageListOverride(callInfo, kModel);
             return callInfo;
         }
 

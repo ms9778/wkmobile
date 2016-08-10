@@ -9,19 +9,19 @@
 
 <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input id="TargetInput" class="mdl-textfield__input" type="text" name="item.target" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")">
-    <label class="mdl-textfield__label" for="TargetInput">Identifikationsnummer.</label>
+    <label class="mdl-textfield__label" for="TargetInput">Kunde- el. leverandørnummer.</label>
 
 </div>
 
 
 <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input id="ScanInput" class="mdl-textfield__input" type="text" name="item.barcode">
-    <label class="mdl-textfield__label" for="ScanInput">Varenummer/Stregkode.</label>
+    <label class="mdl-textfield__label" for="ScanInput">Varenummer</label>
 </div>
 
 <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input id="itemCount" class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" name="item.count">
-    <label class="mdl-textfield__label" for="itemCount">Antal optalt.</label>
+    <label class="mdl-textfield__label" for="itemCount">Antal</label>
 </div>
 
 <input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
@@ -47,7 +47,7 @@
                 .ready(function() {
                     $('#okButton').attr('disabled', true);
                     $('#cancelButton').attr('disabled', true);
-                    $('#ScanInput')
+                    $('#ScanInput' && '#itemCount')
                         .keyup(function() {
                             if ($(this).val().length !== 0) {
                                 $('#okButton').attr('disabled', false);
@@ -65,7 +65,7 @@
                 .ready(function() {
                     $('#okButton').attr('disabled', true);
                     $('#cancelButton').attr('disabled', true);
-                    $('#TargetInput')
+                    $('#TargetInput' && '#ScanInput' && '#itemCount')
                         .keyup(function() {
                             if ($(this).val().length !== 0) {
                                 $('#okButton').attr('disabled', false);

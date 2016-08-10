@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using BE;
@@ -72,12 +73,14 @@ namespace Winkompass_Mobil.Controllers
 
         public virtual ActionResult StorageCount(string id)
         {
+           
             if (!IsValidTemplate(id))
             {
                 SessionManager.Manager.IgnoreAction = true;
                 return RedirectToAction(MVC.Storage.StorageList());
             }
             var reg = new ScanItemModel { storageId = id};
+
             return View(reg);
         }
 
@@ -121,6 +124,7 @@ namespace Winkompass_Mobil.Controllers
                 if (HttpContext.Request.Params["Action"] != null &&
                     HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
                     reg.storageId = id;
+
                 return View(reg);
                 
             }return RedirectToAction(MVC.Home.Index());
