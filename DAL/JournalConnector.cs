@@ -19,6 +19,11 @@ namespace DAL
         public const string LocationNotExistsMessage = "Placeringen \"{0}\" eksisterer ikke";
         public const string UnrecognizedError = "der opstod en uventet fejl";
 
+        /// <summary>
+        /// create a new journal
+        /// </summary>
+        /// <param name="journal">the journal objet that is to be created</param>
+        /// <returns>true if object is made</returns>
         public bool CreateJournal(Journal journal)
         {
             var delivered = false;
@@ -36,6 +41,10 @@ namespace DAL
             return delivered;
         }
 
+        /// <summary>
+        /// get all the journals that are currently in the database
+        /// </summary>
+        /// <returns>a list of all the journals</returns>
         public List<Journal> GetAllStockJournals()
         {
             return
@@ -44,11 +53,20 @@ namespace DAL
                     .ToList();
         }
 
+        /// <summary>
+        /// get all the locations, that a journal can have, that are currently in the database
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetAllLocations()
         {
             return Db.Locations.Select(s => s.Name).ToList();
         }
 
+        /// <summary>
+        /// used when you scan a barcode
+        /// </summary>
+        /// <param name="item">the scanend item</param>
+        /// <returns>a 0 if no scan and 1 if scan valid and 2 if scan invalid</returns>
         public int ScanBarcodeItem(ScanItem item)
         {
             try
@@ -113,6 +131,12 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// returns the last (n) records that was put on a record
+        /// </summary>
+        /// <param name="journal">the journal whose records you want to see</param>
+        /// <param name="number">the number of records to get</param>
+        /// <returns></returns>
         public List<InventoryCount> RetrieveLastRecords(string journal, int number = 5)
         {
             return Db.InventoryCounts.Where(x => x.Journal == journal)
@@ -120,6 +144,7 @@ namespace DAL
                 .Take(number)
                 .ToList();
         }
+
 
         public bool IsValidTemplate(string id, short module, short type)
         {

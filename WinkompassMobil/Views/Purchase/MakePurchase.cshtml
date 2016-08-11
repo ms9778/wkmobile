@@ -19,6 +19,7 @@ else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
 {
     <div id="scanResult" class="element left tinyBotSpace text-danger"><span>Scanning fejlede ved registrering!</span></div>
 }
+
 <form class="scanForm" method="post">
     @Html.Action(MVC.Shared.ScanWithTarget(Model))
 

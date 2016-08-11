@@ -14,6 +14,7 @@ namespace Winkompass_Mobil.Controllers
         public Functions Function { get; } = new Functions();
 
         // GET: Storage
+        [OutputCache(Duration = 1000, VaryByParam = "none")]
         public virtual ActionResult Index()
         {
             return View(MVC.Home.Views.Index);
@@ -130,7 +131,7 @@ namespace Winkompass_Mobil.Controllers
             }return RedirectToAction(MVC.Home.Index());
         }
 
-
+        [OutputCache(Duration = 100, VaryByParam = "none")]
         public virtual ActionResult StorageList()
         {
             var list = new TemplateList {Journals = StorageWorker.GetAllStockJournals()}; 

@@ -36,7 +36,7 @@
     var line = localStorage.getItem("selectedValue");
 
     if (line) {
-        document.getElementById("selector").options.add(new Option(line, line, null, true));
+        document.getElementById("selector").options.add(new Option(line,line,false,true));
         setFocus();
     }
 

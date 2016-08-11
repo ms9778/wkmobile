@@ -5,37 +5,47 @@
 @section siteHeader{
     Winkompas Terminal
 }
+<div id="loadBar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate under-nav-and-full-width" style="visibility: hidden"></div>
 
-
-<a href="@Url.Action(MVC.Storage.StorageList())">
+<a id="storageBtn" href="@Url.Action(MVC.Storage.StorageList())" onclick="showstuff()">
     <div class="mdl-card mdl-shadow--4dp margin-bottom-20 card1">
         <div class="mdl-card__title mdl-card--expand">
             <h1 class="mdl-card__title-text text-shadow">Lager</h1>
         </div>
         <div class="mdl-card__supporting-text">
-            <large>Se lagerkladder og opret nye.</large>
+            Se lagerkladder og opret nye.
         </div>
     </div>
 </a>
 
-<a href="@Url.Action(MVC.Order.OrderList())">
+<a id="orderBtn" href="@Url.Action(MVC.Order.OrderList())" onclick="showstuff()">
     <div class="mdl-card mdl-shadow--4dp margin-bottom-20 card2">
         <div class="mdl-card__title mdl-card--expand">
             <h1 class="mdl-card__title-text text-shadow">Ordrer</h1>
         </div>
         <div class="mdl-card__supporting-text">
-            <large>Se nylige ordrer og opret nye.</large>
+            Se nylige ordrer og opret nye.
         </div>
     </div>
 </a>
 
-<a href="@Url.Action(MVC.Purchase.PurchaseList())">
+<a id="purchaseBtn" href="@Url.Action(MVC.Purchase.PurchaseList())" onclick="showstuff()">
     <div class="mdl-card mdl-shadow--4dp margin-bottom-20 card3">
         <div class="mdl-card__title mdl-card--expand">
             <h1 class="mdl-card__title-text text-shadow">Indkøb</h1>
         </div>
         <div class="mdl-card__supporting-text">
-            <large>Se nylige indkøb og opret nye.</large>
+            Se nylige indkøb og opret nye.
         </div>
     </div>
 </a>
+
+<script>
+    function showstuff() {
+        document.getElementById("loadBar").style.visibility = "visible";
+    }
+
+    function hidestuff() {
+        document.getElementById("loadBar").style.visibility = "hidden";
+    }
+</script>

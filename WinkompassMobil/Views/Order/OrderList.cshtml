@@ -7,31 +7,21 @@
     Ordre liste
 }
 
+<div id="loadBar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate under-nav-and-full-width" style="visibility: hidden"></div>
+
 <form class="Search">
     <input class="Search-box" type="search" id="edit_search" placeholder="Søg" autocomplete="off" onkeyup="javascript: find_my_div();">
-    <label class="Search-label" for="edit_search">
+    <label class="Search-label" for="edit_search" id="search_label">
         <i class="fa fa-search"></i>
     </label>
 </form>
 
 <div class="margin-top">
-    <dialog class="mdl-dialog" id="dialog">
-        <h4 class="mdl-dialog__title">Opret ny lagerkladde</h4>
-        <div class="mdl-dialog__content">
-            <form method="post">
-                <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input id="JournalInput" class="mdl-textfield__input" type="text" name="Template.Journal1">
-                    <label class="mdl-textfield__label" for="JournalInput">Navn</label>
-                </div>
-                <span id="nn"></span>
-                <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent element tinyBotSpace toastbutton" id="ss" type="submit" value="Opret">
-
-                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary element tinyBotSpace toastbutton" id="close">Afslut</button>
-            </form>
-        </div>
+    <dialog style="display: none" class="mdl-dialog" id="dialog">
+        
     </dialog>
 
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent center-block">
+    <button  onclick="showstuff()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog">
         <i class="material-icons">add</i>
     </button>
 
@@ -41,8 +31,8 @@
             <thead>
                 <tr>
                     <th class="col-xs-5">Leverandør Navn</th>
-                    <th class="col-xs-4">Leverandør Nummer</th>
-                    <th class="col-xs-3">Indkøbs Nummer</th>
+                    <th class="col-xs-3">Leverandør Nummer</th>
+                    <th class="col-xs-4">Indkøbs Nummer</th>
 
                 </tr>
             </thead>
@@ -51,8 +41,8 @@
                 {
                     <tr id="@("line_" + Model.Orders.IndexOf(i))">
                         <td class="mdl-data-table__cell--non-numeric col-xs-5">@i.OrderCustomerName</td>
-                        <td class="mdl-data-table__cell--non-numeric col-xs-4">@i.OrderCustomer</td>
-                        <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
+                        <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderCustomer</td>
+                        <td onclick="showstuff()" class="mdl-data-table__cell--non-numeric col-xs-4">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
 
                     </tr>
                 }
@@ -64,18 +54,11 @@
 
         var dialog = document.querySelector('dialog');
         var showDialogButton = document.querySelector('#show-dialog');
-        if (!dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-        }
         showDialogButton.addEventListener('click',
             function() {
                 window.location = "/Order/CreateOrder";
             });
-        dialog.querySelector('#close')
-            .addEventListener('click',
-                function() {
-                    dialog.close();
-                });
+
     </script>
 
 
@@ -93,7 +76,7 @@
 
         function close_all() { // hide all divs
 
-            for (i = 0; i < @Model.Orders.Count ; i++) {
+            for (i = 0; i < @Model.Orders.Count; i++) {
                 var o = gid("line_" + i);
                 if (o) { //just to make sure this object really exists
                     o.style.display = "none";
@@ -143,5 +126,27 @@
         }
 
 
+    </script>
+    <script>
+        function showstuff() {
+            document.getElementById("loadBar").style.visibility = "visible";
+        }
+
+        function hidestuff() {
+            document.getElementById("loadBar").style.visibility = "hidden";
+        }
+    </script>
+
+    <script>
+        $("#edit_search").keydown(function(e) {
+            if (e.which === 13) {
+                $('#edit_search').blur();
+            } 
+        
+        });
+
+        $('#search_label').click(function(e) {
+            e.preventDefault();
+        });
     </script>
 </div>
