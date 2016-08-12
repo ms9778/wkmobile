@@ -29,16 +29,17 @@
 <input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
 
 <script>
-   
+
 
     function setFocusToTargetInput() {
         document.getElementById("TargetInput").focus();
     }
+
     function setFocusToScanInput() {
         document.getElementById("ScanInput").focus();
     }
 
-  
+
     function valueCheck() {
         if ($('#TargetInput').val().length > 0) {
             $('#TargetInput').attr('disabled', true);
@@ -56,7 +57,7 @@
                                 $('#okButton').attr('disabled', true);
                                 $('#cancelButton').attr('disabled', true);
                             }
-                            
+
                         });
                 });
         } else {
@@ -78,5 +79,15 @@
                 });
         }
     }
+
     valueCheck();
+</script>
+
+<script>
+    $("#ScanInput")
+        .keydown(function(e) {
+            if (e.which === 13) {
+                $('#itemCount').focus();
+            }
+        });
 </script>

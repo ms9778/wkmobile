@@ -116,19 +116,21 @@ namespace Winkompass_Mobil.Controllers
             {
                 if (reg.Item != null)
                 {
-                    //reg.Message = reg.Item.Count + " vare(r) med varenummer " + reg.Item.BarCode + " blev registreret!" +
-                    //              (reg.Item != null && reg.Item.ShowDifference
-                    //                  ? " Med en forskel på: " + reg.Item.Difference
-                    //                  : "");
+                    reg.Message = reg.Item.Count + " vare(r) med varenummer " + reg.Item.BarCode + " blev registreret!" +
+                                  (reg.Item != null && reg.Item.ShowDifference
+                                      ? " Med en forskel på: " + reg.Item.Difference
+                                      : "");
 
                 }
                 if (HttpContext.Request.Params["Action"] != null &&
-                    HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
+                    HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2) { 
                     reg.storageId = id;
 
                 return View(reg);
-                
-            }return RedirectToAction(MVC.Home.Index());
+                }
+                return RedirectToAction(MVC.Storage.StorageList());
+            }
+            return RedirectToAction(MVC.Home.Index());
         }
 
         [OutputCache(Duration = 100, VaryByParam = "none")]
