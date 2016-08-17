@@ -10,7 +10,7 @@ namespace Winkompass_Mobil.Controllers
     {
 
         // GET: Purchase
-        [OutputCache(Duration = 1000, VaryByParam = "none")]
+        //[OutputCache(Duration = 1000, VaryByParam = "none")]
         public virtual ActionResult Index()
         {
             return View(MVC.Home.Views.Index);
@@ -55,7 +55,7 @@ namespace Winkompass_Mobil.Controllers
             return RedirectToAction(MVC.Purchase.PurchaseList());
         }
 
-        [OutputCache(Duration = 100, VaryByParam = "none")]
+        //[OutputCache(Duration = 100, VaryByParam = "none")]
         public virtual ActionResult PurchaseList()
         {
             var list = new PurchaseListModel

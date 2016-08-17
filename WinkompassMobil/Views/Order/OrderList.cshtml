@@ -7,6 +7,7 @@
     Ordre liste
 }
 
+
 <div id="loadBar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate under-nav-and-full-width" style="visibility: hidden"></div>
 
 <form class="Search">
@@ -18,10 +19,10 @@
 
 <div class="margin-top">
     <dialog style="display: none" class="mdl-dialog" id="dialog">
-        
+
     </dialog>
 
-    <button  onclick="showstuff()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog">
+    <button onclick="showstuff()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab-button" id="show-dialog">
         <i class="material-icons">add</i>
     </button>
 
@@ -29,26 +30,35 @@
     <section class="mdl-grid" id="my-table">
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60">
             <thead>
-                <tr>
-                    <th class="col-xs-5">Leverandør Navn</th>
-                    <th class="col-xs-3">Leverandør Nummer</th>
-                    <th class="col-xs-4">Indkøbs Nummer</th>
+            <tr>
+                <th class="col-xs-5">Kunde Navn</th>
+                <th class="col-xs-3">Ordre Nr</th>
+                <th class="col-xs-4"  style="text-align: center !important;">Tilføj</th>
 
-                </tr>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var i in Model.Orders)
-                {
-                    <tr id="@("line_" + Model.Orders.IndexOf(i))">
-                        <td class="mdl-data-table__cell--non-numeric col-xs-5">@i.OrderCustomerName</td>
-                        <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderCustomer</td>
-                        <td onclick="showstuff()" class="mdl-data-table__cell--non-numeric col-xs-4">@i.OrderNo <a class="mdl-list__item-secondary-action" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))"><i class="material-icons">add</i></a></td>
+            @foreach (var i in Model.Orders)
+            {
+                <tr id="@("line_" + Model.Orders.IndexOf(i))">
+                    <td class="mdl-data-table__cell--non-numeric col-xs-5">@i.OrderCustomerName<br/>
+                        <small><i class="fa fa-hashtag" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(@i.OrderCustomer)){@i.OrderCustomer }else{<small> -</small>}
+                        <br/> <i class="fa fa-map-marker" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(@i.Address1)){@i.Address1 }else{<small> -</small>}
+                        <br/><i class="fa fa-envelope" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(@i.EMail)){@i.EMail }else{<small> -</small>}
+                        </small>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderNo</td>
+                    <td onclick="showstuff()" class="mdl-data-table__cell--non-numeric col-xs-4">
+                        <a class="mdl-button button-fontsize-12 mdl-js-button mdl-button--raised mdl-button--primary" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))">+ Tilføj</a>
+                    </td>
 
-                    </tr>
-                }
+
+                </tr>
+            }
             </tbody>
         </table>
     </section>
+
 
     <script>
 
@@ -138,15 +148,17 @@
     </script>
 
     <script>
-        $("#edit_search").keydown(function(e) {
-            if (e.which === 13) {
-                $('#edit_search').blur();
-            } 
-        
-        });
+        $("#edit_search")
+            .keydown(function(e) {
+                if (e.which === 13) {
+                    $('#edit_search').blur();
+                }
 
-        $('#search_label').click(function(e) {
-            e.preventDefault();
-        });
+            });
+
+        $('#search_label')
+            .click(function(e) {
+                e.preventDefault();
+            });
     </script>
 </div>

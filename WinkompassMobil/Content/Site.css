@@ -156,6 +156,9 @@ body { background-color: #EE6E73; }
     width: 100%;
 }
 
+.button-fontsize-12 {
+    font-size: 12px !important;
+}
 
 /* unrelated to responsive table css */
 

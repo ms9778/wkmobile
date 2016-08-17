@@ -93,10 +93,10 @@ namespace DAL
 
         public List<PurchaseDetails> GetPurchasesWithStatus(string p)
         {
-            return (from x in Db.Purchases
-                join y in Db.Suppliers on x.Supplier equals y.Supplier1
+            return (from x in Db.Purchases join y in Db.Suppliers on x.Supplier equals y.Supplier1
                 where x.Status == p
-                select new PurchaseDetails {PurchaseNo = x.PurchaseNo, SupplierNo = y.Supplier1, SupplierName = y.Name})
+                select new PurchaseDetails {PurchaseNo = x.PurchaseNo, SupplierNo = y.Supplier1, SupplierName = y.Name, SupplierEmail = y.Email, SupplierPhone = y.Phone
+                })
                 .ToList();
         }
     }

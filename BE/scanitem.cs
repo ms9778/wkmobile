@@ -18,6 +18,7 @@
         public string Par2 { get; set; }
         public string Target { get; set; }
         public string Location { get; set; }
+        public string Placement { get; set; }
         public string ItemError { get; set; }
         public double Difference { get; set; }
         public string LineNo { get; set; }

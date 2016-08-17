@@ -6,7 +6,7 @@ namespace Winkompass_Mobil.Controllers
     public partial class SharedController : Controller
     {
         // GET: Shared
-        [OutputCache(Duration = 1000, VaryByParam = "none")]
+        //[OutputCache(Duration = 1000, VaryByParam = "none")]
         public virtual ActionResult Index()
         {
             return View(MVC.Home.Views.Index);

@@ -209,22 +209,26 @@ else
 
 </head>
 <body>
-
+    
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header margin-bottom-20">
         <div class="mdl-layout__header-row back-button-padding">
 
-            <!-- Title -->
-
-            <h4 class="pull-left">@RenderSection("siteHeader", true)</h4>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation">
-                <a class="pull-right" href="@Url.Action(MVC.Home.Index())">
+                <a id="backArrow" class="pull-left" @*href="@Url.Action(MVC.Home.Index())"*@>
+                    <i class="material-icons md-light md-36">arrow_back</i>
+                </a>
+                <a class="pull-left" href="@Url.Action(MVC.Home.Index())">
                     <i class="material-icons md-36 md-light">home</i>
                 </a>
             </nav>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Title -->
+            <h4 class="pull-right">@RenderSection("siteHeader", true)</h4>
+
+
         </div>
     </header>
     <main class="mdl-layout__content ">
@@ -242,6 +246,43 @@ else
         history.back();
     }
 
+
+</script>
+
+    <script>
+        
+        var title = document.title.toLowerCase();
+        var backbutton = document.getElementById("backArrow");
+        var currentURL = window.location.href.toLowerCase();
+
+        if (currentURL.indexOf("list") > -1) {
+            backbutton.addEventListener('click',
+                function () {
+                    window.location = "/Home/Index";
+                });
+        }
+
+        else if (title.match("lager")){
+            backbutton.addEventListener('click',
+                function() {
+                    window.location = "/Storage/StorageList";
+                });
+
+        }
+
+        else if (title.match("indkøb")) {
+            backbutton.addEventListener('click',
+                function() {
+                    window.location = "/Purchase/PurchaseList";
+                });
+        }
+
+        else if(title.match("ordrer")){
+            backbutton.addEventListener('click',
+                function() {
+                    window.location = "/Order/OrderList";
+                });
+        }
 
 </script>
 @RenderSection("BottomScripts", false)

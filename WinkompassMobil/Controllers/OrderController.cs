@@ -1,15 +1,20 @@
 ﻿using System.Configuration;
+using System.Linq;
 using System.Web.Mvc;
 using BE;
 using BLL;
+using Winkompass_Mobil.Code;
 using Winkompass_Mobil.Models;
+
 
 namespace Winkompass_Mobil.Controllers
 {
+    
     public partial class OrderController : Controller
     {
+        Functions func = new Functions();    
         // GET: CreateOrder
-        [OutputCache(Duration = 1000, VaryByParam = "none")]
+        //[OutputCache(Duration = 1000, VaryByParam = "none")]
         public virtual ActionResult Index()
         {
             return View(MVC.Home.Views.Index);
@@ -50,7 +55,7 @@ namespace Winkompass_Mobil.Controllers
             return RedirectToAction(MVC.Order.OrderList());
         }
 
-        [OutputCache(Duration = 100, VaryByParam = "none")]
+        //[OutputCache(Duration = 100, VaryByParam = "none")]
         public virtual ActionResult OrderList()
         {
             var model = new OrderListModel

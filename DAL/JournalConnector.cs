@@ -74,12 +74,12 @@ namespace DAL
                 ObjectResult<string> result;
                 if (string.IsNullOrEmpty(item.Location))
                 {
-                    result = Db.EW_Mobil_AddInventoryCount(item.Journal, "", "", item.BarCode, item.Count, item.Par1,
+                    result = Db.EW_Mobil_AddInventoryCount(item.Journal,"", item.Placement, "", item.BarCode, item.Count, item.Par1,
                         item.Par2);
                 }
                 else
                 {
-                    result = Db.EW_Mobil_AddInventoryCount(item.Journal, item.Location, "", "", item.BarCode, item.Count,
+                    result = Db.EW_Mobil_AddInventoryCount(item.Journal, item.Location, item.Placement, "", item.BarCode, item.Count,
                         item.Par1, item.Par2);
                 }
                 var error = result.FirstOrDefault();
@@ -105,6 +105,7 @@ namespace DAL
                                 x.Item == item.BarCode && x.Location == item.Location && x.Parameter1 == parResult1 &&
                                 x.Parameter2 == parResult2).Select(x => x.OnHandPhys).FirstOrDefault() - item.Count;
                     item.ShowDifference = true;
+                    
                 }
                 if (string.IsNullOrEmpty(error))
                 {
