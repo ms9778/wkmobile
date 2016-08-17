@@ -18,6 +18,23 @@ div, html, body, form, table, tr, td {
     z-index: 998;
 }
 
+#orderLineOrdered {
+    border: 1px solid rgba(0, 0, 0, .12) !important;
+}
+
+.button-update {
+    position: fixed !important;
+    bottom: 10px !important;
+    width: 50% !important;
+    margin-left: -25% !important;
+  
+}
+
+.wrap-text-table {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
 .under-nav-and-full-width {
     width: 100%;
     position: fixed !important;
@@ -168,14 +185,19 @@ body { background-color: #EE6E73; }
 
 .mdl-data-table th, td { text-align: left !important; }
 
-.center { text-align: center; }
+.center { text-align: center !important; }
 
 .selectpicker:focus {
     -moz-appearance: none;
     -webkit-appearance: none;
     outline: none;
 }
-
+.verysmall {
+    font-size: 11px !important;
+}
+.text-right {
+    text-align: right !important;
+}
 .no-padding { padding: 0 !important; }
 
 .no-margin { margin: 0 !important; }

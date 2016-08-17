@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using BE;
@@ -18,9 +20,20 @@ namespace DAL
                     var result = Db.Public_Orders_AddNew(item.Target).FirstOrDefault();
                     if (result != null) item.LineNo = result.OrderNo;
                 }
-                Db.Public_OrderLine_AddNew(item.BarCode, item.Count, item.LineNo, item.Par1, item.Par2, true);
-                return ScanItem.SCAN_VALID;
+
+                try
+                {
+                    Db.Public_OrderLine_AddNew(item.BarCode, item.Count, item.LineNo, item.Par1, item.Par2, true);
+
+                    return ScanItem.SCAN_VALID;
+                }
+                catch (Exception e)
+                {
+                    item.ItemError = e.InnerException.Message;
+                    return ScanItem.SCAN_INVALID;
+                }
             }
+
             catch (EntityCommandExecutionException e)
             {
                 var m = Regex.Match(e.InnerException.Message, "Faktura kunden '(.|\n)*' findes ikke!");
@@ -92,6 +105,16 @@ namespace DAL
         public List<Order> GetOrdersWithStatus(string p, int t)
         {
             return Db.Orders.Where(x => x.Status == p && x.OrderType == t).Select(x => x).ToList();
+        }
+
+        public ObjectResult<Public_OrderLine_Select_All_Result> selectAllOrderLines(string id)
+        {
+            return Db.Public_OrderLine_Select_All(id);
+        }
+
+        public ObjectResult<Public_Orders_Select_Single_Result> selectOrder(string id)
+        {
+            return Db.Public_Orders_Select_Single(id,null,null);
         }
     }
 }
