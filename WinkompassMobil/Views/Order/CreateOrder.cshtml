@@ -31,7 +31,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
     @Html.Action(MVC.Shared.ScanWithTarget(Model))
 </form>
 @if(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo)) { 
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-60 margin-top-60">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-20 margin-top-60">
     <thead>
     <tr>
         @*<th hidden class="col-xs-2">#</th>*@
@@ -48,7 +48,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 
     @foreach (var x in list)
     {
-        <tr>
+        <tr id="@x.RecordId">
             @*<td hidden class="mdl-data-table__cell--non-numeric col-xs-3 wrap-text-table"><small>@x.Item</small></td>*@
             <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
                 <small class="verysmall no-padding">Vare nr.: @x.Item</small><br/><small>@x.Description</small>
@@ -56,11 +56,11 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
             <td class="mdl-data-table__cell--non-numeric col-xs-8">
                 <br/>
                 <div class="col-xs-8 no-padding">
-                    <input id="orderLineOrdered" placeholder="@x.Ordered" type="number" name="item.count" class="mdl-textfield__input center">
+                    <input id="orderLineOrdered" placeholder="@x.Ordered"type="number" name="item.count" class="mdl-textfield__input center">
                 </div>
                 <div class="col-xs-4">
-                    <i class="fa fa-trash-o mdl-color-text--red" id="removeBtn" aria-hidden="true"></i>
-                    <p hidden id="recordIdVal"></p>
+                    <i class="fa fa-trash-o mdl-color-text--red removeBtn " data-recordid="@x.RecordId" aria-hidden="true"></i>
+                    <p hidden id="recordIdVal">@x.RecordId</p>
                 </div>
 
             </td>
@@ -83,42 +83,44 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
             <br/><strong>
                 @order.AmountBase,-<br/>
                 @order.TaxAmountBase,-<br/>
-                @order.TotalBase,-
-            </strong><br/>
+                @order.TotalBase,-</strong><br/>
             <small>
                 @order.Currency
-                &nbsp;&nbsp;
+        
             </small>
         </td>
     </tr>
 
     </tbody>
 </table>
-
-
-<button class="mdl-button mdl-button--raised mdl-button--primary button-update center">Opdater</button>
-        }
+}
 @section BottomScripts {
     @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
 }
-<script>
-    var value = document.getElementById("recordIdVal").value;
 
-    document.getElementById('removeBtn').onclick = function () {
-        $.ajax({
-            type: "POST",
-            url: 'Default.aspx/',
-            data: "",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (msg) {
-                $("#divResult").html("success");
-            },
-            error: function (e) {
-                $("#divResult").html("Something Wrong.");
-            }
+
+<script>
+    $(".removeBtn")
+        .click(function() {
+          
+            var orderLineId = $(this).data("recordid");
+            var orderId = @Model.Item.LineNo;
+
+
+            $.ajax({
+                type: "POST",
+                url: '/Order/DeleteOrderLine?orderLineId=' + orderLineId + '&orderId=' + orderId,
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(msg) {
+                    $('#'+orderLineId).remove();
+                },
+                error: function(e) {
+                    $('#'+orderLineId).remove();
+                }
+            });
         });
-    }
 </script>
 
 

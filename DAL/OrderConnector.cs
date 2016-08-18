@@ -118,10 +118,7 @@ namespace DAL
             return Db.Public_Orders_Select_Single(id,null,null);
         }
 
-        [WebMethod]
-        public int DeleteOrderLine(int recordId)
-        {
-           return Db.Public_OrderLine_Delete(recordId,null,null,null);  
-        }
+      
+        
     }
 }

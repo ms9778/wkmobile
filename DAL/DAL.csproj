@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DBConnecter.cs" />
     <Compile Include="JournalConnector.cs" />
+    <Compile Include="OrderLineConnector.cs" />
     <Compile Include="OrderConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseConnector.cs" />

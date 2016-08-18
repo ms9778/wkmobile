@@ -67,5 +67,13 @@ namespace Winkompass_Mobil.Controllers
             model.Orders.Reverse();
             return View(model);
         }
+
+        public ActionResult DeleteOrderLine(int orderLineId,int orderId)
+        {
+            OrderLineWorker olw = new OrderLineWorker();
+            olw.DeleteOrderLine(orderLineId);
+            return RedirectToAction(MVC.Home.Index());
+
+        }
     }
 }
