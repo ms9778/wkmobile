@@ -1,4 +1,5 @@
-﻿@using DAL
+﻿@using BLL
+@using DAL
 @model ScanItemModel
 @section title{
     Winkompass - Ordrer
@@ -54,16 +55,18 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
             </td>
             <td class="mdl-data-table__cell--non-numeric col-xs-8">
                 <br/>
-                <div class="col-xs-6 no-padding">
+                <div class="col-xs-8 no-padding">
                     <input id="orderLineOrdered" placeholder="@x.Ordered" type="number" name="item.count" class="mdl-textfield__input center">
                 </div>
-                <div class="col-xs-6">
-                    <i class="fa fa-times mdl-color-text--red" aria-hidden="true"></i>
+                <div class="col-xs-4">
+                    <i class="fa fa-trash-o mdl-color-text--red" id="removeBtn" aria-hidden="true"></i>
+                    <p hidden id="recordIdVal"></p>
                 </div>
 
             </td>
         </tr>
     }
+
     @{
         var order = oc.selectOrder(Model.Item.LineNo).FirstOrDefault();
     }
@@ -93,11 +96,31 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 </table>
 
 
-<button class="mdl-button mdl-button--raised mdl-button--primary button-update center">Update</button>
+<button class="mdl-button mdl-button--raised mdl-button--primary button-update center">Opdater</button>
         }
 @section BottomScripts {
     @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
 }
+<script>
+    var value = document.getElementById("recordIdVal").value;
+
+    document.getElementById('removeBtn').onclick = function () {
+        $.ajax({
+            type: "POST",
+            url: 'Default.aspx/',
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                $("#divResult").html("success");
+            },
+            error: function (e) {
+                $("#divResult").html("Something Wrong.");
+            }
+        });
+    }
+</script>
+
 
 <script>
     $(document)

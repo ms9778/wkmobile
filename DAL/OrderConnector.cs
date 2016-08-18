@@ -5,6 +5,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web.Services;
 using BE;
 
 namespace DAL
@@ -15,7 +16,7 @@ namespace DAL
         {
             try
             {
-                if (string.IsNullOrEmpty(item.LineNo))
+                if (String.IsNullOrEmpty(item.LineNo))
                 {
                     var result = Db.Public_Orders_AddNew(item.Target).FirstOrDefault();
                     if (result != null) item.LineNo = result.OrderNo;
@@ -63,7 +64,7 @@ namespace DAL
                         var dbn = new KompasDemoEntities();
                         var testItem =
                             dbn.InventoryParameters.Where(
-                                x => x.Item == item.BarCode && x.ParamNo == 0 && x.SortIndex == short.Parse(item.Par1))
+                                x => x.Item == item.BarCode && x.ParamNo == 0 && x.SortIndex == Int16.Parse(item.Par1))
                                 .Select(x => x)
                                 .SingleOrDefault();
                         if (testItem == null)
@@ -83,7 +84,7 @@ namespace DAL
                         var dbn = new KompasDemoEntities();
                         var testItem =
                             dbn.InventoryParameters.Where(
-                                x => x.Item == item.BarCode && x.ParamNo == 1 && x.SortIndex == short.Parse(item.Par2))
+                                x => x.Item == item.BarCode && x.ParamNo == 1 && x.SortIndex == Int16.Parse(item.Par2))
                                 .Select(x => x)
                                 .SingleOrDefault();
                         if (testItem == null)
@@ -96,7 +97,7 @@ namespace DAL
                         item.ItemError = "Parameter 2 er ugyldig";
                     }
                 }
-                if (string.IsNullOrEmpty(item.ItemError))
+                if (String.IsNullOrEmpty(item.ItemError))
                     item.ItemError = "Ukendt fejl, kontakt systemadministrator";
                 return ScanItem.SCAN_INVALID;
             }
@@ -115,6 +116,12 @@ namespace DAL
         public ObjectResult<Public_Orders_Select_Single_Result> selectOrder(string id)
         {
             return Db.Public_Orders_Select_Single(id,null,null);
+        }
+
+        [WebMethod]
+        public int DeleteOrderLine(int recordId)
+        {
+           return Db.Public_OrderLine_Delete(recordId,null,null,null);  
         }
     }
 }
