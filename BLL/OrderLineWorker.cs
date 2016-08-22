@@ -14,5 +14,11 @@ namespace BLL
             var olc = new OrderLineConnector();
             return olc.DeleteOrderLine(id);
         }
+
+        public void UpdateOrderLine(int originalRecordId,int originalOrdered, int ordered)
+        {
+            var olc = new OrderLineConnector();
+            olc.UpdateOrderLine(originalRecordId,originalOrdered, ordered);
+        }
     }
 }

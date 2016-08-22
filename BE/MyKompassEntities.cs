@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 
@@ -91,6 +92,8 @@ namespace BE
             return ((IObjectContextAdapter) this).ObjectContext.ExecuteFunction<string>("EW_Mobil_AddInventoryCount",
                 paramJournalParameter, paramPlacementParameter, paramEmployeeParameter, paramItemParameter,
                 paramQuantityParameter, inventoryCountParameter1Parameter, inventoryCountParameter2Parameter);
+
         }
+
     }
 }

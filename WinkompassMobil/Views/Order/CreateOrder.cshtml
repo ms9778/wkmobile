@@ -1,5 +1,4 @@
-﻿@using BLL
-@using DAL
+﻿@using DAL
 @model ScanItemModel
 @section title{
     Winkompass - Ordrer
@@ -49,18 +48,18 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
     @foreach (var x in list)
     {
         <tr id="@x.RecordId">
-            @*<td hidden class="mdl-data-table__cell--non-numeric col-xs-3 wrap-text-table"><small>@x.Item</small></td>*@
+          
             <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
                 <small class="verysmall no-padding">Vare nr.: @x.Item</small><br/><small>@x.Description</small>
             </td>
             <td class="mdl-data-table__cell--non-numeric col-xs-8">
                 <br/>
                 <div class="col-xs-8 no-padding">
-                    <input id="orderLineOrdered" placeholder="@x.Ordered"type="number" name="item.count" class="mdl-textfield__input center">
+                    <input id="newAmount" type="number" data-originalordered="@x.Ordered" data-recordid="@x.RecordId" name="item.count" value="@x.Ordered" class="test mdl-textfield__input center">
                 </div>
                 <div class="col-xs-4">
                     <i class="fa fa-trash-o mdl-color-text--red removeBtn " data-recordid="@x.RecordId" aria-hidden="true"></i>
-                    <p hidden id="recordIdVal">@x.RecordId</p>
+                 
                 </div>
 
             </td>
@@ -98,28 +97,50 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
     @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
 }
 
+<script>
+    $(".test").keyup(function() {
+       var originalamount = $(this).data('originalordered');
+        var orderLineId = $(this).data('recordid');
+        var amount = $(this).prop('value');
+        $(this).data('originalordered',amount);
+   
+        $.ajax({
+        type: "POST",
+        url: '/Order/UpdateOrderLine?originalRecordId='+orderLineId+"&originalOrdered="+originalamount+"&ordered="+amount,
+
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function() {
+         },
+        error: function() {
+        }
+    });
+    });
+</script>
 
 <script>
     $(".removeBtn")
         .click(function() {
-          
-            var orderLineId = $(this).data("recordid");
-            var orderId = @Model.Item.LineNo;
+            var r = confirm("Vil du slette denne linje?");
 
+            if (r === true) {
+                var orderLineId = $(this).data("recordid");
+                var orderId = @Model.Item.LineNo;
 
-            $.ajax({
-                type: "POST",
-                url: '/Order/DeleteOrderLine?orderLineId=' + orderLineId + '&orderId=' + orderId,
+                $.ajax({
+                    type: "POST",
+                    url: '/Order/DeleteOrderLine?orderLineId=' + orderLineId + '&orderId=' + orderId,
 
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(msg) {
-                    $('#'+orderLineId).remove();
-                },
-                error: function(e) {
-                    $('#'+orderLineId).remove();
-                }
-            });
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function() {
+                        $('#' + orderLineId).remove();
+                    },
+                    error: function() {
+                        $('#' + orderLineId).remove();
+                    }
+                });
+            }
         });
 </script>
 
