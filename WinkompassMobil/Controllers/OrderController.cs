@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using BE;
 using BLL;
+using DAL;
 using Winkompass_Mobil.Code;
 using Winkompass_Mobil.Models;
 
@@ -80,6 +81,13 @@ namespace Winkompass_Mobil.Controllers
             olw.UpdateOrderLine(originalRecordId,originalOrdered,ordered);
         }
 
+        public Public_Orders_Select_Single_Result GetOrder(string id)
+        {
+            var oc = new OrderConnector();
+            var order = oc.selectOrder(id).FirstOrDefault();
+
+            return order;
+        }
 
     }
 }

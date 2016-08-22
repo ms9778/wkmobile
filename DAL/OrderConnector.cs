@@ -118,7 +118,5 @@ namespace DAL
             return Db.Public_Orders_Select_Single(id,null,null);
         }
 
-      
-        
     }
 }

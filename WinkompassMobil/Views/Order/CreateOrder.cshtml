@@ -66,7 +66,9 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         </tr>
     }
 
-    @{
+    <!--Price of order, not complete-->
+
+    @*{
         var order = oc.selectOrder(Model.Item.LineNo).FirstOrDefault();
     }
 
@@ -88,7 +90,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         
             </small>
         </td>
-    </tr>
+    </tr>*@
 
     </tbody>
 </table>
@@ -97,11 +99,19 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
     @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
 }
 
+
+
 <script>
     $(".test").keyup(function() {
        var originalamount = $(this).data('originalordered');
         var orderLineId = $(this).data('recordid');
         var amount = $(this).prop('value');
+        if (amount === "") {
+            amount = 0;
+        } else {
+            amount = $(this).prop('value');
+        }
+        
         $(this).data('originalordered',amount);
    
         $.ajax({
@@ -112,7 +122,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         dataType: "json",
         success: function() {
          },
-        error: function() {
+        error: function(json) {
         }
     });
     });
@@ -138,7 +148,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
                     },
                     error: function() {
                         $('#' + orderLineId).remove();
-                    }
+                      }
                 });
             }
         });
