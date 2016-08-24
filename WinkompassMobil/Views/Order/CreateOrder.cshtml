@@ -50,15 +50,15 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         <tr id="@x.RecordId">
           
             <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
-                <small class="verysmall no-padding">Vare nr.: @x.Item</small> <small id="itemPrice">@x.Item.</small>
+                <small class="verysmall no-padding">Vare nr.: @x.Item</small>
                 <br/><small>@x.Description</small>
             </td>
-            <td class="mdl-data-table__cell--non-numeric col-xs-8">
+            <td class="mdl-data-table__cell--non-numeric col-xs-4">
                 <br/>
                 <div class="col-xs-8 no-padding">
                     <input id="newAmount" type="number" data-originalordered="@x.Ordered" data-recordid="@x.RecordId" name="item.count" value="@x.Ordered" class="test mdl-textfield__input center">
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-4 no-padding">
                     <i class="fa fa-trash-o mdl-color-text--red removeBtn " data-recordid="@x.RecordId" aria-hidden="true"></i>
                  
                 </div>

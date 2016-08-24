@@ -1,7 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using BE;
 using BLL;
+using DAL;
 using Winkompass_Mobil.Models;
 
 namespace Winkompass_Mobil.Controllers
@@ -50,8 +54,10 @@ namespace Winkompass_Mobil.Controllers
             if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
                 reg.Error = reg.Item.ItemError;
             if (HttpContext.Request.Params["Action"] != null &&
-                HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
-                return View(reg);
+                HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2) {
+
+                return RedirectToAction(MVC.Purchase.MakePurchaseGet(reg.Target, reg.Item.LineNo));
+            }
             return RedirectToAction(MVC.Purchase.PurchaseList());
         }
 
@@ -64,6 +70,28 @@ namespace Winkompass_Mobil.Controllers
             };
             list.Purchases.Reverse();
             return View(list);
+        }
+
+        public void DeletePurchaseLine(int orderLineId)
+        {
+            PurchaseLineWorker plw = new PurchaseLineWorker();
+            plw.DeletePurchaseLine(orderLineId);
+        }
+
+        public void UpdatePurchaseLine(int originalRecordId, int originalOrdered, int ordered)
+        {
+            var plw = new PurchaseLineWorker();
+            plw.UpdatePurchaseLine(originalRecordId, originalOrdered, ordered);
+        }
+
+        public string GetPurchase(string id)
+        {
+            var pc = new PurchaseConnector();
+            var purchase = pc.selectPurchase(id).FirstOrDefault();
+
+            var json = new JavaScriptSerializer().Serialize(purchase);
+            Console.Write(json);
+            return json;
         }
     }
 }

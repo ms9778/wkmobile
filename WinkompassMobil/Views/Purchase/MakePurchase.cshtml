@@ -1,4 +1,5 @@
-﻿@model ScanItemModel
+﻿@using DAL
+@model ScanItemModel
 @section title{
     Winkompass - Indkøb
 }
@@ -24,6 +25,163 @@ else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
     @Html.Action(MVC.Shared.ScanWithTarget(Model))
 
 </form>
+@if (Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo))
+{
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-20 margin-top-60">
+        <thead>
+        <tr>
+            <th class="col-xs-8">Produkt</th>
+            <th class="col-xs-4">Antal</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            var pc = new PurchaseConnector();
+
+            var list = pc.selectAllPurchaseLines(Model.Item.LineNo).Reverse();
+        }
+
+        @foreach (var x in list)
+        {
+            <tr id="@x.RecordId">
+
+                <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
+                    <small class="verysmall no-padding">Vare nr.: @x.Item</small>
+                    <br/><small>@x.Description</small>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric col-xs-4">
+                    <br/>
+                    <div class="col-xs-8 no-padding">
+                        <input id="newAmount" type="number" data-originalordered="@x.Ordered" data-recordid="@x.RecordId" name="item.count" value="@x.Ordered" class="test mdl-textfield__input center">
+                    </div>
+                    <div class="col-xs-4 no-padding">
+                        <i class="fa fa-trash-o mdl-color-text--red removeBtn " data-recordid="@x.RecordId" aria-hidden="true"></i>
+
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+        <!--Price of order, not complete-->
+
+        @*@{
+            var order = pc.selectPurchase(Model.Item.LineNo).FirstOrDefault();
+        }
+
+
+        <tr>
+            <td>
+                Total ex moms<br/>
+                moms<br/>
+                Total inkl. moms
+            </td>
+
+            <td class="text-right">
+                <br/><strong>
+                    <span id="amountBase">@order.AmountBase,-</span><br/>
+                    <span id="taxAmountBase">@order.TaxAmountBase,-</span><br/>
+                    <span id="totalBase">@order.TotalBase,-</span>
+                </strong><br/>
+                <small>
+                    @order.Currency
+
+                </small>
+            </td>
+        </tr>*@
+
+        </tbody>
+    </table>
+}
+<script>
+    var orderid = @Model.Item.LineNo;
+
+    function priceUpdate() {
+            $.ajax({
+                dataType: "json",
+                url: '/Purchase/GetPurchase?id=' + orderid,
+                data: {},
+                success: function (data){
+                    $('#amountBase').text(data.AmountBase + ",-");
+                    $('#taxAmountBase').text(data.TaxAmountBase + ",-");
+                    $('#totalBase').text(data.TotalBase + ",-");
+
+                }
+            });
+        };
+</script>
+
+<script>
+    $(".test").keyup(function() {
+        var originalamount = $(this).data('originalordered');
+        var orderLineId = $(this).data('recordid');
+        var amount = $(this).prop('value');
+        if (amount === "") {
+            amount = 0;
+        } else {
+            amount = $(this).prop('value');
+        }
+
+        $(this).data('originalordered',amount);
+
+        $.ajax({
+            type: "POST",
+            url: '/Purchase/UpdatePurchaseLine?originalRecordId='+orderLineId+"&originalOrdered="+originalamount+"&ordered="+amount,
+
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function() {
+                priceUpdate();
+            },
+            error: function() {
+                priceUpdate();
+            }
+        });
+    });
+</script>
+
+<script>
+    $(".removeBtn")
+        .click(function() {
+            var r = confirm("Vil du slette denne linje?");
+
+            if (r === true) {
+                var orderLineId = $(this).data("recordid");
+                $.ajax({
+                    type: "POST",
+                    url: '/Purchase/DeletePurchaseLine?orderLineId=' + orderLineId,
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function() {
+                        $('#' + orderLineId).remove();
+                        priceUpdate();
+                    },
+                    error: function() {
+                        $('#' + orderLineId).remove();
+                        priceUpdate();
+                    }
+                });
+            }
+        });
+</script>
+
+
+<script>
+    $(document)
+        .ready(function() {
+            $('#ss').attr('disabled', true);
+
+            $('#JournalInput' && '#itemCount')
+                .keyup(function() {
+                    if ($(this).val().length !== 0) {
+                        $('#ss').attr('disabled', false);
+                    } else {
+                        $('#ss').attr('disabled', true);
+                    }
+                });
+        });
+</script>
 @section BottomScripts {
    @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
 }

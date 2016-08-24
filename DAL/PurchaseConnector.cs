@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text.RegularExpressions;
 using BE;
@@ -98,6 +99,14 @@ namespace DAL
                 select new PurchaseDetails {PurchaseNo = x.PurchaseNo, SupplierNo = y.Supplier1, SupplierName = y.Name, SupplierEmail = y.Email, SupplierPhone = y.Phone
                 })
                 .ToList();
+        }
+        public ObjectResult<Public_PurchaseLine_Select_All_Result> selectAllPurchaseLines(string id)
+        {
+            return Db.Public_PurchaseLine_Select_All(id);
+        }
+        public ObjectResult<Public_Purchases_Select_Single_Result> selectPurchase(string id)
+        {
+            return Db.Public_Purchases_Select_Single(id, null, null);
         }
     }
 }
