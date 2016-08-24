@@ -4,8 +4,11 @@ using System.Web.Mvc;
 using BE;
 using BLL;
 using DAL;
+using Microsoft.Ajax.Utilities;
 using Winkompass_Mobil.Code;
 using Winkompass_Mobil.Models;
+using System;
+using System.Web.Script.Serialization;
 
 
 namespace Winkompass_Mobil.Controllers
@@ -52,7 +55,9 @@ namespace Winkompass_Mobil.Controllers
                 reg.Error = reg.Item.ItemError;
             if (HttpContext.Request.Params["Action"] != null &&
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
-                return View(reg);
+            {
+                return RedirectToAction(MVC.Order.OrderGet(reg.Target,reg.Item.LineNo));
+            }
             return RedirectToAction(MVC.Order.OrderList());
         }
 
@@ -81,12 +86,14 @@ namespace Winkompass_Mobil.Controllers
             olw.UpdateOrderLine(originalRecordId,originalOrdered,ordered);
         }
 
-        public Public_Orders_Select_Single_Result GetOrder(string id)
+        public string GetOrder(string id)
         {
             var oc = new OrderConnector();
             var order = oc.selectOrder(id).FirstOrDefault();
 
-            return order;
+            var json = new JavaScriptSerializer().Serialize(order);
+            Console.Write(json);
+            return json;       
         }
 
     }

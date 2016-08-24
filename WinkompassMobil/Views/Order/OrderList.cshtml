@@ -47,7 +47,7 @@
                         <br/><i class="fa fa-envelope" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(@i.EMail)){@i.EMail }else{<small> -</small>}
                         </small>
                     </td>
-                    <td class="mdl-data-table__cell--non-numeric col-xs-3">@i.OrderNo</td>
+                    <td class="mdl-data-table__cell--non-numeric col-xs-3"><small>@i.OrderNo</small></td>
                     <td onclick="showstuff()" class="mdl-data-table__cell--non-numeric col-xs-4">
                         <a class="mdl-button button-fontsize-12 mdl-js-button mdl-button--raised mdl-button--primary" href="@Url.Action(MVC.Order.OrderGet(i.OrderCustomer, i.OrderNo))">+ Tilføj</a>
                     </td>

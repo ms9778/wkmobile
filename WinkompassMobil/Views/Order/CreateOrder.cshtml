@@ -50,7 +50,8 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         <tr id="@x.RecordId">
           
             <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
-                <small class="verysmall no-padding">Vare nr.: @x.Item</small><br/><small>@x.Description</small>
+                <small class="verysmall no-padding">Vare nr.: @x.Item</small> <small id="itemPrice">@x.Item.</small>
+                <br/><small>@x.Description</small>
             </td>
             <td class="mdl-data-table__cell--non-numeric col-xs-8">
                 <br/>
@@ -68,7 +69,7 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 
     <!--Price of order, not complete-->
 
-    @*{
+    @{
         var order = oc.selectOrder(Model.Item.LineNo).FirstOrDefault();
     }
 
@@ -82,15 +83,15 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 
         <td class="text-right">
             <br/><strong>
-                @order.AmountBase,-<br/>
-                @order.TaxAmountBase,-<br/>
-                @order.TotalBase,-</strong><br/>
+                     <span id="amountBase">@order.AmountBase,-</span><br/>
+                     <span id="taxAmountBase">@order.TaxAmountBase,-</span><br/>
+                     <span id="totalBase">@order.TotalBase,-</span></strong><br/>
             <small>
                 @order.Currency
         
             </small>
         </td>
-    </tr>*@
+    </tr>
 
     </tbody>
 </table>
@@ -100,10 +101,27 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 }
 
 
+<script>
+    var orderid = @Model.Item.LineNo;
+
+    function priceUpdate() {
+            $.ajax({
+                dataType: "json",
+                url: '/Order/GetOrder?id=' + orderid,
+                data: {},
+                success: function (data){
+                    $('#amountBase').text(data.AmountBase + ",-");
+                    $('#taxAmountBase').text(data.TaxAmountBase + ",-");
+                    $('#totalBase').text(data.TotalBase + ",-");
+
+                }
+            });
+        };
+</script>
 
 <script>
     $(".test").keyup(function() {
-       var originalamount = $(this).data('originalordered');
+        var originalamount = $(this).data('originalordered');
         var orderLineId = $(this).data('recordid');
         var amount = $(this).prop('value');
         if (amount === "") {
@@ -115,16 +133,18 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         $(this).data('originalordered',amount);
    
         $.ajax({
-        type: "POST",
-        url: '/Order/UpdateOrderLine?originalRecordId='+orderLineId+"&originalOrdered="+originalamount+"&ordered="+amount,
+            type: "POST",
+            url: '/Order/UpdateOrderLine?originalRecordId='+orderLineId+"&originalOrdered="+originalamount+"&ordered="+amount,
 
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function() {
-         },
-        error: function(json) {
-        }
-    });
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function() {
+                priceUpdate();
+            },
+            error: function() {
+                priceUpdate();
+            }
+        });
     });
 </script>
 
@@ -135,20 +155,20 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 
             if (r === true) {
                 var orderLineId = $(this).data("recordid");
-                var orderId = @Model.Item.LineNo;
-
                 $.ajax({
                     type: "POST",
-                    url: '/Order/DeleteOrderLine?orderLineId=' + orderLineId + '&orderId=' + orderId,
+                    url: '/Order/DeleteOrderLine?orderLineId=' + orderLineId,
 
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function() {
                         $('#' + orderLineId).remove();
+                        priceUpdate();
                     },
                     error: function() {
                         $('#' + orderLineId).remove();
-                      }
+                        priceUpdate();
+                    }
                 });
             }
         });
