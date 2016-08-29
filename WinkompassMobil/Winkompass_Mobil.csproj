@@ -254,9 +254,7 @@
     <Content Include="Content\mdl-v1.1.2\material.js" />
     <Content Include="Content\mdl-v1.1.2\material.min.css" />
     <Content Include="Content\mdl-v1.1.2\material.min.js" />
-    <Content Include="Content\NormalScan.js" />
     <Content Include="Content\Site5.css" />
-    <Content Include="Content\test.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -341,7 +339,6 @@
     <Content Include="Views\Purchase\MakePurchase.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Shared\ScanWithTarget.cshtml" />
-    <Content Include="Views\Shared\NormalScanJS.cshtml" />
     <Content Include="Views\Purchase\PurchaseList.cshtml" />
     <Content Include="Views\Order\OrderList.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

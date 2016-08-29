@@ -36,12 +36,12 @@ div, html, body, form, table, tr, td {
 }
 
 .under-nav-and-full-width {
-    width: 100%;
+    width: 100% !important;
     position: fixed !important;
     margin: 0 !important;
     padding: 0 !important;
-    top: 56px;
-    left: 0px;
+    top: 56px !important;
+    left: 0px !important;
 }
 
 .settings {
@@ -274,16 +274,11 @@ body { background-color: #EE6E73; }
     padding: 10px;
 }
 
-.card-size {
-    margin-left: 5%;
-    min-height: 160px !important;
-    width: 90% !important;
-}
-
 .card1, .card2, .card3 {
-    min-height: 26.5vh !important;
+    min-height: 27vh !important;
     width: 100% !important;
 }
+
 
 .card1 > .mdl-card__title {
     background:
