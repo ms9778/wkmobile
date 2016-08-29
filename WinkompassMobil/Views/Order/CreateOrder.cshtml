@@ -67,8 +67,6 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
         </tr>
     }
 
-    <!--Price of order, not complete-->
-
     @{
         var order = oc.selectOrder(Model.Item.LineNo).FirstOrDefault();
     }

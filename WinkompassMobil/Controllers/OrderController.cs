@@ -56,7 +56,7 @@ namespace Winkompass_Mobil.Controllers
             if (HttpContext.Request.Params["Action"] != null &&
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
             {
-                return RedirectToAction(MVC.Order.OrderGet(reg.Target,reg.Item.LineNo));
+                return RedirectToAction(MVC.Order.OrderGet(cus:reg.Item.LineNo,on:reg.Item.LineNo));
             }
             return RedirectToAction(MVC.Order.OrderList());
         }

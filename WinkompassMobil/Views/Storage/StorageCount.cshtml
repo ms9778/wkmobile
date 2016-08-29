@@ -1,4 +1,5 @@
 ﻿@using System.Configuration
+@using DAL
 @model ScanItemModel
 @section title{
     Winkompass - Lager
@@ -7,8 +8,8 @@
 
 
 @section siteHeader{
-    <span class="truncatetitle">
-    Lageroptælling 
+    <span class="truncate">
+    Lageroptælling @(Model != null && !string.IsNullOrEmpty(Model.storageId) ? "(" + Model.storageId + ")" : "")
         </span>
 }
 
@@ -33,21 +34,48 @@ else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 <form class="scanForm" method="post">
     @Html.Partial("~/Views/Shared/NormalScan.cshtml")
 </form>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.storageId))
+{
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp width-100 margin-bottom-20 margin-top-60">
+        <thead>
+            <tr>
+                <th class="col-xs-8">Produkt</th>
+                <th class="col-xs-4">Antal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var jc = new JournalConnector();
+
+                var list = jc.RetrieveLastRecords(Model.storageId,10);
+            }
+
+            @foreach (var x in list)
+            {
+                <tr id="@x.RecordId">
+
+                    <td class="mdl-data-table__cell--non-numeric col-xs-8 wrap-text-table">
+                        <small class="verysmall no-padding">Vare nr.: @x.Item</small>
+                        <br /><small>@x.Description</small>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric col-xs-4">
+                        <br />
+                        <div class="col-xs-12 no-padding">
+                            <input disabled id="newAmount" type="number" data-originalordered="@x.Counted" data-recordid="@x.RecordId" name="item.count" value="@x.Counted" class="test mdl-textfield__input center">
+                        </div>
+                        @*<div class="col-xs-4 no-padding">
+                            <i class="fa fa-trash-o mdl-color-text--red removeBtn " data-recordid="@x.RecordId" aria-hidden="true"></i>
+
+                        </div>*@
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+                }
+
 @section BottomScripts {
-    @Html.Partial("~/Views/Shared/NormalScanJS.cshtml")
-    @if (bool.Parse(ConfigurationManager.AppSettings["useLocation"]))
-    {
-        <text>
-            <script type="text/javascript">
-                $("#btnLocationRemove")
-                    .bind("click",
-                        function () {
-                            $('#locationInput').val = '';
-                            $('#locationInput').enabled = true;
-                            $('#locationRemove').parent().remove('#locationRemove');
-                            return false;
-                        });
-            </script>
-        </text>
-    }
+
 }

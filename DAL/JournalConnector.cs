@@ -48,9 +48,7 @@ namespace DAL
         public List<Journal> GetAllStockJournals()
         {
             return
-                Db.Journals.Where(x => x.JournalType == StdJournalType && x.Module == StdJournalModule)
-                    .Select(x => x)
-                    .ToList();
+                Db.Journals.Where(x => x.JournalType == StdJournalType && x.Module == StdJournalModule).Select(x => x).ToList();
         }
 
         /// <summary>
@@ -146,7 +144,21 @@ namespace DAL
                 .ToList();
         }
 
+        public List<InventoryCount> RetrieveAllRecords(string journal)
+        {
+            return Db.InventoryCounts.Where(x => x.Journal == journal)
+                .OrderByDescending(y => y.RecordId)
+                .ToList();
+        }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="module"></param>
+        /// <param name="type"></param>
+        /// <returns>return true if template exists and type is 3 (no idea what 3 is)</returns>
         public bool IsValidTemplate(string id, short module, short type)
         {
             var tmplt =

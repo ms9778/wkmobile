@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using DAL;
 using Winkompass_Mobil.Models;
 
 namespace Winkompass_Mobil.Controllers
@@ -15,6 +18,16 @@ namespace Winkompass_Mobil.Controllers
         public virtual ActionResult ScanWithTarget(ScanItemModel reg)
         {
             return PartialView(reg);
+        }
+
+
+        public string GetItems(string id)
+        {
+            var sc = new SharedConnector();
+            var items = sc.selectItems();
+
+            var json = new JavaScriptSerializer().Serialize(items);
+            return json;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model TemplateModel
+﻿@using DAL
+@model TemplateModel
 @section title{
     Winkompass - Lager
 }
@@ -10,12 +11,14 @@
 @if (Model != null && Model.Template != null && Model.Created)
 {
     <div class="element left">
-        <span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet! @Model.Error</span></div>
+        <span class="text-success" id="result"><b>@Model.Template.Journal1</b> blev oprettet! @Model.Error</span>
+    </div>
 }
 else if (Model != null && Model.Template != null && !Model.Created)
 {
     <div class="element left">
-        <span class="text-danger" id="result"><b>@Model.Template.Journal1</b> blev ikke oprettet: @Model.Error</span></div>
+        <span class="text-danger" id="result"><b>@Model.Template.Journal1</b> blev ikke oprettet: @Model.Error</span>
+    </div>
 }
 <form method="post">
     <div id="createJournal" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -28,24 +31,26 @@ else if (Model != null && Model.Template != null && !Model.Created)
 
 <form id="tt" class="measureHidden"></form>
 
-<script>
-    setFocusToTextBox();
+    <script>
+        setFocusToTextBox();
 
-   
-    $(document)
-        .ready(function() {
-            $('#ss').attr('disabled', true);
 
-            $('#JournalInput')
-                .keyup(function() {
-                    if ($(this).val().length !== 0) {
-                        $('#ss').attr('disabled', false);
-                    } else {
-                        $('#ss').attr('disabled', true);
-                    }
-                });
-        });
-    function setFocusToTextBox() {
-        document.getElementById("JournalInput").focus();
-    }
-</script>
+        $(document)
+            .ready(function () {
+                $('#ss').attr('disabled', true);
+
+                $('#JournalInput')
+                    .keyup(function () {
+                        if ($(this).val().length !== 0) {
+                            $('#ss').attr('disabled', false);
+                        } else {
+                            $('#ss').attr('disabled', true);
+                        }
+                    });
+            });
+
+        function setFocusToTextBox() {
+            document.getElementById("JournalInput").focus();
+        }
+    </script>
+

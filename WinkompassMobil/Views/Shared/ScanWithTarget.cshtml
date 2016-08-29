@@ -15,7 +15,7 @@
 
 
 <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="ScanInput" class="mdl-textfield__input" type="text" name="item.barcode">
+    <input id="ScanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barcode">
     <label class="mdl-textfield__label" for="ScanInput">Varenummer</label>
 </div>
 
@@ -91,4 +91,20 @@
                 $('#itemCount').focus();
             }
         });
+</script>
+
+<script>
+    var dataJson;
+
+    $.ajax({
+        dataType: "json",
+        url: '/Shared/GetItems/',
+        data: {},
+        success: function(data) {
+            $(".autocompleteItem").autocomplete({
+                source: data,
+                minLength: 4
+            });
+        }
+    });
 </script>

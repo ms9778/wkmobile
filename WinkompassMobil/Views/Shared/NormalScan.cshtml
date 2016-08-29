@@ -10,25 +10,29 @@
         <label class="mdl-textfield__label" for="idInput">Kladde Id</label>
     </div>
 }
-@if (JournalConnector.GetAllLocations().Count > 0) { 
-<select name="item.location" class="selectpicker" id="selector" onclick="selectandSaveValue()">
+@if (JournalConnector.GetAllLocations().Count > 0)
+{
+    <select name="item.location" class="selectpicker" id="selector" onclick="selectandSaveValue()">
 
-    @foreach (var x in JournalConnector.GetAllLocations())
-    {
-        <option id="line" value="@x" name="selectId">@x</option>
-    }
-</select>
+        @foreach (var x in JournalConnector.GetAllLocations())
+        {
+            <option id="line" value="@x" name="selectId">@x</option>
+        }
+    </select>
 }
 
-<div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-<input id="placement" class="mdl-textfield__input" type="text" name="item.Placement">
-<label class="mdl-textfield__label" for="placement">Placering</label>
+<div id="placement" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input id="placement" class="mdl-textfield__input" type="text" name="item.Placement">
+    <label class="mdl-textfield__label" for="placement">Placering</label>
 </div>
 
 <div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="scanInput" class="mdl-textfield__input" type="text" name="item.barCode">
+    <input id="scanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barCode" source="dataJson">
     <label class="mdl-textfield__label" for="scanInput">Varenr</label>
 </div>
+
+
+
 <div id="itemcounter" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input id="itemCount" class="mdl-textfield__input" type="number" name="item.count">
     <label class="mdl-textfield__label" for="itemCount">Antal</label>
@@ -42,13 +46,14 @@
     var line = localStorage.getItem("selectedValue");
 
     if (line) {
-        document.getElementById("selector").options.add(new Option(line,line,false,true));
+        document.getElementById("selector").options.add(new Option(line, line, false, true));
         setFocus();
     }
 
     function setFocus() {
         document.getElementById("scanInput").focus();
     }
+
     function selectandSaveValue() {
         var element = document.getElementById("selector");
         var selectedValue = element.options[element.selectedIndex].value;
@@ -67,12 +72,27 @@
                     if ($(this).val().length !== 0) {
                         $('#okButton').attr('disabled', false);
                         $('#cancelButton').attr('disabled', false);
-                   
+
                     } else {
                         $('#okButton').attr('disabled', true);
                         $('#cancelButton').attr('disabled', true);
-                  
+
                     }
                 });
         });
+</script>
+<script>
+    var dataJson;
+
+    $.ajax({
+        dataType: "json",
+        url: '/Shared/GetItems/',
+        data: {},
+        success: function(data) {
+            $(".autocompleteItem").autocomplete({
+                source: data,
+                minLength: 4
+            });
+        }
+    });
 </script>

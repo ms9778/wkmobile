@@ -62,34 +62,30 @@ else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
                 </td>
             </tr>
         }
-
-        <!--Price of order, not complete-->
-
-        @*@{
-            var order = pc.selectPurchase(Model.Item.LineNo).FirstOrDefault();
-        }
+            @{
+                var purchase = pc.selectPurchase(Model.Item.LineNo).FirstOrDefault();
+            }
 
 
-        <tr>
-            <td>
-                Total ex moms<br/>
-                moms<br/>
-                Total inkl. moms
-            </td>
+            <tr>
+                <td>
+                    Total ex moms<br />
+                    moms<br />
+                    Total inkl. moms
+                </td>
 
-            <td class="text-right">
-                <br/><strong>
-                    <span id="amountBase">@order.AmountBase,-</span><br/>
-                    <span id="taxAmountBase">@order.TaxAmountBase,-</span><br/>
-                    <span id="totalBase">@order.TotalBase,-</span>
-                </strong><br/>
-                <small>
-                    @order.Currency
+                <td class="text-right">
+                    <br /><strong>
+                        <span id="amountBase">@purchase.AmountBase,-</span><br />
+                        <span id="taxAmountBase">@purchase.TaxAmountBase,-</span><br />
+                        <span id="totalBase">@purchase.TotalBase,-</span>
+                    </strong><br />
+                    <small>
+                        @purchase.Currency
 
-                </small>
-            </td>
-        </tr>*@
-
+                    </small>
+                </td>
+            </tr>
         </tbody>
     </table>
 }

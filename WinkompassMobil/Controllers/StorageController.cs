@@ -1,7 +1,5 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using System.Web.WebPages;
 using BE;
 using BLL;
 using Winkompass_Mobil.Code;
@@ -62,14 +60,8 @@ namespace Winkompass_Mobil.Controllers
                     //Create the object
                     kModel.Created = StorageWorker.CreateJournal(kModel.Template);
                }
-            else
-            {
-                kModel = kModel ?? new TemplateModel();
-            }
-            var list = new TemplateList { Journals = StorageWorker.GetAllStockJournals() };
-
             //return View(kModel);
-            return View("StorageList", list);
+            return RedirectToAction(MVC.Storage.StorageCount(kModel.Template.Journal1));
         }
 
         public virtual ActionResult StorageCount(string id)
@@ -112,31 +104,31 @@ namespace Winkompass_Mobil.Controllers
                 reg.Scanned = ScanItem(reg);
             if (reg.Item != null && string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
                 reg.Error = reg.Item.ItemError;
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (reg.Scanned == BE.ScanItem.SCAN_VALID)
             {
                 if (reg.Item != null)
                 {
-                    reg.Message = reg.Item.Count + " vare(r) med varenummer " + reg.Item.BarCode + " blev registreret!" +
-                                  (reg.Item != null && reg.Item.ShowDifference
-                                      ? " Med en forskel på: " + reg.Item.Difference
-                                      : "");
-
+                    reg.Message = reg.Item.Count + " vare(r) med varenummer " + reg.Item.BarCode + " blev tilføjet!";
                 }
                 if (HttpContext.Request.Params["Action"] != null &&
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
                     HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2) { 
                     reg.storageId = id;
 
-                return View(reg);
+                        return RedirectToAction(MVC.Storage.StorageCount(id));
                 }
                 return RedirectToAction(MVC.Storage.StorageList());
             }
-            return RedirectToAction(MVC.Home.Index());
+            ScanItemModel newreg2 = new ScanItemModel { storageId = reg.storageId };
+            return View(newreg2);
         }
 
         //[OutputCache(Duration = 100, VaryByParam = "none")]
         public virtual ActionResult StorageList()
         {
             var list = new TemplateList {Journals = StorageWorker.GetAllStockJournals()}; 
+            
             return View(list);
         }
 
@@ -175,10 +167,6 @@ namespace Winkompass_Mobil.Controllers
                 }
                 //Create the object
                 kModel.Created = StorageWorker.CreateJournal(kModel.Template);
-            }
-            else
-            {
-                kModel = kModel ?? new TemplateModel();
             }
             var list = new TemplateList { Journals = StorageWorker.GetAllStockJournals() };
 

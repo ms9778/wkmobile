@@ -22,7 +22,7 @@
             function(e) {
 
                 var itemCount = $("#itemCount").val();
-                itemCount = replace.itemCount(".", ",");
+                itemCount = itemCount.replace(".", ",");
                 $("#itemCount").val(itemCount);
 
             });
