@@ -2,45 +2,45 @@
 @using DAL
 @model ScanItemModel
 
+<form autocomplete="off">
+    @if (bool.Parse(ConfigurationManager.AppSettings["useLocation"]))
+    {
+        <div id="id" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="idInput" class="mdl-textfield__input" type="text" disabled="disabled" value="@Model.storageId" )>
+            <label class="mdl-textfield__label" for="idInput">Kladde Id</label>
+        </div>
+    }
+    @if (JournalConnector.GetAllLocations().Count > 0)
+    {
+        <select name="item.location" class="selectpicker" id="selector" onclick="selectandSaveValue()">
 
-@if (bool.Parse(ConfigurationManager.AppSettings["useLocation"]))
-{
-    <div id="id" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input id="idInput" class="mdl-textfield__input" type="text" disabled="disabled" value="@Model.storageId")>
-        <label class="mdl-textfield__label" for="idInput">Kladde Id</label>
+            @foreach (var x in JournalConnector.GetAllLocations())
+            {
+                <option id="line" value="@x" name="selectId">@x</option>
+            }
+        </select>
+    }
+
+    <div id="placement" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="placementInput" class="mdl-textfield__input" type="text" name="item.Placement">
+        <label class="mdl-textfield__label" for="placement">Placering</label>
     </div>
-}
-@if (JournalConnector.GetAllLocations().Count > 0)
-{
-    <select name="item.location" class="selectpicker" id="selector" onclick="selectandSaveValue()">
 
-        @foreach (var x in JournalConnector.GetAllLocations())
-        {
-            <option id="line" value="@x" name="selectId">@x</option>
-        }
-    </select>
-}
-
-<div id="placement" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="placement" class="mdl-textfield__input" type="text" name="item.Placement">
-    <label class="mdl-textfield__label" for="placement">Placering</label>
-</div>
-
-<div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="scanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barCode" source="dataJson">
-    <label class="mdl-textfield__label" for="scanInput">Varenr</label>
-</div>
+    <div id="scan" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="scanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barCode" source="dataJson">
+        <label class="mdl-textfield__label" for="scanInput">Varenr</label>
+    </div>
 
 
 
-<div id="itemcounter" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="itemCount" class="mdl-textfield__input" type="number" name="item.count">
-    <label class="mdl-textfield__label" for="itemCount">Antal</label>
-</div>
-<input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
+    <div id="itemcounter" class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="itemCount" class="mdl-textfield__input" type="number" name="item.count">
+        <label class="mdl-textfield__label" for="itemCount">Antal</label>
+    </div>
+    <input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
 
-<input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
-
+    <input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
+</form>
 
 <script>
     var line = localStorage.getItem("selectedValue");

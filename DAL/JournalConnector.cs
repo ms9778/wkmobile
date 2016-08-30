@@ -47,8 +47,20 @@ namespace DAL
         /// <returns>a list of all the journals</returns>
         public List<Journal> GetAllStockJournals()
         {
-            return
-                Db.Journals.Where(x => x.JournalType == StdJournalType && x.Module == StdJournalModule).Select(x => x).ToList();
+            try
+            {
+                return
+                    Db.Journals.Where(x => x.JournalType == StdJournalType && x.Module == StdJournalModule)
+                        .Select(x => x)
+                        .ToList();
+            }
+            catch (Exception e)
+            {
+                List<Journal> list = new List<Journal>() {new Journal() {Journal1 = "Der skete en fejl, indlæs venlist siden igen."} };
+
+                return list;
+            }
+            
         }
 
         /// <summary>

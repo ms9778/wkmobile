@@ -1,33 +1,32 @@
 ﻿@using Microsoft.Ajax.Utilities
 @model ScanItemModel
-
-<input type="hidden" name="item.LineNo" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")"/>
-@if (Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Target))
-{
-    @:<input type="hidden" name="item.target" value="@Model.Item.Target"/>
+<form autocomplete="off">
+    <input type="hidden" name="item.LineNo" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")" />
+    @if (Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Target))
+    {
+        @:<input type="hidden" name="item.target" value="@Model.Item.Target" />
 }
 
-<div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="TargetInput" class="mdl-textfield__input" type="text" name="item.target" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")">
-    <label class="mdl-textfield__label" for="TargetInput">Kunde- el. leverandørnummer.</label>
+    <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="TargetInput" class="mdl-textfield__input" type="text" name="item.target" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")">
+        <label class="mdl-textfield__label" for="TargetInput">Kunde- el. leverandørnummer.</label>
+    </div>
 
-</div>
 
+    <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="ScanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barcode">
+        <label class="mdl-textfield__label" for="ScanInput">Varenummer</label>
+    </div>
 
-<div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="ScanInput" class="mdl-textfield__input autocompleteItem" type="text" name="item.barcode">
-    <label class="mdl-textfield__label" for="ScanInput">Varenummer</label>
-</div>
+    <div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input id="itemCount" class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" name="item.count">
+        <label class="mdl-textfield__label" for="itemCount">Antal</label>
+    </div>
 
-<div class="left element mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input id="itemCount" class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" name="item.count">
-    <label class="mdl-textfield__label" for="itemCount">Antal</label>
-</div>
+    <input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
 
-<input id="okButton" class="center-block col-xs-6 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ContinueScanning">
-
-<input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
-
+    <input id="cancelButton" class="center-block col-xs-5 pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent tinyBotSpace" name="Action" type="submit" value="@ScanItemModel.ScanAndStop">
+</form>
 
 <script>
 

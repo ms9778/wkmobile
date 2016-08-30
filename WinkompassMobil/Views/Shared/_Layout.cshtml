@@ -4,7 +4,9 @@
 <head>
     <!--jQuery Javascript and jQuery UI Javascript-->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
 
 <!--General CSS for the site-->
 <link rel="stylesheet" href="~/Content/Site.css">
@@ -213,8 +215,8 @@ else
 
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation">
-                <a id="backArrow" class="pull-left" style="padding-right: 5px">
-                    <i class="fa fa-arrow-left fa-lg mdl-color-text--white" aria-hidden="true"></i>
+                <a id="backArrow" class="pull-left" style="padding-right: 15px">
+                    <i class="fa fa-angle-left fa-lg mdl-color-text--white" aria-hidden="true"></i>
                 </a>
                 <a class="pull-left" href="@Url.Action(MVC.Home.Index())">
                     <i class="fa fa-home fa-lg mdl-color-text--white" aria-hidden="true"></i>

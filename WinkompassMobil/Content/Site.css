@@ -7,10 +7,13 @@ div, html, body, form, table, tr, td {
 }
 
 .fab-button {
-    -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3) !important;
-    -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3) !important;
+    -moz-box-shadow: 2px 3px 3px 0 #292929 !important;
+    -moz-box-shadow: 2px 3px 3px 0 rgba(41, 41, 41, .3) !important;
+    -webkit-box-shadow: 2px 3px 3px 0 #292929 !important;
+    -webkit-box-shadow: 2px 3px 3px 0 rgba(41, 41, 41, .3) !important;
     bottom: 24px;
-    box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3) !important;
+    box-shadow: 2px 3px 3px 0 #292929 !important;
+    box-shadow: 2px 3px 3px 0 rgba(41, 41, 41, .3) !important;
     margin-bottom: 0;
     padding-top: 24px;
     position: fixed !important;
@@ -19,6 +22,7 @@ div, html, body, form, table, tr, td {
 }
 
 #orderLineOrdered {
+    border: 1px solid #000000 !important;
     border: 1px solid rgba(0, 0, 0, .12) !important;
 }
 
