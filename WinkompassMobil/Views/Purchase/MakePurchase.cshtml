@@ -12,11 +12,11 @@
 {
     <div id="scanResult" class="element left tinyBotSpace text-danger"><span>@Model.Error</span></div>
 }
-else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_VALID)
+else if (Model != null && Model.Scanned == ScanItem.SCAN_VALID)
 {
     <div id="scanResult" class="element left tinyBotSpace text-success"><span>@Model.Item.Count vare(r) med varenummer @Model.Item.BarCode blev registreret!</span></div>
 }
-else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
+else if (Model != null && Model.Scanned == ScanItem.SCAN_INVALID)
 {
     <div id="scanResult" class="element left tinyBotSpace text-danger"><span>Scanning fejlede ved registrering!</span></div>
 }
@@ -76,6 +76,7 @@ else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
 
                 <td class="text-right">
                     <br /><strong>
+                        @* ReSharper disable once PossibleNullReferenceException *@
                         <span id="amountBase">@purchase.AmountBase,-</span><br />
                         <span id="taxAmountBase">@purchase.TaxAmountBase,-</span><br />
                         <span id="totalBase">@purchase.TotalBase,-</span>
@@ -90,21 +91,22 @@ else if (Model != null && Model.Scanned == BE.ScanItem.SCAN_INVALID)
     </table>
 }
 <script>
+    @* ReSharper disable once PossibleNullReferenceException, if youre the programmer after me, sorry *@
     var orderid = @Model.Item.LineNo;
 
     function priceUpdate() {
-            $.ajax({
-                dataType: "json",
-                url: '/Purchase/GetPurchase?id=' + orderid,
-                data: {},
-                success: function (data){
-                    $('#amountBase').text(data.AmountBase + ",-");
-                    $('#taxAmountBase').text(data.TaxAmountBase + ",-");
-                    $('#totalBase').text(data.TotalBase + ",-");
+        $.ajax({
+            dataType: "json",
+            url: '/Purchase/GetPurchase?id=' + orderid,
+            data: {},
+            success: function (data){
+                $('#amountBase').text(data.AmountBase + ",-");
+                $('#taxAmountBase').text(data.TaxAmountBase + ",-");
+                $('#totalBase').text(data.TotalBase + ",-");
 
-                }
-            });
-        };
+            }
+        });
+    };
 </script>
 
 <script>

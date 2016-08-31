@@ -21,7 +21,7 @@
 @section BottomScripts {
     <script type="text/javascript">
 
-        function showMessage(message, SColor) {
+        function showMessage(message, sColor) {
 
 
             @if (SessionManager.Manager.Responsive is html5)
@@ -29,7 +29,7 @@
                 <text>
             document.getElementById('actionMessage').textContent = message;
             document.getElementById('result').classList.remove("text-info");
-            document.getElementById('result').classList.add(SColor);
+            document.getElementById('result').classList.add(sColor);
             </text>
             }
             else
@@ -42,7 +42,7 @@
                     @if (SessionManager.Manager.Responsive is html5)
                     {
                         <text>
-                    document.getElementById('result').classList.remove(SColor);
+                    document.getElementById('result').classList.remove(sColor);
                     document.getElementById('result').classList.add("text-info");
                     document.getElementById('actionMessage').textContent = "Afventer scanning";
                     </text>
@@ -61,25 +61,25 @@
         $("#scanInput")
             .bind("keypress",
                 function(e) {
-                    if (e.keyCode == 13) {
+                    if (e.keyCode === 13) {
                         $("#scanInput").disabled = true;
-                        var ScanItemModel = { item: { barCode: document.getElementById('scanInput').value } };
+                        var scanItemModel = { item: { barCode: document.getElementById('scanInput').value } };
                         $.ajax({
                             url:
                                 '@Url.Action(MVC.Storage.QuickCount(Url.RequestContext.RouteData.Values["id"].ToString()))',
                             async: true,
                             type: 'POST',
                             dataType: 'json',
-                            data: JSON.stringify(ScanItemModel),
+                            data: JSON.stringify(scanItemModel),
                             contentType: 'application/json; charset=utf-8',
                             success: function(data) {
                                 var message = "";
-                                var SColor = "text-success";
+                                var sColor = "text-success";
                                 console.log(data);
-                                if (data.Scanned != 1) {
+                                if (data.Scanned !== 1) {
                                   
                                     message += data.Error;
-                                    SColor = "text-danger";
+                                    sColor = "text-danger";
                                 } else {
                                     message += "Scanning registreret: " + data.Item.BarCode;
 
@@ -87,7 +87,7 @@
 
 
                                 }
-                                showMessage(message, SColor);
+                                showMessage(message, sColor);
                                 updateTable();
                             }
                         });
@@ -95,6 +95,7 @@
                         $('#scanInput').disabled = false;
                         return false;
                     }
+                    return true;
                 });
 
         function updateTable() {

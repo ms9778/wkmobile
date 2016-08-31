@@ -1,5 +1,4 @@
-﻿@using Microsoft.Ajax.Utilities
-@model ScanItemModel
+﻿@model ScanItemModel
 <form autocomplete="off">
     <input type="hidden" name="item.LineNo" value="@(Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.LineNo) ? Model.Item.LineNo : "")" />
     @if (Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Target))
@@ -66,7 +65,7 @@
                 .ready(function() {
                     $('#okButton').attr('disabled', true);
                     $('#cancelButton').attr('disabled', true);
-                    $('#TargetInput' && '#ScanInput' && '#itemCount')
+                    $('#itemCount')
                         .keyup(function() {
                             if ($(this).val().length !== 0) {
                                 $('#okButton').attr('disabled', false);

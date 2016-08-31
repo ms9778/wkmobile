@@ -43,7 +43,7 @@
                         <td class="mdl-data-table__cell--non-numeric col-xs-5">@i.SupplierName <br/> 
                         <small>   <i class="fa fa-hashtag" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(i.SupplierNo)){@i.SupplierNo}else{<small> -</small>}
                             <br/> <i class="fa fa-envelope" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(i.SupplierEmail)){@i.SupplierEmail}else{<small> -</small>}
-                            <br/> <i class="fa fa-phone" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(@i.SupplierPhone)){@i.SupplierPhone}else{<small> -</small>} </small></td>
+                            <br/> <i class="fa fa-phone" aria-hidden="true"></i> @if (!string.IsNullOrEmpty(i.SupplierPhone)){@i.SupplierPhone}else{<small> -</small>} </small></td>
                         <td class="mdl-data-table__cell--non-numeric col-xs-3"><small>@i.PurchaseNo</small></td>
                         <td onclick="showstuff()" class="mdl-data-table__cell--non-numeric col-xs-4"> <a class="mdl-button button-fontsize-12 mdl-js-button mdl-button--raised mdl-button--primary" href="@Url.Action(MVC.Purchase.MakePurchaseGet(i.SupplierNo, i.PurchaseNo))">+ Tilføj</a></td>
 
@@ -72,13 +72,13 @@
             document.getElementById("edit_search").focus();
         }
 
-        function gid(a_id) {
-            return document.getElementById(a_id);
+        function gid(aId) {
+            return document.getElementById(aId);
         }
 
         function close_all() { // hide all divs
 
-            for (i = 0; i < @Model.Purchases.Count; i++) {
+            for (var i = 0; i < @Model.Purchases.Count; i++) {
                 var o = gid("line_" + i);
                 if (o) { //just to make sure this object really exists
                     o.style.display = "none";
@@ -89,7 +89,7 @@
 
         function open_all() { // show all divs
 
-            for (i = 0; i < @Model.Purchases.Count; i++) {
+            for (var i = 0; i < @Model.Purchases.Count; i++) {
                 var o = gid("line_" + i);
                 if (o) { //just to make sure this object really exists
                     o.style.display = "table-row";
@@ -102,17 +102,17 @@
         function find_my_div() { // find and show
             close_all(); // close previous search results
 
-            var o_edit = gid("edit_search");
-            var str_needle = edit_search.value;
-            str_needle = str_needle.toUpperCase();
+            var oEdit = gid("edit_search");
+            var strNeedle = oEdit.value;
+            strNeedle = strNeedle.toUpperCase();
 
-            if (str_needle != "") { // we will not search for empty strings
-                for (i = 0; i < @Model.Purchases.Count; i++) {
+            if (strNeedle !== "") { // we will not search for empty strings
+                for (var i = 0; i < @Model.Purchases.Count; i++) {
                     var o = gid("line_" + i);
                     if (o) { //just to make sure this object really exists
                         // we want case insensitive search, so bring the both parts to upper case and compare
-                        var str_haystack = o.innerHTML.toUpperCase();
-                        if (str_haystack.indexOf(str_needle) == -1) {
+                        var strHaystack = o.innerHTML.toUpperCase();
+                        if (strHaystack.indexOf(strNeedle) === -1) {
                             // not found, do nothing
                         } else {
                             // yes, we got it, show it
