@@ -4,8 +4,6 @@ using System.Web.Mvc;
 using BE;
 using BLL;
 using DAL;
-using Microsoft.Ajax.Utilities;
-using Winkompass_Mobil.Code;
 using Winkompass_Mobil.Models;
 using System;
 using System.Web.Script.Serialization;
@@ -16,7 +14,6 @@ namespace Winkompass_Mobil.Controllers
     
     public partial class OrderController : Controller
     {
-        Functions func = new Functions();    
         // GET: CreateOrder
         //[OutputCache(Duration = 1000, VaryByParam = "none")]
         public virtual ActionResult Index()
@@ -51,12 +48,16 @@ namespace Winkompass_Mobil.Controllers
             }
             if (reg?.Item?.BarCode != null && reg.Item.Count > 0)
                 reg.Scanned = OrderWorker.MakeOrder(reg.Item);
+            // ReSharper disable once PossibleNullReferenceException, because it kept showing it!
             if (reg != null && (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError)))
                 reg.Error = reg.Item.ItemError;
             if (HttpContext.Request.Params["Action"] != null &&
+                // ReSharper disable once PossibleNullReferenceException, and again down here!!
+                // ReSharper disable once CompareOfFloatsByEqualityOperator, this one is just resharper being a little annoying, if you dont have resharper it might not be a problem.
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2)
             {
-                return RedirectToAction(MVC.Order.OrderGet(cus:reg.Item.LineNo,on:reg.Item.LineNo));
+                // ReSharper disable once PossibleNullReferenceException, and that annoying thing again...
+                return RedirectToAction(MVC.Order.OrderGet(reg.Item?.LineNo,reg.Item?.LineNo));
             }
             return RedirectToAction(MVC.Order.OrderList());
         }

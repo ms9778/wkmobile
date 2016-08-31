@@ -51,12 +51,13 @@ namespace Winkompass_Mobil.Controllers
             }
             if (reg.Item?.BarCode != null && reg.Item.Count > 0)
                 reg.Scanned = PurchaseWorker.MakePurchase(reg.Item);
-            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item.ItemError))
+            if (string.IsNullOrEmpty(reg.Error) && !string.IsNullOrEmpty(reg.Item?.ItemError))
                 reg.Error = reg.Item.ItemError;
             if (HttpContext.Request.Params["Action"] != null &&
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
                 HttpContext.Request.Params["Action"] != ScanItemModel.ScanAndStop || reg.Scanned == 2) {
 
-                return RedirectToAction(MVC.Purchase.MakePurchaseGet(reg.Target, reg.Item.LineNo));
+                return RedirectToAction(MVC.Purchase.MakePurchaseGet(reg.Target, reg.Item?.LineNo));
             }
             return RedirectToAction(MVC.Purchase.PurchaseList());
         }

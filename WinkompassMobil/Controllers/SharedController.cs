@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using DAL;
 using Winkompass_Mobil.Models;

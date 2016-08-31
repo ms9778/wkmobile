@@ -61,7 +61,7 @@ namespace Winkompass_Mobil.Controllers
                     kModel.Created = StorageWorker.CreateJournal(kModel.Template);
                }
             //return View(kModel);
-            return RedirectToAction(MVC.Storage.StorageCount(kModel.Template.Journal1));
+            return RedirectToAction(MVC.Storage.StorageCount(kModel.Template?.Journal1));
         }
 
         public virtual ActionResult StorageCount(string id)
@@ -135,39 +135,6 @@ namespace Winkompass_Mobil.Controllers
         [HttpPost]
         public virtual ActionResult StorageList(TemplateModel kModel)
         {
-            //Check if the Template is null
-            if (kModel.Template != null)
-            {
-                //Check if variable contains the name that is already in the database
-                var allJournals = StorageWorker.GetAllStockJournals();
-
-                foreach (var item in allJournals)
-                {
-                    if (item.Journal1 == kModel.Template.Journal1)
-                    {
-                        kModel.Error = "Kladden er allerede lavet";
-                        return View(kModel);
-                    }
-
-                }
-
-                //check if string contains something
-                if (!string.IsNullOrEmpty(kModel.Template.Journal1))
-                {
-                    //The object hasnt been created yet
-                    kModel.Created = false;
-                    //Check if the string contains any illegal characters
-                    var m = Regex.Match(kModel.Template.Journal1, @"[^a-zA-Z0-9æøåÆØÅ\.\-@ ]+");
-                    //If it does return error and return the view
-                    if (m.Success)
-                    {
-                        kModel.Error = "Kladden indeholder Ugyldige tegn, gyldige tegn er: a-å 0-9 .-@";
-                        return View(kModel);
-                    }
-                }
-                //Create the object
-                kModel.Created = StorageWorker.CreateJournal(kModel.Template);
-            }
             var list = new TemplateList { Journals = StorageWorker.GetAllStockJournals() };
 
             //return View(kModel);

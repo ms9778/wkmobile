@@ -45,7 +45,7 @@ div, html, body, form, table, tr, td {
     margin: 0 !important;
     padding: 0 !important;
     top: 56px !important;
-    left: 0px !important;
+    left: 0 !important;
 }
 
 .settings {
@@ -206,7 +206,7 @@ body { background-color: #EE6E73; }
 
 .no-margin { margin: 0 !important; }
 
-.mdl-list__item { padding: 12px 0px !important; }
+.mdl-list__item { padding: 12px 0 !important; }
 
 .mdl-list li { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 
@@ -243,13 +243,13 @@ body { background-color: #EE6E73; }
     position: absolute;
 }
 
-.btnstock { bottom: 0px !important; }
+.btnstock { bottom: 0 !important; }
 
 /* align icon */
 
-.left-addon .glyphicon { left: 0px; }
+.left-addon .glyphicon { left: 0; }
 
-.right-addon .glyphicon { right: 0px; }
+.right-addon .glyphicon { right: 0; }
 
 /* add padding  */
 
@@ -310,7 +310,7 @@ body { background-color: #EE6E73; }
     text-decoration: none; /* no underline */
 }
 
-mdl-card__title a, a:hover, a:active, a:visited { text-decoration: none !important; }
+.mdl-card__title a, a:hover, a:active, a:visited { text-decoration: none !important; }
 
 
 .material-icons.md-18 { font-size: 18px; }
