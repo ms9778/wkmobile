@@ -21,6 +21,10 @@ div, html, body, form, table, tr, td {
     z-index: 998;
 }
 
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+
 #orderLineOrdered {
     border: 1px solid #000000 !important;
     border: 1px solid rgba(0, 0, 0, .12) !important;
